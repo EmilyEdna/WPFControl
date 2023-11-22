@@ -3,16 +3,16 @@ using EdaCoder.WPFLib.Converters;
 
 namespace EdaCoder.WPFLib.ControlsModel
 {
-    [TypeConverter(typeof(ImageThicknessConverter))]
-    public struct ImageThickness
+    [TypeConverter(typeof(EdaCoderImageThicknessConverter))]
+    public struct EdaCoderImageThickness
     {
-        public ImageThickness(int length) 
+        public EdaCoderImageThickness(int length) 
         {
             Width = length;
             Height = length;
         }
 
-        public ImageThickness(int w, int h)
+        public EdaCoderImageThickness(int w, int h)
         {
             Width=w; Height=h;
         }

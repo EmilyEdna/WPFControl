@@ -17,6 +17,20 @@
         </DoubleAnimationUsingKeyFrames>
     </Storyboard>
 
+    <Storyboard x:Key="OpenInfo">
+        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_INFO" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(RotateTransform.Angle)">
+            <EasingDoubleKeyFrame KeyTime="0:0:0" Value="-90" />
+            <EasingDoubleKeyFrame KeyTime="0:0:1" Value="0" />
+        </DoubleAnimationUsingKeyFrames>
+    </Storyboard>
+
+    <Storyboard x:Key="CloseInfo">
+        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_INFO" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(RotateTransform.Angle)">
+            <EasingDoubleKeyFrame KeyTime="0:0:0" Value="0" />
+            <EasingDoubleKeyFrame KeyTime="0:0:1" Value="-90" />
+        </DoubleAnimationUsingKeyFrames>
+    </Storyboard>
+
     <Style TargetType="eda:EdaCoderImage">
         <Setter Property="Template">
             <Setter.Value>
@@ -37,11 +51,55 @@
                                 <Grid
                                     x:Name="PART_RECT"
                                     Width="{TemplateBinding Width}"
+                                    Height="0"
                                     VerticalAlignment="Bottom">
                                     <Rectangle
                                         Width="{Binding Width, ElementName=PART_RECT, Mode=TwoWay}"
                                         Height="{Binding Height, ElementName=PART_RECT, Mode=TwoWay}"
                                         Fill="{TemplateBinding Fill}" />
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*" />
+                                            <RowDefinition Height="25" />
+                                        </Grid.RowDefinitions>
+                                        <ContentPresenter ContentTemplate="{TemplateBinding ItemTemplate}" />
+                                        <Button x:Name="PART_BTN" Grid.Row="1">
+                                            <Button.Style>
+                                                <Style TargetType="Button">
+                                                    <Setter Property="Template">
+                                                        <Setter.Value>
+                                                            <ControlTemplate TargetType="Button">
+                                                                <Path
+                                                                    x:Name="PART_INFO"
+                                                                    Width="15"
+                                                                    Height="8"
+                                                                    Margin="0,0,15,0"
+                                                                    HorizontalAlignment="Right"
+                                                                    Data="M725.333333 426.666667L512 640 298.666667 426.666667z"
+                                                                    Fill="{TemplateBinding BorderBrush}"
+                                                                    RenderTransformOrigin="0.5,0.5"
+                                                                    Stretch="Fill"
+                                                                    Stroke="{TemplateBinding BorderBrush}">
+                                                                    <Path.RenderTransform>
+                                                                        <TransformGroup>
+                                                                            <RotateTransform Angle="-90" />
+                                                                        </TransformGroup>
+                                                                    </Path.RenderTransform>
+                                                                </Path>
+                                                                <ControlTemplate.Triggers>
+                                                                    <Trigger Property="IsPressed" Value="True">
+                                                                        <Trigger.EnterActions>
+                                                                            <BeginStoryboard Storyboard="{DynamicResource OpenInfo}" />
+                                                                        </Trigger.EnterActions>
+                                                                    </Trigger>
+                                                                </ControlTemplate.Triggers>
+                                                            </ControlTemplate>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                </Style>
+                                            </Button.Style>
+                                        </Button>
+                                    </Grid>
                                 </Grid>
                             </Grid>
                         </Border>
@@ -63,10 +121,10 @@
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Trigger.EnterActions>
-                                <BeginStoryboard Name="OpenAnimation" Storyboard="{DynamicResource Open}" />
+                                <BeginStoryboard Storyboard="{DynamicResource Open}" />
                             </Trigger.EnterActions>
                             <Trigger.ExitActions>
-                                <BeginStoryboard Name="CloseAnimation" Storyboard="{DynamicResource Close}" />
+                                <BeginStoryboard Storyboard="{DynamicResource Close}" />
                             </Trigger.ExitActions>
                         </Trigger>
                         <DataTrigger Binding="{Binding Complete, RelativeSource={RelativeSource Mode=Self}}" Value="false">

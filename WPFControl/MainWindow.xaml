@@ -10,19 +10,6 @@
     Width="800"
     Height="450"
     mc:Ignorable="d">
-    <Window.Resources>
-        <Storyboard x:Key="Storyboard1">
-            <DoubleAnimationUsingKeyFrames
-                RepeatBehavior="Forever"
-                Storyboard.TargetName="path"
-                Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(RotateTransform.Angle)">
-                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0" />
-                <EasingDoubleKeyFrame KeyTime="00:00:01" Value="180" />
-                <EasingDoubleKeyFrame KeyTime="00:00:02" Value="360" />
-            </DoubleAnimationUsingKeyFrames>
-        </Storyboard>
-    </Window.Resources>
-
     <Grid>
         <eda:EdaCoderImage
             x:Name="edaCoderImage"
@@ -30,8 +17,10 @@
             Height="300"
             BorderBrush="Black"
             BorderThickness="1"
-            ImageThickness="240,300"
+            EdaCoderImageThickness="240,300"
+            Fill="WhiteSmoke"
             IsAsyncLoad="True"
+            PopupThickness="400,200"
             Src="https://fc.sinaimg.cn/mw1024/006yt1Omgy1hfwrvzvdztj30nh0xcqbh.jpg">
             <eda:EdaCoderImage.Effect>
                 <DropShadowEffect
@@ -39,6 +28,27 @@
                     ShadowDepth="0"
                     Color="Red" />
             </eda:EdaCoderImage.Effect>
+            <eda:EdaCoderImage.PopTemplate>
+                <DataTemplate>
+                    <TextBlock Text="1231231231232" />
+                </DataTemplate>
+            </eda:EdaCoderImage.PopTemplate>
+            <eda:EdaCoderImage.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel HorizontalAlignment="Center">
+                        <TextBlock
+                            Margin="0,3"
+                            HorizontalAlignment="Center"
+                            FontSize="18"
+                            Text="名称：测试" />
+                        <TextBlock
+                            Margin="0,3"
+                            HorizontalAlignment="Center"
+                            FontSize="18"
+                            Text="时间：2023年" />
+                    </StackPanel>
+                </DataTemplate>
+            </eda:EdaCoderImage.ItemTemplate>
         </eda:EdaCoderImage>
     </Grid>
 </Window>
