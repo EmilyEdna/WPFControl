@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Net.Http;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -12,27 +11,46 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Effects;
 using System.Windows.Shapes;
-using System.Xml.Linq;
-using EdaCoder.WPFLib.ControlsModel;
+using CandyControls.ControlsModel;
 
-namespace EdaCoder.WPFLib
+namespace CandyControls
 {
-    public class EdaCoderImage : Control
+    public class CandyImage : Control
     {
-        private static Queue<Tuple<EdaCoderImage, string>> ItemsQueue;
+        static CandyImage()
+        {
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(CandyImage), new FrameworkPropertyMetadata(typeof(CandyImage)));
+            ItemsQueue = new Queue<Tuple<CandyImage, string>>();
+            AutoEvent = new AutoResetEvent(true);
+            (new Thread(new ThreadStart(DownMethod))
+            {
+                IsBackground = true
+            }).Start();
+        }
+
+        private static Queue<Tuple<CandyImage, string>> ItemsQueue;
         private static AutoResetEvent AutoEvent;
         private static Image PART_IMG;
         private static Path PART_LOAD;
         private static Button PART_BTN;
+        private static Path PART_INFO;
+        private static Grid PART_RECT;
         public override void OnApplyTemplate()
         {
             PART_IMG = (Image)this.Template.FindName("PART_IMG", this);
             PART_LOAD = (Path)this.Template.FindName("PART_LOAD", this);
             PART_BTN = (Button)this.Template.FindName("PART_BTN", this);
+            PART_RECT =(Grid)this.Template.FindName("PART_RECT", this);
             PART_BTN.Click += ClickEvent;
             PART_LOAD.Height = LoadingThickness.Height;
             PART_LOAD.Width = LoadingThickness.Width;
 
+            LoadAnime();
+        }
+
+        #region Anime
+        private void LoadAnime()
+        {
             Storyboard storyboard = new Storyboard();
             DoubleAnimationUsingKeyFrames KF = new DoubleAnimationUsingKeyFrames
             {
@@ -47,35 +65,56 @@ namespace EdaCoder.WPFLib
             storyboard.Begin();
         }
 
+        private void ExitAnime()
+        {
+            Storyboard storyboard = new Storyboard();
+            DoubleAnimationUsingKeyFrames Revolve = new DoubleAnimationUsingKeyFrames();
+            Storyboard.SetTarget(Revolve, PART_INFO);
+            Storyboard.SetTargetProperty(Revolve, new PropertyPath("(UIElement.RenderTransform).(TransformGroup.Children)[0].(RotateTransform.Angle)"));
+            Revolve.KeyFrames.Add(new EasingDoubleKeyFrame(0, TimeSpan.FromSeconds(0)));
+            Revolve.KeyFrames.Add(new EasingDoubleKeyFrame(-90, TimeSpan.FromSeconds(1)));
+
+            DoubleAnimationUsingKeyFrames Close = new DoubleAnimationUsingKeyFrames();
+            Storyboard.SetTarget(Close, PART_RECT);
+            Storyboard.SetTargetProperty(Close, new PropertyPath("Height"));
+            Close.KeyFrames.Add(new EasingDoubleKeyFrame(100, TimeSpan.FromSeconds(0)));
+            Close.KeyFrames.Add(new EasingDoubleKeyFrame(0, TimeSpan.FromSeconds(1)));
+
+            storyboard.Children.Add(Revolve);
+            storyboard.Children.Add(Close);
+            storyboard.Begin();
+        }
+        #endregion
+
         #region Dp
         public static readonly DependencyProperty FillProperty =
-            DependencyProperty.Register("Fill", typeof(Brush), typeof(EdaCoderImage), new PropertyMetadata(Brushes.Transparent));
+            DependencyProperty.Register("Fill", typeof(Brush), typeof(CandyImage), new PropertyMetadata(Brushes.Transparent));
         public static readonly DependencyProperty CornerRadiusProperty =
-            DependencyProperty.Register("CornerRadius", typeof(CornerRadius), typeof(EdaCoderImage), new PropertyMetadata(default));
+            DependencyProperty.Register("CornerRadius", typeof(CornerRadius), typeof(CandyImage), new PropertyMetadata(default));
         public static readonly DependencyProperty BorderEffectProperty =
-            DependencyProperty.Register("BorderEffect", typeof(Effect), typeof(EdaCoderImage), new PropertyMetadata(default));
+            DependencyProperty.Register("BorderEffect", typeof(Effect), typeof(CandyImage), new PropertyMetadata(default));
         public static readonly DependencyProperty IsAsyncLoadProperty =
-            DependencyProperty.Register("IsAsyncLoad", typeof(bool), typeof(EdaCoderImage), new PropertyMetadata(true));
+            DependencyProperty.Register("IsAsyncLoad", typeof(bool), typeof(CandyImage), new PropertyMetadata(true));
         public static readonly DependencyProperty ImageThicknessProperty =
-            DependencyProperty.Register("ImageThickness", typeof(ImageThickness), typeof(EdaCoderImage), new PropertyMetadata(new ImageThickness(160, 240)));
+            DependencyProperty.Register("ImageThickness", typeof(ImageThickness), typeof(CandyImage), new PropertyMetadata(new ImageThickness(160, 240)));
         public static readonly DependencyProperty LoadingThicknessProperty =
-            DependencyProperty.Register("LoadingThickness", typeof(ImageThickness), typeof(EdaCoderImage), new PropertyMetadata(new ImageThickness(25, 25)));
+            DependencyProperty.Register("LoadingThickness", typeof(ImageThickness), typeof(CandyImage), new PropertyMetadata(new ImageThickness(25, 25)));
         public static readonly DependencyProperty PopupThicknessProperty =
-            DependencyProperty.Register("PopupThickness", typeof(ImageThickness), typeof(EdaCoderImage), new PropertyMetadata(new ImageThickness(0, 0)));
+            DependencyProperty.Register("PopupThickness", typeof(ImageThickness), typeof(CandyImage), new PropertyMetadata(new ImageThickness(0, 0)));
         public static readonly DependencyProperty EnableLoadingProperty =
-            DependencyProperty.Register("EnableLoading", typeof(bool), typeof(EdaCoderImage), new PropertyMetadata(false));
+            DependencyProperty.Register("EnableLoading", typeof(bool), typeof(CandyImage), new PropertyMetadata(false));
         public static readonly DependencyProperty ItemTemplateProperty =
-            DependencyProperty.Register("ItemTemplate", typeof(DataTemplate), typeof(EdaCoderImage), new PropertyMetadata(default));
+            DependencyProperty.Register("ItemTemplate", typeof(DataTemplate), typeof(CandyImage), new PropertyMetadata(default));
         public static readonly DependencyProperty PopTemplateProperty =
-            DependencyProperty.Register("PopTemplate", typeof(DataTemplate), typeof(EdaCoderImage), new PropertyMetadata(default));
+            DependencyProperty.Register("PopTemplate", typeof(DataTemplate), typeof(CandyImage), new PropertyMetadata(default));
         public static readonly DependencyProperty SrcProperty =
-            DependencyProperty.Register("Src", typeof(string), typeof(EdaCoderImage), new PropertyMetadata(string.Empty, OnSrcChanged));
+            DependencyProperty.Register("Src", typeof(string), typeof(CandyImage), new PropertyMetadata(string.Empty, OnSrcChanged));
         internal static readonly DependencyProperty CompleteProperty =
-            DependencyProperty.Register("Complete", typeof(bool), typeof(EdaCoderImage), new PropertyMetadata(false));
+            DependencyProperty.Register("Complete", typeof(bool), typeof(CandyImage), new PropertyMetadata(false));
         public static readonly DependencyProperty CommandParameterProperty =
-            DependencyProperty.Register("CommandParameter", typeof(object), typeof(EdaCoderImage), new PropertyMetadata(default));
+            DependencyProperty.Register("CommandParameter", typeof(object), typeof(CandyImage), new PropertyMetadata(default));
         public static readonly DependencyProperty CommandProperty =
-            DependencyProperty.Register("Command", typeof(int), typeof(EdaCoderImage), new PropertyMetadata(default));
+            DependencyProperty.Register("Command", typeof(ICommand), typeof(CandyImage), new PropertyMetadata(default));
         #endregion
 
         #region Property
@@ -168,7 +207,7 @@ namespace EdaCoder.WPFLib
         #region Method
         private static async void OnSrcChanged(DependencyObject obj, DependencyPropertyChangedEventArgs events)
         {
-            EdaCoderImage eda = (obj as EdaCoderImage);
+            CandyImage eda = (obj as CandyImage);
             if (eda.IsAsyncLoad)
             {
                 lock (ItemsQueue)
@@ -189,6 +228,7 @@ namespace EdaCoder.WPFLib
 
         private void ClickEvent(object sender, RoutedEventArgs e)
         {
+            PART_INFO = (Path)((Button)sender).Template.FindName("PART_INFO", PART_BTN);
             Command?.Execute(CommandParameter);
             Grid panal = new Grid();
             panal.Children.Add(new Rectangle
@@ -212,13 +252,16 @@ namespace EdaCoder.WPFLib
                 Child = panal
             };
             popup.IsOpen = true;
+            popup.Closed +=delegate  {
+                ExitAnime();
+            };
         }
 
         private static async void DownMethod()
         {
             while (true)
             {
-                Tuple<EdaCoderImage, string> Items = null;
+                Tuple<CandyImage, string> Items = null;
                 lock (ItemsQueue)
                 {
                     if (ItemsQueue.Count > 0)

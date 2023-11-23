@@ -6,7 +6,7 @@ using System.Windows;
 using System.Windows.Interop;
 using System.Windows.Media.Imaging;
 
-namespace EdaCoder.WPFLib
+namespace CandyControls
 {
     public class BitmapHelper
     {

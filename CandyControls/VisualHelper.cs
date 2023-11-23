@@ -1,17 +1,15 @@
-ï»¿using System;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Media;
 using System.Windows;
+using System.Linq;
 
-namespace EdaCoder.WPFLib
+namespace CandyControls
 {
     public static class VisualHelper
     {
         /// <summary>
-        /// æŸ¥æ‰¾å­æ§ä»¶
+        /// ²éÕÒ×Ó¿Ø¼ş
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="obj"></param>
@@ -56,7 +54,7 @@ namespace EdaCoder.WPFLib
         }
 
         /// <summary>
-        /// æŸ¥æ‰¾å•ä¸ªå­æ§ä»¶
+        /// ²éÕÒµ¥¸ö×Ó¿Ø¼ş
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="obj"></param>
@@ -79,9 +77,9 @@ namespace EdaCoder.WPFLib
             return default;
         }
         /// <summary>
-        /// è·å¾—æŒ‡å®šå…ƒç´ çš„çˆ¶å…ƒç´ 
+        /// »ñµÃÖ¸¶¨ÔªËØµÄ¸¸ÔªËØ
         /// </summary>
-        /// <typeparam name="T">æŒ‡å®šé¡µé¢å…ƒç´ </typeparam>
+        /// <typeparam name="T">Ö¸¶¨Ò³ÃæÔªËØ</typeparam>
         /// <param name="obj"></param>
         /// <returns></returns>
         public static T FindParent<T>(this DependencyObject obj) where T : FrameworkElement

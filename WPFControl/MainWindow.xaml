@@ -9,31 +9,37 @@
     Title="MainWindow"
     Width="800"
     Height="450"
+    d:DataContext="{d:DesignInstance local:MainViewModel}"
     mc:Ignorable="d">
+    <Window.DataContext>
+        <local:MainViewModel />
+    </Window.DataContext>
     <Grid>
-        <eda:EdaCoderImage
-            x:Name="edaCoderImage"
+        <eda:CandyImage
+            x:Name="CandyImage"
             Width="240"
             Height="300"
             BorderBrush="Black"
             BorderThickness="1"
+            Command="{Binding TestCommand}"
+            CommandParameter="1"
             Fill="WhiteSmoke"
             ImageThickness="240,300"
             IsAsyncLoad="True"
             PopupThickness="400,200"
             Src="https://fc.sinaimg.cn/mw1024/006yt1Omgy1hfwrvzvdztj30nh0xcqbh.jpg">
-            <eda:EdaCoderImage.Effect>
+            <eda:CandyImage.Effect>
                 <DropShadowEffect
                     BlurRadius="15"
                     ShadowDepth="0"
                     Color="Red" />
-            </eda:EdaCoderImage.Effect>
-            <eda:EdaCoderImage.PopTemplate>
+            </eda:CandyImage.Effect>
+            <eda:CandyImage.PopTemplate>
                 <DataTemplate>
                     <TextBlock Text="1231231231232" />
                 </DataTemplate>
-            </eda:EdaCoderImage.PopTemplate>
-            <eda:EdaCoderImage.ItemTemplate>
+            </eda:CandyImage.PopTemplate>
+            <eda:CandyImage.ItemTemplate>
                 <DataTemplate>
                     <StackPanel HorizontalAlignment="Center">
                         <TextBlock
@@ -48,7 +54,7 @@
                             Text="时间：2023年" />
                     </StackPanel>
                 </DataTemplate>
-            </eda:EdaCoderImage.ItemTemplate>
-        </eda:EdaCoderImage>
+            </eda:CandyImage.ItemTemplate>
+        </eda:CandyImage>
     </Grid>
 </Window>

@@ -1,19 +1,12 @@
 ﻿<ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:eda="clr-namespace:EdaCoder.WPFLib">
+    xmlns:eda="clr-namespace:CandyControls">
 
     <Storyboard x:Key="Open">
         <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_RECT" Storyboard.TargetProperty="Height">
             <EasingDoubleKeyFrame KeyTime="0:0:0" Value="0" />
             <EasingDoubleKeyFrame KeyTime="0:0:1" Value="100" />
-        </DoubleAnimationUsingKeyFrames>
-    </Storyboard>
-
-    <Storyboard x:Key="Close">
-        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_RECT" Storyboard.TargetProperty="Height">
-            <EasingDoubleKeyFrame KeyTime="0:0:0" Value="100" />
-            <EasingDoubleKeyFrame KeyTime="0:0:1" Value="0" />
         </DoubleAnimationUsingKeyFrames>
     </Storyboard>
 
@@ -24,17 +17,10 @@
         </DoubleAnimationUsingKeyFrames>
     </Storyboard>
 
-    <Storyboard x:Key="CloseInfo">
-        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_INFO" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(RotateTransform.Angle)">
-            <EasingDoubleKeyFrame KeyTime="0:0:0" Value="0" />
-            <EasingDoubleKeyFrame KeyTime="0:0:1" Value="-90" />
-        </DoubleAnimationUsingKeyFrames>
-    </Storyboard>
-
-    <Style TargetType="eda:EdaCoderImage">
+    <Style TargetType="eda:CandyImage">
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="eda:EdaCoderImage">
+                <ControlTemplate TargetType="eda:CandyImage">
                     <Grid>
                         <Border
                             Width="{TemplateBinding Width}"
@@ -123,9 +109,6 @@
                             <Trigger.EnterActions>
                                 <BeginStoryboard Storyboard="{DynamicResource Open}" />
                             </Trigger.EnterActions>
-                            <Trigger.ExitActions>
-                                <BeginStoryboard Storyboard="{DynamicResource Close}" />
-                            </Trigger.ExitActions>
                         </Trigger>
                         <DataTrigger Binding="{Binding Complete, RelativeSource={RelativeSource Mode=Self}}" Value="false">
                             <Setter TargetName="PART_LOAD" Property="Visibility" Value="Visible" />
