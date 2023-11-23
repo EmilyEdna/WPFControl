@@ -26,6 +26,7 @@
             Fill="WhiteSmoke"
             ImageThickness="240,300"
             IsAsyncLoad="True"
+            PopupBtn="Visible"
             PopupThickness="400,200"
             Src="https://fc.sinaimg.cn/mw1024/006yt1Omgy1hfwrvzvdztj30nh0xcqbh.jpg">
             <eda:CandyImage.Effect>
