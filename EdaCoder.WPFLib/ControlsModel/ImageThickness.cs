@@ -4,15 +4,15 @@ using EdaCoder.WPFLib.Converters;
 namespace EdaCoder.WPFLib.ControlsModel
 {
     [TypeConverter(typeof(EdaCoderImageThicknessConverter))]
-    public struct EdaCoderImageThickness
+    public struct ImageThickness
     {
-        public EdaCoderImageThickness(int length) 
+        public ImageThickness(int length) 
         {
             Width = length;
             Height = length;
         }
 
-        public EdaCoderImageThickness(int w, int h)
+        public ImageThickness(int w, int h)
         {
             Width=w; Height=h;
         }

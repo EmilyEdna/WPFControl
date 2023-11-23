@@ -16,10 +16,10 @@ namespace EdaCoder.WPFLib.Converters
             if (value.ToString().Contains(","))
             {
                 var wh = value.ToString().Split(",");
-                return new EdaCoderImageThickness(int.Parse(wh.First()), int.Parse(wh.Last()));
+                return new ImageThickness(int.Parse(wh.First()), int.Parse(wh.Last()));
             }
             else
-                return new EdaCoderImageThickness(int.Parse(value.ToString()));
+                return new ImageThickness(int.Parse(value.ToString()));
         }
     }
 }

@@ -17,8 +17,8 @@
             Height="300"
             BorderBrush="Black"
             BorderThickness="1"
-            EdaCoderImageThickness="240,300"
             Fill="WhiteSmoke"
+            ImageThickness="240,300"
             IsAsyncLoad="True"
             PopupThickness="400,200"
             Src="https://fc.sinaimg.cn/mw1024/006yt1Omgy1hfwrvzvdztj30nh0xcqbh.jpg">
