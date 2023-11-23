@@ -47,13 +47,11 @@ namespace CandyControls
             PART_LOAD.Width = LoadingThickness.Width;
 
             TRIGGER = (Trigger)this.Template.Triggers.Where(t => t is Trigger).First();
-            if (PopupBtn == Visibility.Collapsed)
+            CloseAnime();
+            TRIGGER.ExitActions.Add(new BeginStoryboard
             {
-                TRIGGER.ExitActions.Add(new BeginStoryboard
-                {
-                    Storyboard = CloseAnime()
-                });
-            }
+                Storyboard = CloseStory
+            });
             LoadAnime();
         }
 
@@ -61,6 +59,7 @@ namespace CandyControls
         private static Storyboard LoadAnimeStory;
         private static Storyboard CollapsedStory;
         private static Storyboard ExpendStory;
+        private static Storyboard CloseStory;
         private void LoadAnime()
         {
             LoadAnimeStory = new Storyboard();
@@ -76,7 +75,6 @@ namespace CandyControls
             LoadAnimeStory.Children.Add(KF);
             LoadAnimeStory.Begin();
         }
-
         private void ExpendAnime() 
         {
             ExpendStory = new Storyboard();
@@ -99,17 +97,15 @@ namespace CandyControls
             CollapsedStory.Children.Add(Revolve);
             CollapsedStory.Begin();
         }
-
-        private static Storyboard CloseAnime()
+        private static void CloseAnime()
         {
-            Storyboard storyboard = new Storyboard();
+            CloseStory = new Storyboard();
             DoubleAnimationUsingKeyFrames Close = new DoubleAnimationUsingKeyFrames();
             Storyboard.SetTarget(Close, PART_RECT);
             Storyboard.SetTargetProperty(Close, new PropertyPath("Height"));
             Close.KeyFrames.Add(new EasingDoubleKeyFrame(100, TimeSpan.FromSeconds(0)));
             Close.KeyFrames.Add(new EasingDoubleKeyFrame(0, TimeSpan.FromSeconds(1)));
-            storyboard.Children.Add(Close);
-            return storyboard;
+            CloseStory.Children.Add(Close);
         }
         #endregion
 
