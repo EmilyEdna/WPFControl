@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Runtime.CompilerServices;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -35,6 +36,7 @@ namespace CandyControls
         private static Button PART_BTN;
         private static Path PART_INFO;
         private static Grid PART_RECT;
+        private static Grid PART_RECT_INFO;
         private static Trigger TRIGGER;
         public override void OnApplyTemplate()
         {
@@ -42,16 +44,21 @@ namespace CandyControls
             PART_LOAD = (Path)this.Template.FindName("PART_LOAD", this);
             PART_BTN = (Button)this.Template.FindName("PART_BTN", this);
             PART_RECT = (Grid)this.Template.FindName("PART_RECT", this);
+            PART_RECT_INFO = (Grid)this.Template.FindName("PART_RECT_INFO", this);
             PART_BTN.Click += ClickEvent;
             PART_LOAD.Height = LoadingThickness.Height;
             PART_LOAD.Width = LoadingThickness.Width;
 
             TRIGGER = (Trigger)this.Template.Triggers.Where(t => t is Trigger).First();
-            CloseAnime();
-            TRIGGER.ExitActions.Add(new BeginStoryboard
+            if (PopupBtn == Visibility.Collapsed)
             {
-                Storyboard = CloseStory
-            });
+                PART_RECT_INFO.RowDefinitions.Last().Height = new GridLength(0, GridUnitType.Pixel);
+                CloseAnime();
+                TRIGGER.ExitActions.Add(new BeginStoryboard
+                {
+                    Storyboard = CloseStory
+                });
+            }
             LoadAnime();
         }
 
@@ -125,11 +132,11 @@ namespace CandyControls
         public static readonly DependencyProperty PopupThicknessProperty =
             DependencyProperty.Register("PopupThickness", typeof(ImageThickness), typeof(CandyImage), new PropertyMetadata(new ImageThickness(0, 0)));
         public static readonly DependencyProperty EnableLoadingProperty =
-            DependencyProperty.Register("EnableLoading", typeof(bool), typeof(CandyImage), new PropertyMetadata(false));
+            DependencyProperty.Register("EnableLoading", typeof(bool), typeof(CandyImage), new PropertyMetadata(true));
         public static readonly DependencyProperty ItemTemplateProperty =
             DependencyProperty.Register("ItemTemplate", typeof(DataTemplate), typeof(CandyImage), new PropertyMetadata(default));
-        public static readonly DependencyProperty PopTemplateProperty =
-            DependencyProperty.Register("PopTemplate", typeof(DataTemplate), typeof(CandyImage), new PropertyMetadata(default));
+        public static readonly DependencyProperty PopupTemplateProperty =
+            DependencyProperty.Register("PopupTemplate", typeof(DataTemplate), typeof(CandyImage), new PropertyMetadata(default));
         public static readonly DependencyProperty SrcProperty =
             DependencyProperty.Register("Src", typeof(string), typeof(CandyImage), new PropertyMetadata(string.Empty, OnSrcChanged));
         internal static readonly DependencyProperty CompleteProperty =
@@ -179,7 +186,7 @@ namespace CandyControls
             get { return (ImageThickness)GetValue(ImageThicknessProperty); }
             set { SetValue(ImageThicknessProperty, value); }
         }
-        [Description("重绘图片的长宽")]
+        [Description("加载图像的长宽")]
         public ImageThickness LoadingThickness
         {
             get { return (ImageThickness)GetValue(LoadingThicknessProperty); }
@@ -209,11 +216,11 @@ namespace CandyControls
             get { return (DataTemplate)GetValue(ItemTemplateProperty); }
             set { SetValue(ItemTemplateProperty, value); }
         }
-        [Description("信息模板")]
-        public DataTemplate PopTemplate
+        [Description("弹出层模板")]
+        public DataTemplate PopupTemplate
         {
-            get { return (DataTemplate)GetValue(PopTemplateProperty); }
-            set { SetValue(PopTemplateProperty, value); }
+            get { return (DataTemplate)GetValue(PopupTemplateProperty); }
+            set { SetValue(PopupTemplateProperty, value); }
         }
         [Description("是否完成加载")]
         internal bool Complete
@@ -271,7 +278,7 @@ namespace CandyControls
             });
             panal.Children.Add(new ContentPresenter
             {
-                ContentTemplate = PopTemplate
+                ContentTemplate = PopupTemplate
             });
             Popup popup = new Popup
             {

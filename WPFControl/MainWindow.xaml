@@ -23,6 +23,7 @@
             BorderThickness="1"
             Command="{Binding TestCommand}"
             CommandParameter="1"
+            EnableLoading="True"
             Fill="WhiteSmoke"
             ImageThickness="240,300"
             IsAsyncLoad="True"
@@ -35,11 +36,11 @@
                     ShadowDepth="0"
                     Color="Red" />
             </eda:CandyImage.Effect>
-            <eda:CandyImage.PopTemplate>
+            <eda:CandyImage.PopupTemplate>
                 <DataTemplate>
                     <TextBlock Text="1231231231232" />
                 </DataTemplate>
-            </eda:CandyImage.PopTemplate>
+            </eda:CandyImage.PopupTemplate>
             <eda:CandyImage.ItemTemplate>
                 <DataTemplate>
                     <StackPanel HorizontalAlignment="Center">
