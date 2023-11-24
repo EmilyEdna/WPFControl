@@ -29,6 +29,7 @@
                     BorderBrush="Black"
                     BorderThickness="1"
                     EnableLoading="True"
+                    EnableTag="False"
                     Fill="WhiteSmoke"
                     ImageThickness="240,300"
                     IsAsyncLoad="True"

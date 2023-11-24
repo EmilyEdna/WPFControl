@@ -40,14 +40,19 @@ namespace CandyControls
             PART_LOAD.Width = LoadingThickness.Width;
 
             TRIGGER = (Trigger)this.Template.Triggers.Where(t => t is Trigger).First();
-            if (PopupBtn == Visibility.Collapsed)
+            if (!EnableTag)
+                TRIGGER.EnterActions.Clear();
+            else
             {
-                PART_RECT_INFO.RowDefinitions.Last().Height = new GridLength(0, GridUnitType.Pixel);
-                CloseAnime();
-                TRIGGER.ExitActions.Add(new BeginStoryboard
+                if (PopupBtn == Visibility.Collapsed)
                 {
-                    Storyboard = CloseStory
-                });
+                    PART_RECT_INFO.RowDefinitions.Last().Height = new GridLength(0, GridUnitType.Pixel);
+                    CloseAnime();
+                    TRIGGER.ExitActions.Add(new BeginStoryboard
+                    {
+                        Storyboard = CloseStory
+                    });
+                }
             }
             LoadAnime();
         }
@@ -143,9 +148,17 @@ namespace CandyControls
             DependencyProperty.Register("CacheSpan", typeof(int), typeof(CandyImage), new PropertyMetadata(5));
         public static readonly DependencyProperty ItemProperty =
             DependencyProperty.Register("Item", typeof(object), typeof(CandyImage), new PropertyMetadata(default));
+        public static readonly DependencyProperty EnableTagProperty =
+            DependencyProperty.Register("EnableTag", typeof(bool), typeof(CandyImage), new PropertyMetadata(true));
         #endregion
 
         #region Property
+        [Description("启用信息栏")]
+        public bool EnableTag
+        {
+            get { return (bool)GetValue(EnableTagProperty); }
+            set { SetValue(EnableTagProperty, value); }
+        }
         [Description("绑定的对象")]
         public object Item
         {
