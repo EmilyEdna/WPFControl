@@ -23,7 +23,7 @@
                             CornerRadius="{TemplateBinding CornerRadius}">
                             <Grid>
                                 <Image
-                                    x:Name="PART_IMG"
+                                    eda:ImageAttach.SourceAsync="{TemplateBinding Src}"
                                     RenderOptions.BitmapScalingMode="HighQuality"
                                     SnapsToDevicePixels="True"
                                     Stretch="Uniform" />

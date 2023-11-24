@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Net.Http;
-using System.Runtime.CompilerServices;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -23,24 +21,16 @@ namespace CandyControls
         static CandyImage()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(CandyImage), new FrameworkPropertyMetadata(typeof(CandyImage)));
-            AutoEvent = new AutoResetEvent(true);
-            (new Thread(new ThreadStart(DownMethod))
-            {
-                IsBackground = true
-            }).Start();
         }
 
-        private static AutoResetEvent AutoEvent;
-        private static Image PART_IMG;
-        private static Path PART_LOAD;
-        private static Button PART_BTN;
-        private static Path PART_INFO;
-        private static Grid PART_RECT;
-        private static Grid PART_RECT_INFO;
-        private static Trigger TRIGGER;
+        private Path PART_LOAD;
+        private Button PART_BTN;
+        private Path PART_INFO;
+        private Grid PART_RECT;
+        private Grid PART_RECT_INFO;
+        private Trigger TRIGGER;
         public override void OnApplyTemplate()
         {
-            PART_IMG = (Image)this.Template.FindName("PART_IMG", this);
             PART_LOAD = (Path)this.Template.FindName("PART_LOAD", this);
             PART_BTN = (Button)this.Template.FindName("PART_BTN", this);
             PART_RECT = (Grid)this.Template.FindName("PART_RECT", this);
@@ -63,10 +53,10 @@ namespace CandyControls
         }
 
         #region Anime
-        private static Storyboard LoadAnimeStory;
-        private static Storyboard CollapsedStory;
-        private static Storyboard ExpendStory;
-        private static Storyboard CloseStory;
+        public Storyboard LoadAnimeStory;
+        public Storyboard CollapsedStory;
+        public Storyboard ExpendStory;
+        public Storyboard CloseStory;
         private void LoadAnime()
         {
             LoadAnimeStory = new Storyboard();
@@ -82,7 +72,7 @@ namespace CandyControls
             LoadAnimeStory.Children.Add(KF);
             LoadAnimeStory.Begin();
         }
-        private void ExpendAnime() 
+        private void ExpendAnime()
         {
             ExpendStory = new Storyboard();
             DoubleAnimationUsingKeyFrames Revolve = new DoubleAnimationUsingKeyFrames();
@@ -104,7 +94,7 @@ namespace CandyControls
             CollapsedStory.Children.Add(Revolve);
             CollapsedStory.Begin();
         }
-        private static void CloseAnime()
+        private void CloseAnime()
         {
             CloseStory = new Storyboard();
             DoubleAnimationUsingKeyFrames Close = new DoubleAnimationUsingKeyFrames();
@@ -138,7 +128,7 @@ namespace CandyControls
         public static readonly DependencyProperty PopupTemplateProperty =
             DependencyProperty.Register("PopupTemplate", typeof(DataTemplate), typeof(CandyImage), new PropertyMetadata(default));
         public static readonly DependencyProperty SrcProperty =
-            DependencyProperty.Register("Src", typeof(string), typeof(CandyImage), new PropertyMetadata(string.Empty, OnSrcChanged));
+            DependencyProperty.Register("Src", typeof(string), typeof(CandyImage), new PropertyMetadata(default));
         internal static readonly DependencyProperty CompleteProperty =
             DependencyProperty.Register("Complete", typeof(bool), typeof(CandyImage), new PropertyMetadata(false));
         public static readonly DependencyProperty CommandParameterProperty =
@@ -147,9 +137,25 @@ namespace CandyControls
             DependencyProperty.Register("Command", typeof(ICommand), typeof(CandyImage), new PropertyMetadata(default));
         public static readonly DependencyProperty PopupBtnProperty =
             DependencyProperty.Register("PopupBtn", typeof(Visibility), typeof(CandyImage), new PropertyMetadata(Visibility.Collapsed));
+        public static readonly DependencyProperty EnableCacheProperty =
+            DependencyProperty.Register("EnableCache", typeof(bool), typeof(CandyImage), new PropertyMetadata(false));
+        public static readonly DependencyProperty CacheSpanProperty =
+            DependencyProperty.Register("CacheSpan", typeof(int), typeof(CandyImage), new PropertyMetadata(5));
         #endregion
 
         #region Property
+        [Description("缓存时常/分钟")]
+        public int CacheSpan
+        {
+            get { return (int)GetValue(CacheSpanProperty); }
+            set { SetValue(CacheSpanProperty, value); }
+        }
+        [Description("是否使用缓存")]
+        public bool EnableCache
+        {
+            get { return (bool)GetValue(EnableCacheProperty); }
+            set { SetValue(EnableCacheProperty, value); }
+        }
         [Description("弹出层颜色")]
         public Brush Fill
         {
@@ -243,27 +249,6 @@ namespace CandyControls
         #endregion
 
         #region Method
-        private static async void OnSrcChanged(DependencyObject obj, DependencyPropertyChangedEventArgs events)
-        {
-            CandyImage eda = (obj as CandyImage);
-            if (eda.IsAsyncLoad)
-            {
-                lock (DownloadQueue.ItemsQueue)
-                {
-                    DownloadQueue.ItemsQueue.Enqueue(Tuple.Create(eda, events.NewValue.ToString()));
-                    AutoEvent.Set();
-                }
-            }
-            else
-            {
-                var Bytes = await new HttpClient().GetByteArrayAsync(events.NewValue.ToString());
-                await eda.Dispatcher.BeginInvoke(() =>
-                {
-                    PART_IMG.Source = BitmapHelper.Bytes2Image(Bytes, eda.ImageThickness.Width, eda.ImageThickness.Height);
-                });
-            }
-        }
-
         private void ClickEvent(object sender, RoutedEventArgs e)
         {
             PART_INFO = (Path)((Button)sender).Template.FindName("PART_INFO", PART_BTN);
@@ -296,47 +281,6 @@ namespace CandyControls
                 CollapsedAnime();
             };
         }
-
-        private static async void DownMethod()
-        {
-            while (true)
-            {
-                Tuple<CandyImage, string> Items = null;
-                lock (DownloadQueue.ItemsQueue)
-                {
-                    if (DownloadQueue.ItemsQueue.Count > 0)
-                    {
-                        Items = DownloadQueue.ItemsQueue.Dequeue();
-                    }
-                }
-                if (Items != null)
-                {
-                    Items.Item1.Dispatcher.Invoke(() =>
-                    {
-                        Items.Item1.Complete = false;
-                    });
-                    var Bytes = await new HttpClient().GetByteArrayAsync(Items.Item2);
-                    await Items.Item1.Dispatcher.BeginInvoke(() =>
-                    {
-                        PART_IMG.Source = BitmapHelper.Bytes2Image(Bytes, Items.Item1.ImageThickness.Width, Items.Item1.ImageThickness.Height);
-                        Items.Item1.Complete = true;
-                        LoadAnimeStory.Stop();
-                    });
-                }
-                if (DownloadQueue.ItemsQueue.Count > 0) continue;
-                //阻塞线程
-                AutoEvent.WaitOne();
-            }
-        }
         #endregion
-    }
-    internal static class DownloadQueue
-    {
-        internal static Queue<Tuple<CandyImage, string>> ItemsQueue;
-
-        static DownloadQueue()
-        {
-            ItemsQueue = new Queue<Tuple<CandyImage, string>>();
-        }
     }
 }
