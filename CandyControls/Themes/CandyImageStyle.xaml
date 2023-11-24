@@ -41,7 +41,7 @@
                                             <RowDefinition Height="*" />
                                             <RowDefinition Height="30" />
                                         </Grid.RowDefinitions>
-                                        <ContentPresenter ContentTemplate="{TemplateBinding ItemTemplate}" />
+                                        <ContentPresenter Content="{TemplateBinding Item}" ContentTemplate="{TemplateBinding ItemTemplate}" />
                                         <Button
                                             x:Name="PART_BTN"
                                             Grid.Row="1"

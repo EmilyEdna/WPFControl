@@ -13,14 +13,19 @@ namespace WPFControl
     {
         public MainViewModel()
         {
-            Img = new ObservableCollection<string>
+            Img = new ObservableCollection<TestModel>
             {
-             "https://fc.sinaimg.cn/mw1024/006yt1Omgy1hfwrvzvdztj30nh0xcqbh.jpg",
-             "https://fc.sinaimg.cn/mw1024/006yt1Omgy1hfwrvzvdztj30nh0xcqbh.jpg",
-             "https://fc.sinaimg.cn/mw1024/006yt1Omgy1hfwrvzvdztj30nh0xcqbh.jpg"
+               new TestModel{ Src="https://fc.sinaimg.cn/mw1024/006yt1Omgy1hfwrvzvdztj30nh0xcqbh.jpg",Name="测试" },
+               new TestModel{ Src="https://fc.sinaimg.cn/mw1024/006yt1Omgy1hfwrvzvdztj30nh0xcqbh.jpg",Name="测试" },
+               new TestModel{ Src="https://fc.sinaimg.cn/mw1024/006yt1Omgy1hfwrvzvdztj30nh0xcqbh.jpg",Name="测试" },
             };
         }
         [ObservableProperty]
-        private ObservableCollection<string> _Img;
+        private ObservableCollection<TestModel> _Img;
+    }
+    public class TestModel { 
+    
+        public string Src { get; set; }
+        public string Name { get; set; }
     }
 }

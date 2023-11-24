@@ -32,6 +32,7 @@
                     Fill="WhiteSmoke"
                     ImageThickness="240,300"
                     IsAsyncLoad="True"
+                    Item="{Binding .}"
                     PopupBtn="Visible"
                     PopupThickness="400,200"
                     Src="https://fc.sinaimg.cn/mw1024/006yt1Omgy1hfwrvzvdztj30nh0xcqbh.jpg">
@@ -43,7 +44,7 @@
                     </eda:CandyImage.Effect>
                     <eda:CandyImage.PopupTemplate>
                         <DataTemplate>
-                            <TextBlock Text="1231231231232" />
+                            <TextBlock Text="{Binding Name}" />
                         </DataTemplate>
                     </eda:CandyImage.PopupTemplate>
                     <eda:CandyImage.ItemTemplate>
@@ -53,12 +54,7 @@
                                     Margin="0,3"
                                     HorizontalAlignment="Center"
                                     FontSize="18"
-                                    Text="名称：测试" />
-                                <TextBlock
-                                    Margin="0,3"
-                                    HorizontalAlignment="Center"
-                                    FontSize="18"
-                                    Text="时间：2023年" />
+                                    Text="{Binding Name}" />
                             </StackPanel>
                         </DataTemplate>
                     </eda:CandyImage.ItemTemplate>

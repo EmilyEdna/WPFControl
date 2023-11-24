@@ -138,12 +138,20 @@ namespace CandyControls
         public static readonly DependencyProperty PopupBtnProperty =
             DependencyProperty.Register("PopupBtn", typeof(Visibility), typeof(CandyImage), new PropertyMetadata(Visibility.Collapsed));
         public static readonly DependencyProperty EnableCacheProperty =
-            DependencyProperty.Register("EnableCache", typeof(bool), typeof(CandyImage), new PropertyMetadata(false));
+            DependencyProperty.Register("EnableCache", typeof(bool), typeof(CandyImage), new PropertyMetadata(true));
         public static readonly DependencyProperty CacheSpanProperty =
             DependencyProperty.Register("CacheSpan", typeof(int), typeof(CandyImage), new PropertyMetadata(5));
+        public static readonly DependencyProperty ItemProperty =
+            DependencyProperty.Register("Item", typeof(object), typeof(CandyImage), new PropertyMetadata(default));
         #endregion
 
         #region Property
+        [Description("绑定的对象")]
+        public object Item
+        {
+            get { return GetValue(ItemProperty); }
+            set { SetValue(ItemProperty, value); }
+        }
         [Description("缓存时常/分钟")]
         public int CacheSpan
         {
@@ -243,7 +251,7 @@ namespace CandyControls
         [Description("命令参数")]
         public object CommandParameter
         {
-            get { return (object)GetValue(CommandParameterProperty); }
+            get { return GetValue(CommandParameterProperty); }
             set { SetValue(CommandParameterProperty, value); }
         }
         #endregion
@@ -263,7 +271,8 @@ namespace CandyControls
             });
             panal.Children.Add(new ContentPresenter
             {
-                ContentTemplate = PopupTemplate
+                ContentTemplate = PopupTemplate,
+                Content = Item
             });
             Popup popup = new Popup
             {
