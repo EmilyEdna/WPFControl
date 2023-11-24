@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading;
+using System.Windows;
 using System.Windows.Controls;
 using XExten.Advance.CacheFramework.RunTimeCache;
 using XExten.Advance.LinqFramework;
@@ -36,13 +37,10 @@ namespace CandyControls.InternalUtils
                 }
                 if (Tigger != null)
                 {
-                    Tigger.Item3.Dispatcher.Invoke(() =>
+                    await Application.Current.Dispatcher.BeginInvoke(async () =>
                     {
                         Tigger.Item3.Complete = false;
-                    }); 
-                    var Bytes = Cache(await new HttpClient().GetByteArrayAsync(Tigger.Item1), Tigger.Item1, Tigger.Item3.EnableCache, Tigger.Item3.CacheSpan);
-                    await Tigger.Item2.Dispatcher.BeginInvoke(() =>
-                    {
+                        var Bytes = Cache(await new HttpClient().GetByteArrayAsync(Tigger.Item1), Tigger.Item1, Tigger.Item3.EnableCache, Tigger.Item3.CacheSpan);
                         Tigger.Item2.Source = BitmapHelper.Bytes2Image(Bytes, Tigger.Item3.ImageThickness.Width, Tigger.Item3.ImageThickness.Height);
                         Tigger.Item3.Complete = true;
                         Tigger.Item3.LoadAnimeStory.Stop();
@@ -75,7 +73,7 @@ namespace CandyControls.InternalUtils
             }
         }
 
-        internal static byte[] Cache(byte[] bytes, string route,bool enableCache,int cacheSpan) 
+        internal static byte[] Cache(byte[] bytes, string route, bool enableCache, int cacheSpan)
         {
             if (!enableCache) return bytes;
             var result = MemoryCaches.GetCache<byte[]>(route.ToMd5());
