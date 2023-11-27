@@ -1,0 +1,19 @@
+﻿<UserControl
+    x:Class="WPFControl.ControlDemo.CandyButtonDemo"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:eda="http://edacoder.github.io"
+    xmlns:local="clr-namespace:WPFControl.ControlDemo"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <UniformGrid Columns="5">
+        <eda:CandyButton ButtonType="Primary" Content="测试" />
+        <eda:CandyButton ButtonType="Error" Content="测试" />
+        <eda:CandyButton ButtonType="Warning" Content="测试" />
+        <eda:CandyButton ButtonType="Info" Content="测试" />
+        <eda:CandyButton ButtonType="Success" Content="测试" />
+    </UniformGrid>
+</UserControl>

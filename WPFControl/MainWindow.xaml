@@ -6,61 +6,53 @@
     xmlns:eda="http://edacoder.github.io"
     xmlns:local="clr-namespace:WPFControl"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Name="IndexWin"
     Title="MainWindow"
-    Width="800"
-    Height="450"
+    Width="1200"
+    Height="800"
     d:DataContext="{d:DesignInstance local:MainViewModel}"
     mc:Ignorable="d">
     <Window.DataContext>
         <local:MainViewModel />
     </Window.DataContext>
-    <ListBox Width="800" ItemsSource="{Binding Img}">
-        <ListBox.ItemsPanel>
-            <ItemsPanelTemplate>
-                <UniformGrid Columns="3" />
-            </ItemsPanelTemplate>
-        </ListBox.ItemsPanel>
-        <ListBox.ItemTemplate>
-            <DataTemplate>
-                <eda:CandyImage
-                    x:Name="CandyImage"
-                    Width="240"
-                    Height="300"
-                    BorderBrush="Black"
-                    BorderThickness="1"
-                    EnableAsyncLoad="True"
-                    EnableLoading="True"
-                    EnableMask="False"
-                    EnablePopupBtn="Visible"
-                    Entity="{Binding .}"
-                    ImageThickness="240,300"
-                    MaskFill="WhiteSmoke"
-                    PopupThickness="400,200"
-                    Source="https://fc.sinaimg.cn/mw1024/006yt1Omgy1hfwrvzvdztj30nh0xcqbh.jpg">
-                    <eda:CandyImage.Effect>
-                        <DropShadowEffect
-                            BlurRadius="15"
-                            ShadowDepth="0"
-                            Color="Red" />
-                    </eda:CandyImage.Effect>
-                    <eda:CandyImage.PopupTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding Name}" />
-                        </DataTemplate>
-                    </eda:CandyImage.PopupTemplate>
-                    <eda:CandyImage.MaskTemplate>
-                        <DataTemplate>
-                            <StackPanel HorizontalAlignment="Center">
-                                <TextBlock
-                                    Margin="0,3"
-                                    HorizontalAlignment="Center"
-                                    FontSize="18"
-                                    Text="{Binding Name}" />
-                            </StackPanel>
-                        </DataTemplate>
-                    </eda:CandyImage.MaskTemplate>
-                </eda:CandyImage>
-            </DataTemplate>
-        </ListBox.ItemTemplate>
-    </ListBox>
+    <Window.Resources>
+        <ResourceDictionary>
+            <Style x:Key="Nav" TargetType="ListBox">
+                <Setter Property="BorderThickness" Value="0,0,1,0" />
+                <Setter Property="ItemContainerStyle">
+                    <Setter.Value>
+                        <Style TargetType="ListBoxItem">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="ListBoxItem">
+                                        <ContentPresenter
+                                            Width="100"
+                                            Height="30"
+                                            SnapsToDevicePixels="True" />
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <ListBox ItemsSource="{Binding Funcs}" Style="{StaticResource Nav}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Button
+                        Command="{Binding DataContext.MenuTargetCommand, ElementName=IndexWin}"
+                        CommandParameter="{Binding Value}"
+                        Content="{Binding Key}" />
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <ContentControl Grid.Column="1" Content="{Binding Ctrl}" />
+    </Grid>
 </Window>

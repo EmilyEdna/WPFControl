@@ -1,31 +1,43 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Windows.Controls;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using WPFControl.ControlDemo;
 
 namespace WPFControl
 {
     public partial class MainViewModel : ObservableObject
     {
+
         public MainViewModel()
         {
-            Img = new ObservableCollection<TestModel>
+            Funcs = new Dictionary<string, int>
             {
-               new TestModel{ Src="https://fc.sinaimg.cn/mw1024/006yt1Omgy1hfwrvzvdztj30nh0xcqbh.jpg",Name="测试" },
-               new TestModel{ Src="https://fc.sinaimg.cn/mw1024/006yt1Omgy1hfwrvzvdztj30nh0xcqbh.jpg",Name="测试" },
-               new TestModel{ Src="https://fc.sinaimg.cn/mw1024/006yt1Omgy1hfwrvzvdztj30nh0xcqbh.jpg",Name="测试" },
+                {"边框",1 }, {"按钮",2 },{"图片",3}
             };
         }
+
         [ObservableProperty]
-        private ObservableCollection<TestModel> _Img;
-    }
-    public class TestModel { 
-    
-        public string Src { get; set; }
-        public string Name { get; set; }
+        private Control _Ctrl;
+
+        [ObservableProperty]
+        private Dictionary<string, int> _Funcs;
+
+        [RelayCommand]
+        public void MenuTarget(int key)
+        {
+            switch (key)
+            {
+                case 1:
+                    Ctrl = new CandyBorderDemo();
+                    break;
+                case 2:
+                    Ctrl = new CandyButtonDemo();
+                    break;
+                case 3:
+                    Ctrl = new CandyImageDemo();
+                    break;
+            }
+        }
     }
 }
