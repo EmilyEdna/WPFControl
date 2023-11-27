@@ -28,15 +28,15 @@
                     Height="300"
                     BorderBrush="Black"
                     BorderThickness="1"
+                    EnableAsyncLoad="True"
                     EnableLoading="True"
-                    EnableTag="False"
-                    Fill="WhiteSmoke"
+                    EnableMask="False"
+                    EnablePopupBtn="Visible"
+                    Entity="{Binding .}"
                     ImageThickness="240,300"
-                    IsAsyncLoad="True"
-                    Item="{Binding .}"
-                    PopupBtn="Visible"
+                    MaskFill="WhiteSmoke"
                     PopupThickness="400,200"
-                    Src="https://fc.sinaimg.cn/mw1024/006yt1Omgy1hfwrvzvdztj30nh0xcqbh.jpg">
+                    Source="https://fc.sinaimg.cn/mw1024/006yt1Omgy1hfwrvzvdztj30nh0xcqbh.jpg">
                     <eda:CandyImage.Effect>
                         <DropShadowEffect
                             BlurRadius="15"
@@ -48,7 +48,7 @@
                             <TextBlock Text="{Binding Name}" />
                         </DataTemplate>
                     </eda:CandyImage.PopupTemplate>
-                    <eda:CandyImage.ItemTemplate>
+                    <eda:CandyImage.MaskTemplate>
                         <DataTemplate>
                             <StackPanel HorizontalAlignment="Center">
                                 <TextBlock
@@ -58,7 +58,7 @@
                                     Text="{Binding Name}" />
                             </StackPanel>
                         </DataTemplate>
-                    </eda:CandyImage.ItemTemplate>
+                    </eda:CandyImage.MaskTemplate>
                 </eda:CandyImage>
             </DataTemplate>
         </ListBox.ItemTemplate>

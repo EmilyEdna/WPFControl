@@ -54,7 +54,7 @@ namespace CandyControls.InternalUtils
 
         internal async static void Init(string route, Image image, CandyImage candy)
         {
-            if (candy.IsAsyncLoad)
+            if (candy.EnableAsyncLoad)
             {
                 lock (Tiggers)
                 {
