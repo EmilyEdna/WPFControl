@@ -3,5 +3,6 @@
         <ResourceDictionary Source="Themes/CandyImageStyle.xaml" />
         <ResourceDictionary Source="Themes/CandyBorderStyle.xaml" />
         <ResourceDictionary Source="Themes/CandyButtonStyle.xaml" />
+        <ResourceDictionary Source="Themes/CandyToggleStyle.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>
