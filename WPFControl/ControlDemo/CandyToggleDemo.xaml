@@ -6,13 +6,12 @@
     xmlns:eda="http://edacoder.github.io"
     xmlns:local="clr-namespace:WPFControl.ControlDemo"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DataContext="{d:DesignInstance local:CandyToggleDemoVM}"
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d">
-    <Grid>
-        <eda:CandyToggle>
-            <eda:CandyToggleItem Content="测试1" />
-            <eda:CandyToggleItem Content="测试2" />
-        </eda:CandyToggle>
-    </Grid>
+    <UserControl.DataContext>
+        <local:CandyToggleDemoVM />
+    </UserControl.DataContext>
+    <eda:CandyToggle ModelSource="{Binding Data}" />
 </UserControl>

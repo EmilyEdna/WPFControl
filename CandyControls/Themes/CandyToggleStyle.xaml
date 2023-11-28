@@ -13,7 +13,6 @@
         </DoubleAnimationUsingKeyFrames>
     </Storyboard>
 
-
     <Style TargetType="eda:CandyToggle">
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="HorizontalContentAlignment" Value="Center" />
@@ -33,10 +32,11 @@
             </Setter.Value>
         </Setter>
     </Style>
+
     <Style x:Key="ItemContainerStyle" TargetType="eda:CandyToggleItem">
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="BorderThickness" Value="0" />
-        <Setter Property="Foreground" Value="#FDF5E6" />
+        <Setter Property="Foreground" Value="{Binding ForeBrush, RelativeSource={RelativeSource AncestorType={x:Type eda:CandyToggle}}}" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="HorizontalAlignment" Value="{Binding HorizontalAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" />
         <Setter Property="VerticalContentAlignment" Value="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" />
@@ -46,7 +46,7 @@
                 <ControlTemplate TargetType="eda:CandyToggleItem">
                     <Border
                         Margin="{TemplateBinding Margin}"
-                        Background="#40B3B3B3"
+                        Background="{Binding BackBrush, RelativeSource={RelativeSource AncestorType={x:Type eda:CandyToggle}}}"
                         BorderBrush="{TemplateBinding BorderBrush}"
                         BorderThickness="{TemplateBinding BorderThickness}"
                         ClipToBounds="{TemplateBinding ClipToBounds}">
@@ -83,7 +83,7 @@
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsSelected" Value="True">
-                            <Setter TargetName="BorderElement" Property="Background" Value="#7080CBCC" />
+                            <Setter TargetName="BorderElement" Property="Background" Value="{Binding SelectedBrush, RelativeSource={RelativeSource AncestorType={x:Type eda:CandyToggle}}}" />
                             <Trigger.EnterActions>
                                 <BeginStoryboard x:Name="GradientAnimeMoveKey" Storyboard="{DynamicResource GradientAnimeFrame}" />
                             </Trigger.EnterActions>
@@ -92,10 +92,10 @@
                             </Trigger.ExitActions>
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="BorderElement" Property="Background" Value="#70E0E0DB" />
+                            <Setter TargetName="BorderElement" Property="Background" Value="{Binding MouseOverBrush, RelativeSource={RelativeSource AncestorType={x:Type eda:CandyToggle}}}" />
                         </Trigger>
                         <DataTrigger Binding="{Binding IsSelected, RelativeSource={RelativeSource Self}}" Value="True">
-                            <Setter TargetName="BorderElement" Property="Background" Value="#7080CBCC" />
+                            <Setter TargetName="BorderElement" Property="Background" Value="{Binding SelectedBrush, RelativeSource={RelativeSource AncestorType={x:Type eda:CandyToggle}}}" />
                         </DataTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
