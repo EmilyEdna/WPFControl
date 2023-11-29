@@ -13,7 +13,7 @@ namespace WPFControl
         {
             Funcs = new Dictionary<string, int>
             {
-                {"边框",1 }, {"按钮",2 },{"图片",3},{"切换",4}
+                {"边框",1 }, {"按钮",2 },{"图片",3},{"切换",4},{"标签",5}
             };
         }
 
@@ -39,6 +39,9 @@ namespace WPFControl
                     break;
                 case 4:
                     Ctrl = new CandyToggleDemo();
+                    break;
+                case 5:
+                    Ctrl = new CandyContainerDemo();
                     break;
             }
         }

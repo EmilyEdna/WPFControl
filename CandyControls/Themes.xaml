@@ -4,5 +4,6 @@
         <ResourceDictionary Source="Themes/CandyBorderStyle.xaml" />
         <ResourceDictionary Source="Themes/CandyButtonStyle.xaml" />
         <ResourceDictionary Source="Themes/CandyToggleStyle.xaml" />
+        <ResourceDictionary Source="Themes/CandyContainerStyle.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

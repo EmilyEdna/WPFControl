@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using CandyControls.Converters;
 
-namespace CandyControls.ControlsModel
+namespace CandyControls.ControlsModel.Thicks
 {
     [TypeConverter(typeof(EdaCoderImageThicknessConverter))]
     public struct ImageThickness

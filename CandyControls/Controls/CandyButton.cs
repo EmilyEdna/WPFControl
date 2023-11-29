@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
-using CandyControls.ControlsModel;
+using CandyControls.ControlsModel.Enums;
 
 namespace CandyControls
 {

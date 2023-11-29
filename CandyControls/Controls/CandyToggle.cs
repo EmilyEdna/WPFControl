@@ -1,22 +1,23 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using XExten.Advance.LinqFramework;
 
 namespace CandyControls
 {
     public class CandyToggle : ListBox
     {
-        public IEnumerable ModelSource
+        public IEnumerable<string> ModelSource
         {
-            get { return (IEnumerable)GetValue(ModelSourceProperty); }
+            get { return (IEnumerable<string>)GetValue(ModelSourceProperty); }
             set { SetValue(ModelSourceProperty, value); }
         }
         public static readonly DependencyProperty ModelSourceProperty =
-            DependencyProperty.Register("ModelSource", typeof(IEnumerable), typeof(CandyToggle), new PropertyMetadata(OnModelChanged));
-
+            DependencyProperty.Register("ModelSource", typeof(IEnumerable<string>), typeof(CandyToggle), new FrameworkPropertyMetadata(OnModelChanged));
 
         public Brush SelectedBrush
         {
@@ -54,7 +55,7 @@ namespace CandyControls
         private static void OnModelChanged(DependencyObject dp, DependencyPropertyChangedEventArgs eve)
         {
             var toggle = dp as CandyToggle;
-            ((ObservableCollection<string>)eve.NewValue).ToList().ForEach(item =>
+            toggle.ModelSource.ForEnumerEach(item =>
             {
                 toggle.AddChild(new CandyToggleItem { Content = item });
             });
