@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Shapes;
-using CandyControls.Controls;
 using CandyControls.ControlsModel.Thicks;
 using XExten.Advance.LinqFramework;
 
@@ -66,7 +65,7 @@ namespace CandyControls
             {
                 await Task.Delay(50);
                 Ctrl.TagSource.ForEnumerEach(item => {
-                    Ctrl.PART_CONTENT.Children.Add(new CandyTag { Content = item, Margin = new Thickness(5)});
+                    Ctrl.PART_CONTENT.Children.Add(new CandyTag { Content= item, Margin = new Thickness(5)});
                 });
             });
         }

@@ -1,0 +1,70 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:eda="clr-namespace:CandyControls">
+    <Style TargetType="eda:CandyTag">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="eda:CandyTag">
+                    <Grid Cursor="Hand">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Border
+                            Grid.ColumnSpan="2"
+                            Height="25"
+                            BorderThickness="1"
+                            CornerRadius="12">
+                            <Border.BorderBrush>
+                                <SolidColorBrush Opacity=".6" Color="DeepSkyBlue" />
+                            </Border.BorderBrush>
+                            <Border.Background>
+                                <SolidColorBrush Opacity=".6" Color="#DCDCDC" />
+                            </Border.Background>
+                        </Border>
+                        <ContentPresenter
+                            x:Name="PART_NODE"
+                            Margin="5,0,0,0"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center" />
+                        <Button
+                            x:Name="PART_BTN"
+                            Grid.Column="1"
+                            Height="20"
+                            Margin="5,0">
+                            <Button.Style>
+                                <Style TargetType="Button">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="Button">
+                                                <Path
+                                                    x:Name="PART_CLOSE"
+                                                    Width="15"
+                                                    Height="15"
+                                                    Fill="Black"
+                                                    Stretch="Fill">
+                                                    <Path.Data>
+                                                        <GeometryGroup>
+                                                            <PathGeometry Figures="M512 128C300.8 128 128 300.8 128 512s172.8 384 384 384 384-172.8 384-384S723.2 128 512 128zM512 832c-179.2 0-320-140.8-320-320s140.8-320 320-320 320 140.8 320 320S691.2 832 512 832z" />
+                                                            <PathGeometry Figures="M672 352c-12.8-12.8-32-12.8-44.8 0L512 467.2 396.8 352C384 339.2 364.8 339.2 352 352S339.2 384 352 396.8L467.2 512 352 627.2c-12.8 12.8-12.8 32 0 44.8s32 12.8 44.8 0L512 556.8l115.2 115.2c12.8 12.8 32 12.8 44.8 0s12.8-32 0-44.8L556.8 512l115.2-115.2C684.8 384 684.8 364.8 672 352z" />
+                                                        </GeometryGroup>
+                                                    </Path.Data>
+                                                </Path>
+                                                <ControlTemplate.Triggers>
+                                                    <Trigger Property="IsMouseOver" Value="True">
+                                                        <Setter TargetName="PART_CLOSE" Property="Fill" Value="#FDF7F7" />
+                                                    </Trigger>
+                                                </ControlTemplate.Triggers>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>
