@@ -1,8 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Windows.Controls;
-using CandyControls;
-using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using System.Collections.Generic;
+using System.Windows.Controls;
 using WPFControl.ControlDemo;
 
 namespace WPFControl
@@ -14,7 +13,8 @@ namespace WPFControl
         {
             Funcs = new Dictionary<string, int>
             {
-                {"边框",1 }, {"按钮",2 },{"图片",3},{"切换",4},{"容器标签",5},{"标签",6 }
+                {"边框",1 }, {"按钮",2 },{"图片",3},{"切换",4},{"容器标签",5},{"标签",6 },
+                {"滚动条",7 }
             };
         }
 
@@ -46,6 +46,9 @@ namespace WPFControl
                     break;
                 case 6:
                     Ctrl = new CandyTagDemo();
+                    break;
+                case 7:
+                    Ctrl = new ScrollViewDemo();
                     break;
             }
         }
