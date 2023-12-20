@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.Windows.Controls;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 
 namespace WPFControl.ControlDemo
 {
@@ -23,5 +24,11 @@ namespace WPFControl.ControlDemo
 
         [ObservableProperty]
         private ObservableCollection<string> _Data;
+
+        [RelayCommand]
+        private void Test(object p)
+        {
+            var m = p;
+        }
     }
 }

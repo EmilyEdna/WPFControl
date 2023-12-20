@@ -19,6 +19,7 @@
         <Setter Property="HorizontalAlignment" Value="Center" />
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="FontSize" Value="20" />
         <Setter Property="Height" Value="50" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled" />
@@ -57,15 +58,15 @@
                                 VerticalAlignment="Center"
                                 Orientation="Vertical">
                                 <TextBlock
-                                    Padding="50,0"
+                                    Padding="{Binding ContentPadding, RelativeSource={RelativeSource AncestorType={x:Type eda:CandyToggle}}}"
                                     HorizontalAlignment="Center"
                                     VerticalAlignment="Center"
-                                    FontSize="20"
+                                    FontSize="{TemplateBinding FontSize}"
                                     Foreground="{TemplateBinding Foreground}"
                                     Text="{TemplateBinding Content}" />
                                 <Border
                                     x:Name="GradientBorder"
-                                    Width="80"
+                                    Width="{Binding UnderBorderWidth, RelativeSource={RelativeSource AncestorType={x:Type eda:CandyToggle}}}"
                                     Height="3"
                                     Background="#ff8099"
                                     BorderThickness="1"
