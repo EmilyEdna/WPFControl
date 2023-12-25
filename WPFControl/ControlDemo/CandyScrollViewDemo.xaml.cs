@@ -18,9 +18,9 @@ namespace WPFControl.ControlDemo
     /// <summary>
     /// ScrollViewDemo.xaml 的交互逻辑
     /// </summary>
-    public partial class ScrollViewDemo : UserControl
+    public partial class CandyScrollViewDemo : UserControl
     {
-        public ScrollViewDemo()
+        public CandyScrollViewDemo()
         {
             InitializeComponent();
             var Data = new List<string>();

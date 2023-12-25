@@ -48,7 +48,7 @@ namespace WPFControl
                     Ctrl = new CandyTagDemo();
                     break;
                 case 7:
-                    Ctrl = new ScrollViewDemo();
+                    Ctrl = new CandyScrollViewDemo();
                     break;
             }
         }
