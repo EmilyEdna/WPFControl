@@ -1,6 +1,5 @@
-﻿using System.Collections;
+﻿using CandyControls.ControlsModel.Setting;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -12,13 +11,23 @@ namespace CandyControls
 {
     public class CandyToggle : ListBox
     {
+
         public IEnumerable<string> ModelSource
         {
             get { return (IEnumerable<string>)GetValue(ModelSourceProperty); }
             set { SetValue(ModelSourceProperty, value); }
         }
+
         public static readonly DependencyProperty ModelSourceProperty =
             DependencyProperty.Register("ModelSource", typeof(IEnumerable<string>), typeof(CandyToggle), new FrameworkPropertyMetadata(OnModelChanged));
+
+        public IEnumerable<CandyToggleItemSetting> SettingSource
+        {
+            get { return (IEnumerable<CandyToggleItemSetting>)GetValue(SettingSourceProperty); }
+            set { SetValue(SettingSourceProperty, value); }
+        }
+        public static readonly DependencyProperty SettingSourceProperty =
+            DependencyProperty.Register("SettingSource", typeof(IEnumerable<CandyToggleItemSetting>), typeof(CandyToggle), new FrameworkPropertyMetadata(OnModelChanged));
 
         public Brush SelectedBrush
         {
@@ -85,23 +94,48 @@ namespace CandyControls
             set { SetValue(ContentPaddingProperty, value); }
         }
         public static readonly DependencyProperty ContentPaddingProperty =
-            DependencyProperty.Register("ContentPadding", typeof(Thickness), typeof(CandyToggle), new PropertyMetadata(new Thickness(50,0,50,0)));
+            DependencyProperty.Register("ContentPadding", typeof(Thickness), typeof(CandyToggle), new PropertyMetadata(new Thickness(50, 0, 50, 0)));
 
         private static void OnModelChanged(DependencyObject dp, DependencyPropertyChangedEventArgs eve)
         {
             var toggle = dp as CandyToggle;
             int Index = 0;
-            toggle.ModelSource.ForEnumerEach(item =>
+            toggle.Items.Clear();
+            if (toggle.ModelSource != null && toggle.ModelSource.Count() > 0)
             {
-                toggle.AddChild(new CandyToggleItem
+                toggle.ModelSource.ForEnumerEach(item =>
                 {
-                    FontSize = toggle.FontSize,
-                    IsSelected = Index == 0 && toggle.FirstSelect,
-                    Content = item,
-                    ParentElement = toggle
+                    toggle.AddChild(new CandyToggleItem
+                    {
+                        FontSize = toggle.FontSize,
+                        IsSelected = Index == 0 && toggle.FirstSelect,
+                        Content = item,
+                        ParentElement = toggle,
+                        Tag = Index,
+                    });
+                    Index++;
                 });
-                Index++;
-            });
+            }
+            else
+            {
+                toggle.SettingSource.ForEnumerEach(item =>
+                {
+                    var Model = new CandyToggleItem
+                    {
+                        IsSelected = Index == 0 && toggle.FirstSelect,
+                        Content = item.Content,
+                        ParentElement = toggle,
+                        Tag = Index,
+                        UnderLine = item.UseUnderLine,
+                    };
+                    if (item.Width != 0)
+                        Model.Width = item.Width;
+                    toggle.AddChild(Model);
+                    Index++;
+
+                });
+            }
+
         }
     }
 }

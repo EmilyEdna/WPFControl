@@ -42,4 +42,6 @@ namespace CandyControls
             ((CandyToggle)ParentElement)?.Command?.Execute(this);
         }
     }
+
+
 }
