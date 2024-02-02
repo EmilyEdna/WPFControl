@@ -156,6 +156,16 @@ namespace CandyControls
         public static readonly DependencyProperty SourceProperty =
             DependencyProperty.Register("Source", typeof(string), typeof(CandyImage), new PropertyMetadata(default));
         /// <summary>
+        /// bytes数据
+        /// </summary>
+        public object Base64Source
+        {
+            get { return (object)GetValue(Base64SourceProperty); }
+            set { SetValue(Base64SourceProperty, value); }
+        }
+        public static readonly DependencyProperty Base64SourceProperty =
+            DependencyProperty.Register("Base64Source", typeof(object), typeof(CandyImage), new PropertyMetadata(null));            
+        /// <summary>
         /// 命令参数
         /// </summary>
         public object CommandParameter
