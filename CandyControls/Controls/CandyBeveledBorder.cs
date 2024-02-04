@@ -6,11 +6,29 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows;
+using CandyControls.ControlsModel.Enums;
 
-namespace CandyControls.Controls
+namespace CandyControls
 {
-    public class BeveledBorder : Decorator
+    public class CandyBeveledBorder : Decorator
     {
+
+        static CandyBeveledBorder()
+        {
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(CandyBeveledBorder), new FrameworkPropertyMetadata(typeof(CandyBeveledBorder)));
+        }
+        public ECatagory BorderType
+        {
+            get { return (ECatagory)GetValue(BorderTypeProperty); }
+            set { SetValue(BorderTypeProperty, value); }
+        }
+
+        /// <summary>
+        /// [Primary] [Info] [Success] [Warn] [Error]
+        /// </summary>
+        public static readonly DependencyProperty BorderTypeProperty =
+            DependencyProperty.Register("BorderType", typeof(ECatagory), typeof(CandyBeveledBorder), new PropertyMetadata(ECatagory.Primary));
+
         public Brush BorderBrush
         {
             get { return (Brush)GetValue(BorderBrushProperty); }
@@ -18,7 +36,7 @@ namespace CandyControls.Controls
         }
 
         public static readonly DependencyProperty BorderBrushProperty =
-            Border.BorderBrushProperty.AddOwner(typeof(BeveledBorder), new PropertyMetadata(Brushes.Transparent, CommonPropertyChanged));
+            Border.BorderBrushProperty.AddOwner(typeof(CandyBeveledBorder), new PropertyMetadata(Brushes.Transparent, CommonPropertyChanged));
 
         public Thickness BorderThickness
         {
@@ -27,7 +45,7 @@ namespace CandyControls.Controls
         }
 
         public static readonly DependencyProperty BorderThicknessProperty =
-            Border.BorderThicknessProperty.AddOwner(typeof(BeveledBorder), new PropertyMetadata(new Thickness(), CommonPropertyChanged));
+            Border.BorderThicknessProperty.AddOwner(typeof(CandyBeveledBorder), new PropertyMetadata(new Thickness(), CommonPropertyChanged));
 
         public Brush Background
         {
@@ -36,7 +54,7 @@ namespace CandyControls.Controls
         }
 
         public static readonly DependencyProperty BackgroundProperty =
-            Control.BackgroundProperty.AddOwner(typeof(BeveledBorder), new PropertyMetadata(Brushes.Transparent, CommonPropertyChanged));
+            Control.BackgroundProperty.AddOwner(typeof(CandyBeveledBorder), new PropertyMetadata(Brushes.Transparent, CommonPropertyChanged));
 
         public CornerRadius CornerRadius
         {
@@ -45,13 +63,13 @@ namespace CandyControls.Controls
         }
 
         public static readonly DependencyProperty CornerRadiusProperty =
-            Border.CornerRadiusProperty.AddOwner(typeof(BeveledBorder), new PropertyMetadata(new CornerRadius(), CommonPropertyChanged));
+            Border.CornerRadiusProperty.AddOwner(typeof(CandyBeveledBorder), new PropertyMetadata(new CornerRadius(), CommonPropertyChanged));
 
 
         private static void CommonPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            (d as BeveledBorder)._isrendersizechanged = true;
-            (d as BeveledBorder).InvalidateVisual();
+            (d as CandyBeveledBorder)._isrendersizechanged = true;
+            (d as CandyBeveledBorder).InvalidateVisual();
         }
 
         protected override void OnRender(DrawingContext drawingContext)
