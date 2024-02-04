@@ -1,0 +1,77 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:eda="clr-namespace:CandyControls">
+    <Style TargetType="eda:CandySearchBox">
+        <Setter Property="BorderBrush" Value="#FF8080" />
+        <Setter Property="FontSize" Value="15" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Height" Value="30" />
+        <Setter Property="Width" Value="Auto" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="eda:CandySearchBox">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" VerticalAlignment="Center">
+                            <Path
+                                x:Name="PART_SEARCH"
+                                Width="20"
+                                Height="20"
+                                Data="M999.592902 991.251373L712.326619 692.501398c73.271365-73.484026 118.664812-174.787972 118.664812-286.512304 0-223.873986-182.115108-405.989094-405.989094-405.989094s-405.989094 182.115108-405.989094 405.989094 182.115108 405.989094 405.989094 405.989095c98.268694 0 188.456271-35.127723 258.750383-93.416158l287.962264 299.484622a19.294148 19.294148 0 0 0 27.336599 0.541319 19.332814 19.332814 0 0 0 0.541319-27.336599zM425.002337 773.312561c-202.549892 0-367.323466-164.773574-367.323466-367.323467s164.773574-367.323466 367.323466-367.323466 367.323466 164.773574 367.323466 367.323466-164.792907 367.323466-367.323466 367.323467z"
+                                Stretch="Fill"
+                                Stroke="{TemplateBinding BorderBrush}" />
+                        </TextBlock>
+                        <Border
+                            x:Name="PART_TXT"
+                            Grid.Column="1"
+                            Width="150"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Opacity="0"
+                            RenderTransformOrigin="0,0"
+                            SnapsToDevicePixels="True">
+                            <Border.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform />
+                                </TransformGroup>
+                            </Border.RenderTransform>
+                            <ScrollViewer
+                                x:Name="PART_ContentHost"
+                                VerticalAlignment="Center"
+                                Focusable="false"
+                                HorizontalScrollBarVisibility="Hidden"
+                                VerticalScrollBarVisibility="Hidden" />
+                        </Border>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="PART_SEARCH" Property="Stroke" Value="#d3d3d3" />
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_TXT" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)">
+                                            <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0" />
+                                            <EasingDoubleKeyFrame KeyTime="00:00:01" Value="1" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_TXT" Storyboard.TargetProperty="(UIElement.Opacity)">
+                                            <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0" />
+                                            <EasingDoubleKeyFrame KeyTime="00:00:01" Value="1" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>
