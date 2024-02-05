@@ -5,7 +5,7 @@ using CandyControls.ControlsModel.Thicks;
 
 namespace CandyControls.Converters
 {
-    public class EdaCoderImageThicknessConverter: TypeConverter
+    public class ImageThicknessConverter: TypeConverter
     {
         public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
         {

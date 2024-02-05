@@ -57,7 +57,7 @@ namespace CandyControls
             DependencyProperty.Register("TagSource", typeof(IEnumerable<string>), typeof(CandyContainer), new FrameworkPropertyMetadata(OnItemChanged));
         #endregion
 
-        #region 方法
+        #region Method
         private static void OnItemChanged(DependencyObject dp, DependencyPropertyChangedEventArgs eve)
         {
             var Ctrl = (CandyContainer)dp;
