@@ -11,10 +11,13 @@
     d:DesignWidth="800"
     mc:Ignorable="d">
     <eda:CandySearchBox
-        Command="{Binding SearchCommand}"
+        x:Name="Search"
+        AutoKeyCommand="{Binding SearchCommand}"
+        EnterCommand="{Binding QueryCommand}"
         ItemsSource="{Binding Data}"
         Placment="Right"
         ShowClear="True"
+        Text="{Binding Key, Mode=TwoWay}"
         UseAutoComplete="True">
         <eda:CandySearchBox.ListStyle>
             <Style TargetType="ListBox">
@@ -23,10 +26,11 @@
         </eda:CandySearchBox.ListStyle>
         <eda:CandySearchBox.AutoComplete>
             <DataTemplate>
-                <UniformGrid Columns="2">
-                    <TextBlock Text="{Binding Id}" />
-                    <TextBlock Text="{Binding Name}" />
-                </UniformGrid>
+                <eda:CandyButton
+                    ButtonType="Primary"
+                    Command="{Binding EnterCommand, RelativeSource={RelativeSource AncestorType=eda:CandySearchBox}}"
+                    CommandParameter="{Binding Name}"
+                    Content="{Binding Name}" />
             </DataTemplate>
         </eda:CandySearchBox.AutoComplete>
     </eda:CandySearchBox>

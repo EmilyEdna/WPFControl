@@ -38,6 +38,10 @@ namespace WPFControl.ControlDemo
         [ObservableProperty]
         private ObservableCollection<SearchModel> _Data;
 
+        [ObservableProperty]
+        private string key;
+
+
         [RelayCommand]
         public void Search(string input)
         {
@@ -56,6 +60,11 @@ namespace WPFControl.ControlDemo
             }
             else
                 Data = new ObservableCollection<SearchModel>();
+        }
+        [RelayCommand]
+        public void Query(string input)
+        {
+            Key = input;
         }
     }
 

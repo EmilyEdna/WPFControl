@@ -36,8 +36,9 @@ namespace CandyControls
             PART_CONTENTHOST = (ScrollViewer)this.Template.FindName("PART_ContentHost", this);
             PART_CLEAR_BTN.Click += ClearEvent;
             PART_CONTENTHOST.HorizontalScrollBarVisibility = ScrollBarVisibility.Auto;
-            this.TextChanged += TextEvent;
             PART_SEARCH.PreviewMouseLeftButtonDown += SearchIconEvent;
+            this.TextChanged += TextEvent;
+            this.KeyDown += KeyEvent;
         }
 
         #region Property
@@ -105,13 +106,21 @@ namespace CandyControls
         public static readonly DependencyProperty AutoCompleteProperty =
             DependencyProperty.Register("AutoComplete", typeof(DataTemplate), typeof(CandySearchBox), new PropertyMetadata(default));
 
-        public ICommand Command
+        public ICommand AutoKeyCommand
         {
-            get { return (ICommand)GetValue(CommandProperty); }
-            set { SetValue(CommandProperty, value); }
+            get { return (ICommand)GetValue(AutoKeyCommandProperty); }
+            set { SetValue(AutoKeyCommandProperty, value); }
         }
-        public static readonly DependencyProperty CommandProperty =
-            DependencyProperty.Register("Command", typeof(ICommand), typeof(CandySearchBox), new PropertyMetadata(default));
+        public static readonly DependencyProperty AutoKeyCommandProperty =
+            DependencyProperty.Register("AutoKeyCommand", typeof(ICommand), typeof(CandySearchBox), new PropertyMetadata(default));
+
+        public ICommand EnterCommand
+        {
+            get { return (ICommand)GetValue(EnterCommandProperty); }
+            set { SetValue(EnterCommandProperty, value); }
+        }
+        public static readonly DependencyProperty EnterCommandProperty =
+            DependencyProperty.Register("EnterCommand", typeof(ICommand), typeof(CandySearchBox), new PropertyMetadata(default));
 
         public IEnumerable ItemsSource
         {
@@ -144,8 +153,14 @@ namespace CandyControls
             this.Text = string.Empty;
             if (box.UseAutoComplete)
             {
-                box.Command?.Execute(this.Text);
+                box.AutoKeyCommand?.Execute(this.Text);
             }
+        }
+
+        private void KeyEvent(object sender, KeyEventArgs e)
+        {
+            var box = (sender as CandySearchBox);
+            if (e.Key == Key.Enter && EnterCommand != null) EnterCommand.Execute(box.Text); 
         }
 
         private void TextEvent(object sender, TextChangedEventArgs e)
@@ -155,7 +170,7 @@ namespace CandyControls
             TextActionChanged?.Invoke(box, e);
             if (box.UseAutoComplete)
             {
-                box.Command?.Execute(this.Text);
+                box.AutoKeyCommand?.Execute(this.Text);
 
                 Grid panal = new Grid
                 {
