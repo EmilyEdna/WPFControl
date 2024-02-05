@@ -6,8 +6,28 @@
     xmlns:eda="http://edacoder.github.io"
     xmlns:local="clr-namespace:WPFControl.ControlDemo"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DataContext="{d:DesignInstance local:CandySearchBoxDemoDemoVM}"
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d">
-    <eda:CandySearchBox Placment="Left" />
+    <eda:CandySearchBox
+        Command="{Binding SearchCommand}"
+        ItemsSource="{Binding Data}"
+        Placment="Right"
+        ShowClear="True"
+        UseAutoComplete="True">
+        <eda:CandySearchBox.ListStyle>
+            <Style TargetType="ListBox">
+                <Setter Property="BorderThickness" Value="1" />
+            </Style>
+        </eda:CandySearchBox.ListStyle>
+        <eda:CandySearchBox.AutoComplete>
+            <DataTemplate>
+                <UniformGrid Columns="2">
+                    <TextBlock Text="{Binding Id}" />
+                    <TextBlock Text="{Binding Name}" />
+                </UniformGrid>
+            </DataTemplate>
+        </eda:CandySearchBox.AutoComplete>
+    </eda:CandySearchBox>
 </UserControl>

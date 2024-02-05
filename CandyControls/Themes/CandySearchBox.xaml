@@ -3,29 +3,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:eda="clr-namespace:CandyControls"
     xmlns:enum="clr-namespace:CandyControls.ControlsModel.Enums">
-
-    <Storyboard x:Key="Open">
-        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_TXT" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)">
-            <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0" />
-            <EasingDoubleKeyFrame KeyTime="00:00:01" Value="1" />
-        </DoubleAnimationUsingKeyFrames>
-        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_TXT" Storyboard.TargetProperty="(UIElement.Opacity)">
-            <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0" />
-            <EasingDoubleKeyFrame KeyTime="00:00:01" Value="1" />
-        </DoubleAnimationUsingKeyFrames>
-    </Storyboard>
-
-    <Storyboard x:Key="Close">
-        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_TXT" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)">
-            <EasingDoubleKeyFrame KeyTime="00:00:00" Value="1" />
-            <EasingDoubleKeyFrame KeyTime="00:00:01" Value="0" />
-        </DoubleAnimationUsingKeyFrames>
-        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_TXT" Storyboard.TargetProperty="(UIElement.Opacity)">
-            <EasingDoubleKeyFrame KeyTime="00:00:00" Value="1" />
-            <EasingDoubleKeyFrame KeyTime="00:00:01" Value="0" />
-        </DoubleAnimationUsingKeyFrames>
-    </Storyboard>
-
     <Style TargetType="eda:CandySearchBox">
         <Setter Property="BorderBrush" Value="#FF8080" />
         <Setter Property="FontSize" Value="15" />
@@ -45,7 +22,7 @@
                         </Grid.ColumnDefinitions>
                         <TextBlock x:Name="PART_SEARCH" VerticalAlignment="Center">
                             <Path
-                                x:Name="PART_PATH"
+                                x:Name="PART_ICON"
                                 Width="20"
                                 Height="20"
                                 Data="M999.592902 991.251373L712.326619 692.501398c73.271365-73.484026 118.664812-174.787972 118.664812-286.512304 0-223.873986-182.115108-405.989094-405.989094-405.989094s-405.989094 182.115108-405.989094 405.989094 182.115108 405.989094 405.989094 405.989095c98.268694 0 188.456271-35.127723 258.750383-93.416158l287.962264 299.484622a19.294148 19.294148 0 0 0 27.336599 0.541319 19.332814 19.332814 0 0 0 0.541319-27.336599zM425.002337 773.312561c-202.549892 0-367.323466-164.773574-367.323466-367.323467s164.773574-367.323466 367.323466-367.323466 367.323466 164.773574 367.323466 367.323466-164.792907 367.323466-367.323466 367.323467z"
@@ -105,13 +82,7 @@
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="PART_PATH" Property="Stroke" Value="{Binding MoveBrush, RelativeSource={RelativeSource AncestorType=eda:CandySearchBox}}" />
-                            <Trigger.EnterActions>
-                                <BeginStoryboard x:Name="OpenAnime" Storyboard="{StaticResource Open}" />
-                            </Trigger.EnterActions>
-                            <Trigger.ExitActions>
-                                <BeginStoryboard x:Name="CloseAnime" Storyboard="{StaticResource Close}" />
-                            </Trigger.ExitActions>
+                            <Setter TargetName="PART_ICON" Property="Stroke" Value="{Binding MoveBrush, RelativeSource={RelativeSource AncestorType=eda:CandySearchBox}}" />
                         </Trigger>
                         <DataTrigger Binding="{Binding Placment, RelativeSource={RelativeSource Mode=Self}}" Value="{x:Static enum:EPlacment.Right}">
                             <Setter TargetName="PART_TXT" Property="Grid.Column" Value="1" />
