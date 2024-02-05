@@ -1,8 +1,6 @@
 ﻿using CandyControls.ControlsModel.Enums;
-using CandyControls.ControlsModel.Thicks;
 using System;
 using System.Collections;
-using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -10,7 +8,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
-using System.Xml.Linq;
 
 namespace CandyControls
 {
@@ -160,9 +157,15 @@ namespace CandyControls
         private void KeyEvent(object sender, KeyEventArgs e)
         {
             var box = (sender as CandySearchBox);
-            if (e.Key == Key.Enter && EnterCommand != null) EnterCommand.Execute(box.Text); 
+            if (e.Key == Key.Enter && EnterCommand != null)
+            {
+                EnterCommand.Execute(box.Text);
+                CloseAnime();
+                if(popup!=null) popup.IsOpen = false;
+            }
         }
 
+        Popup popup;
         private void TextEvent(object sender, TextChangedEventArgs e)
         {
             var box = (sender as CandySearchBox);
@@ -190,7 +193,7 @@ namespace CandyControls
                     ItemsSource = box.ItemsSource,
                     ItemTemplate = AutoComplete
                 });
-                Popup popup = new Popup
+                popup = new Popup
                 {
                     Placement = PlacementMode.Bottom,
                     PlacementTarget = PART_TXT,
@@ -215,6 +218,7 @@ namespace CandyControls
         private void SearchIconEvent(object sender, MouseButtonEventArgs e)
         {
             OpenAnime();
+            this.Focusable = true;
         }
 
         private static void OnPlacementChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
