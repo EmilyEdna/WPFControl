@@ -262,13 +262,13 @@ namespace CandyControls
         /// <summary>
         /// 数据集合
         /// </summary>
-        public IEnumerable<object> ItemSource
+        public IEnumerable ItemSource
         {
-            get { return (IEnumerable<object>)GetValue(ItemSourceProperty); }
+            get { return (IEnumerable)GetValue(ItemSourceProperty); }
             set { SetValue(ItemSourceProperty, value); }
         }
         public static readonly DependencyProperty ItemSourceProperty =
-            DependencyProperty.Register("ItemSource", typeof(IEnumerable<object>), typeof(CandyImage), new PropertyMetadata(default));
+            DependencyProperty.Register("ItemSource", typeof(IEnumerable), typeof(CandyImage), new PropertyMetadata(default));
         /// <summary>
         /// 弹出位置
         /// </summary>
