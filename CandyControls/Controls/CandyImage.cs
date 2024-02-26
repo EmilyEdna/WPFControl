@@ -279,16 +279,6 @@ namespace CandyControls
         }
         public static readonly DependencyProperty PlacementProperty =
             DependencyProperty.Register("Placement", typeof(PlacementMode), typeof(CandyImage), new PropertyMetadata(PlacementMode.Bottom));
-        /// <summary>
-        /// ListBox样式
-        /// </summary>
-        public Style ListStyle
-        {
-            get { return (Style)GetValue(ListStyleProperty); }
-            set { SetValue(ListStyleProperty, value); }
-        }
-        public static readonly DependencyProperty ListStyleProperty =
-            DependencyProperty.Register("ListStyle", typeof(Style), typeof(CandyImage), new PropertyMetadata(default));
         #endregion
 
         #region Anime
@@ -372,7 +362,7 @@ namespace CandyControls
                 {
                     ItemsSource = ItemSource,
                     ItemsPanel = new ItemsPanelTemplate(new FrameworkElementFactory(typeof(StackPanel))),
-                    Style = ListStyle,
+                    Style = Style,
                     ItemTemplate = PopupTemplate
                 };
                 panal.Children.Add(List);
