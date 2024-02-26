@@ -358,14 +358,13 @@ namespace CandyControls
             }
             else
             {
-                var List = new ListBox
+                panal.Children.Add(new ListBox
                 {
                     ItemsSource = ItemSource,
                     ItemsPanel = new ItemsPanelTemplate(new FrameworkElementFactory(typeof(StackPanel))),
                     Style = Style,
                     ItemTemplate = PopupTemplate
-                };
-                panal.Children.Add(List);
+                });
             }
 
             Popup popup = new Popup
