@@ -349,15 +349,12 @@ namespace CandyControls
                 Fill = MaskFill,
             });
             if (ItemSource == null)
-            {
                 panal.Children.Add(new ContentPresenter
                 {
                     ContentTemplate = PopupTemplate,
                     Content = Entity
                 });
-            }
             else
-            {
                 panal.Children.Add(new ListBox
                 {
                     ItemsSource = ItemSource,
@@ -365,7 +362,6 @@ namespace CandyControls
                     Style = Style,
                     ItemTemplate = PopupTemplate
                 });
-            }
 
             Popup popup = new Popup
             {
