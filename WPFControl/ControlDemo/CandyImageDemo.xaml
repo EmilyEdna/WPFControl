@@ -10,50 +10,74 @@
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d">
-    <ListBox
-        Height="400"
-        HorizontalContentAlignment="Center"
-        ItemsSource="{Binding Img}">
-        <ListBox.ItemsPanel>
-            <ItemsPanelTemplate>
-                <UniformGrid Columns="3" />
-            </ItemsPanelTemplate>
-        </ListBox.ItemsPanel>
-        <ListBox.ItemTemplate>
-            <DataTemplate>
-                <eda:CandyImage
-                    x:Name="CandyImage"
-                    Width="240"
-                    Height="300"
-                    BorderBrush="Black"
-                    BorderThickness="1"
-                    EnableAsyncLoad="True"
-                    EnableLoading="True"
-                    EnableMask="True"
-                    EnablePopupBtn="Visible"
-                    Entity="{Binding .}"
-                    ImageThickness="240,300"
-                    MaskFill="WhiteSmoke"
-                    PopupThickness="400,200"
-                    Source="{Binding .}">
-                    <eda:CandyImage.PopupTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="测试" />
-                        </DataTemplate>
-                    </eda:CandyImage.PopupTemplate>
-                    <eda:CandyImage.MaskTemplate>
-                        <DataTemplate>
-                            <StackPanel HorizontalAlignment="Center">
-                                <TextBlock
-                                    Margin="0,3"
-                                    HorizontalAlignment="Center"
-                                    FontSize="18"
-                                    Text="测试" />
-                            </StackPanel>
-                        </DataTemplate>
-                    </eda:CandyImage.MaskTemplate>
-                </eda:CandyImage>
-            </DataTemplate>
-        </ListBox.ItemTemplate>
-    </ListBox>
+    <UniformGrid Columns="2">
+        <eda:CandyImage
+            Width="240"
+            Height="300"
+            BorderBrush="Black"
+            BorderThickness="1"
+            EnableAsyncLoad="True"
+            EnableLoading="True"
+            EnableMask="True"
+            EnablePopupBtn="Visible"
+            ImageThickness="240,300"
+            MaskFill="WhiteSmoke"
+            PopupThickness="400,200"
+            Source="https://fc.sinaimg.cn/mw1024/006yt1Omgy1hfwrvzvdztj30nh0xcqbh.jpg">
+            <eda:CandyImage.PopupTemplate>
+                <DataTemplate>
+                    <TextBlock Text="测试" />
+                </DataTemplate>
+            </eda:CandyImage.PopupTemplate>
+            <eda:CandyImage.MaskTemplate>
+                <DataTemplate>
+                    <StackPanel HorizontalAlignment="Center">
+                        <TextBlock
+                            Margin="0,3"
+                            HorizontalAlignment="Center"
+                            FontSize="18"
+                            Text="测试" />
+                    </StackPanel>
+                </DataTemplate>
+            </eda:CandyImage.MaskTemplate>
+        </eda:CandyImage>
+        <eda:CandyImage
+            Width="240"
+            Height="300"
+            BorderBrush="Black"
+            BorderThickness="1"
+            EnableAsyncLoad="True"
+            EnableLoading="True"
+            EnableMask="True"
+            EnablePopupBtn="Visible"
+            ImageThickness="240,300"
+            ItemSource="{Binding Img}"
+            MaskFill="WhiteSmoke"
+            PopupThickness="400,200"
+            Source="https://fc.sinaimg.cn/mw1024/006yt1Omgy1hfwrvzvdztj30nh0xcqbh.jpg">
+            <eda:CandyImage.PopupTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <eda:CandyImage
+                            Width="240"
+                            Height="300"
+                            EnableMask="False"
+                            EnablePopupBtn="Collapsed"
+                            Source="{Binding Value}" />
+                    </StackPanel>
+                </DataTemplate>
+            </eda:CandyImage.PopupTemplate>
+            <eda:CandyImage.MaskTemplate>
+                <DataTemplate>
+                    <StackPanel HorizontalAlignment="Center">
+                        <TextBlock
+                            Margin="0,3"
+                            HorizontalAlignment="Center"
+                            FontSize="18"
+                            Text="测试" />
+                    </StackPanel>
+                </DataTemplate>
+            </eda:CandyImage.MaskTemplate>
+        </eda:CandyImage>
+    </UniformGrid>
 </UserControl>

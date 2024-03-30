@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -8,13 +10,15 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Effects;
 using System.Windows.Shapes;
+using CandyControls.ControlsModel.Enums;
 using CandyControls.ControlsModel.Thicks;
+using NPOI.SS.Formula.Functions;
 
 namespace CandyControls
 {
-    public class CandyImage:Control
+    public class CandyImage : Control
     {
-        static CandyImage() 
+        static CandyImage()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(CandyImage), new FrameworkPropertyMetadata(typeof(CandyImage)));
         }
@@ -156,6 +160,16 @@ namespace CandyControls
         public static readonly DependencyProperty SourceProperty =
             DependencyProperty.Register("Source", typeof(string), typeof(CandyImage), new PropertyMetadata(default));
         /// <summary>
+        /// bytes数据
+        /// </summary>
+        public object Base64Source
+        {
+            get { return (object)GetValue(Base64SourceProperty); }
+            set { SetValue(Base64SourceProperty, value); }
+        }
+        public static readonly DependencyProperty Base64SourceProperty =
+            DependencyProperty.Register("Base64Source", typeof(object), typeof(CandyImage), new PropertyMetadata(null));
+        /// <summary>
         /// 命令参数
         /// </summary>
         public object CommandParameter
@@ -245,6 +259,26 @@ namespace CandyControls
         }
         public static readonly DependencyProperty EnableAsyncLoadProperty =
             DependencyProperty.Register("EnableAsyncLoad", typeof(bool), typeof(CandyImage), new PropertyMetadata(true));
+        /// <summary>
+        /// 数据集合
+        /// </summary>
+        public IEnumerable ItemSource
+        {
+            get { return (IEnumerable)GetValue(ItemSourceProperty); }
+            set { SetValue(ItemSourceProperty, value); }
+        }
+        public static readonly DependencyProperty ItemSourceProperty =
+            DependencyProperty.Register("ItemSource", typeof(IEnumerable), typeof(CandyImage), new PropertyMetadata(default));
+        /// <summary>
+        /// 弹出位置
+        /// </summary>
+        public PlacementMode Placement
+        {
+            get { return (PlacementMode)GetValue(PlacementProperty); }
+            set { SetValue(PlacementProperty, value); }
+        }
+        public static readonly DependencyProperty PlacementProperty =
+            DependencyProperty.Register("Placement", typeof(PlacementMode), typeof(CandyImage), new PropertyMetadata(PlacementMode.Bottom));
         #endregion
 
         #region Anime
@@ -314,14 +348,24 @@ namespace CandyControls
                 Width = PopupThickness.Width == 0 ? Application.Current.MainWindow.ActualWidth : PopupThickness.Width,
                 Fill = MaskFill,
             });
-            panal.Children.Add(new ContentPresenter
-            {
-                ContentTemplate = PopupTemplate,
-                Content = Entity
-            });
+            if (ItemSource == null)
+                panal.Children.Add(new ContentPresenter
+                {
+                    ContentTemplate = PopupTemplate,
+                    Content = Entity
+                });
+            else
+                panal.Children.Add(new ListBox
+                {
+                    ItemsSource = ItemSource,
+                    ItemsPanel = new ItemsPanelTemplate(new FrameworkElementFactory(typeof(StackPanel))),
+                    Style = Style,
+                    ItemTemplate = PopupTemplate
+                });
+
             Popup popup = new Popup
             {
-                Placement = PlacementMode.Bottom,
+                Placement = Placement,
                 PlacementTarget = this,
                 AllowsTransparency = true,
                 StaysOpen = false,

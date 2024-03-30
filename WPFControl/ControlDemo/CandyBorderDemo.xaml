@@ -9,31 +9,59 @@
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d">
-    <UniformGrid Columns="5">
-        <eda:CandyBorder
-            Width="50"
-            Height="20"
-            BorderThickness="3"
-            BorderType="Info" />
-        <eda:CandyBorder
-            Width="50"
-            Height="20"
-            BorderThickness="3"
-            BorderType="Primary" />
-        <eda:CandyBorder
-            Width="50"
-            Height="20"
-            BorderThickness="3"
-            BorderType="Success" />
-        <eda:CandyBorder
-            Width="50"
-            Height="20"
-            BorderThickness="3"
-            BorderType="Warning" />
-        <eda:CandyBorder
-            Width="50"
-            Height="20"
-            BorderThickness="3"
-            BorderType="Error" />
-    </UniformGrid>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <UniformGrid Columns="5">
+            <eda:CandyBorder
+                Width="50"
+                Height="20"
+                BorderThickness="1"
+                BorderType="Info" />
+            <eda:CandyBorder
+                Width="50"
+                Height="20"
+                BorderThickness="1"
+                BorderType="Primary" />
+            <eda:CandyBorder
+                Width="50"
+                Height="20"
+                BorderThickness="1"
+                BorderType="Success" />
+            <eda:CandyBorder
+                Width="50"
+                Height="20"
+                BorderThickness="1"
+                BorderType="Warning" />
+            <eda:CandyBorder
+                Width="50"
+                Height="20"
+                BorderThickness="1"
+                BorderType="Error" />
+        </UniformGrid>
+        <UniformGrid Grid.Row="1" Columns="5">
+            <eda:CandyBeveledBorder
+                Width="50"
+                Height="20"
+                BorderType="Info" />
+            <eda:CandyBeveledBorder
+                Width="50"
+                Height="20"
+                BorderType="Primary" />
+            <eda:CandyBeveledBorder
+                Width="50"
+                Height="20"
+                BorderType="Success" />
+            <eda:CandyBeveledBorder
+                Width="50"
+                Height="20"
+                BorderType="Warning" />
+            <eda:CandyBeveledBorder
+                Width="50"
+                Height="20"
+                BorderType="Error" />
+        </UniformGrid>
+    </Grid>
 </UserControl>

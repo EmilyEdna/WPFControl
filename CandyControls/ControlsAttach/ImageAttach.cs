@@ -25,9 +25,31 @@ namespace CandyControls
 
         private static void OnComplate(DependencyObject sender, DependencyPropertyChangedEventArgs @event)
         {
-            CandyImage candy = (CandyImage)((Image)sender).TemplatedParent;
-            Image image = (Image)sender;
-            DownloadQueue.Init(@event.NewValue.ToString(), image, candy);
+            if (!string.IsNullOrEmpty(@event.NewValue.ToString()))
+            {
+                CandyImage candy = (CandyImage)((Image)sender).TemplatedParent;
+                Image image = (Image)sender;
+                DownloadQueue.Init(@event.NewValue.ToString(), image, candy);
+            }
+        }
+
+        internal static void SetBase64Soucre(DependencyObject obj, string value) 
+        {
+            obj.SetValue(Base64SoucreProperty, value);
+        }
+
+        internal static readonly DependencyProperty Base64SoucreProperty =
+            DependencyProperty.RegisterAttached("Base64Soucre", typeof(object), typeof(ImageAttach), new PropertyMetadata(OnStreamComplete));
+
+        private static void OnStreamComplete(DependencyObject sender, DependencyPropertyChangedEventArgs @event)
+        {
+            if (@event.NewValue != null)
+            {
+                var base64 = Convert.FromBase64String(@event.NewValue.ToString());
+                Image image = (Image)sender;
+                CandyImage candy = (CandyImage)((Image)sender).TemplatedParent;
+                image.Source= BitmapHelper.Bytes2Image(base64, candy.ImageThickness.Width, candy.ImageThickness.Height);
+            }
         }
     }
 }

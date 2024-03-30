@@ -52,5 +52,47 @@
             </DataTrigger>
         </Style.Triggers>
     </Style>
+
+    <Style TargetType="eda:CandyBeveledBorder">
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="CornerRadius" Value="5,0,5,0" />
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding BorderType, RelativeSource={RelativeSource Mode=Self}}" Value="{x:Static lib:ECatagory.Primary}">
+                <Setter Property="BorderBrush">
+                    <Setter.Value>
+                        <SolidColorBrush Opacity=".6" Color="DeepSkyBlue" />
+                    </Setter.Value>
+                </Setter>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding BorderType, RelativeSource={RelativeSource Mode=Self}}" Value="{x:Static lib:ECatagory.Info}">
+                <Setter Property="BorderBrush">
+                    <Setter.Value>
+                        <SolidColorBrush Opacity=".6" Color="SkyBlue" />
+                    </Setter.Value>
+                </Setter>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding BorderType, RelativeSource={RelativeSource Mode=Self}}" Value="{x:Static lib:ECatagory.Success}">
+                <Setter Property="BorderBrush">
+                    <Setter.Value>
+                        <SolidColorBrush Opacity=".6" Color="LightGreen" />
+                    </Setter.Value>
+                </Setter>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding BorderType, RelativeSource={RelativeSource Mode=Self}}" Value="{x:Static lib:ECatagory.Warning}">
+                <Setter Property="BorderBrush">
+                    <Setter.Value>
+                        <SolidColorBrush Opacity=".6" Color="Tomato" />
+                    </Setter.Value>
+                </Setter>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding BorderType, RelativeSource={RelativeSource Mode=Self}}" Value="{x:Static lib:ECatagory.Error}">
+                <Setter Property="BorderBrush">
+                    <Setter.Value>
+                        <SolidColorBrush Opacity=".6" Color="DarkRed" />
+                    </Setter.Value>
+                </Setter>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
     <!--#endregion-->
 </ResourceDictionary>

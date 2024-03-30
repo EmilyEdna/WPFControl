@@ -3,7 +3,7 @@ using CandyControls.Converters;
 
 namespace CandyControls.ControlsModel.Thicks
 {
-    [TypeConverter(typeof(EdaCoderImageThicknessConverter))]
+    [TypeConverter(typeof(ImageThicknessConverter))]
     public struct ImageThickness
     {
         public ImageThickness(int length) 

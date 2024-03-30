@@ -24,6 +24,7 @@
                             <Grid>
                                 <Image
                                     eda:ImageAttach.SourceAsync="{TemplateBinding Source}"
+                                    eda:ImageAttach.Base64Soucre="{TemplateBinding Base64Source}"
                                     RenderOptions.BitmapScalingMode="HighQuality"
                                     SnapsToDevicePixels="True"
                                     Stretch="Uniform" />
