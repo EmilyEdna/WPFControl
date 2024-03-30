@@ -12,6 +12,7 @@ namespace CandyControls.ControlsModel.Enums
         Info,
         Success,
         Warning,
-        Error
+        Error,
+        Fatal
     }
 }

@@ -7,5 +7,6 @@
         <ResourceDictionary Source="Themes/CandyToggleStyle.xaml" />
         <ResourceDictionary Source="Themes/CandyTagStyle.xaml" />
         <ResourceDictionary Source="Themes/CandyContainerStyle.xaml" />
+        <ResourceDictionary Source="Themes/CandyViwerStyle.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>
