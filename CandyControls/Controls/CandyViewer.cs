@@ -42,22 +42,22 @@ namespace CandyControls
         public static readonly DependencyProperty ViewSoucreProperty =
             DependencyProperty.Register("ViewSoucre", typeof(string), typeof(CandyViewer), new FrameworkPropertyMetadata(Onchanged));
 
-        public DoubleCollection ProcessValue
+        internal DoubleCollection ProcessValue
         {
             get { return (DoubleCollection)GetValue(ProcessValueProperty); }
             set { SetValue(ProcessValueProperty, value); }
         }
 
-        public static readonly DependencyProperty ProcessValueProperty =
+        internal static readonly DependencyProperty ProcessValueProperty =
             DependencyProperty.Register("ProcessValue", typeof(DoubleCollection), typeof(CandyViewer), new FrameworkPropertyMetadata(new DoubleCollection { 0, 0 }));
 
-        public bool Show
+        internal bool Show
         {
             get { return (bool)GetValue(ShowProperty); }
             set { SetValue(ShowProperty, value); }
         }
 
-        public static readonly DependencyProperty ShowProperty =
+        internal static readonly DependencyProperty ShowProperty =
             DependencyProperty.Register("Show", typeof(bool), typeof(CandyViewer), new FrameworkPropertyMetadata(false));
 
         private static async void Onchanged(DependencyObject d, DependencyPropertyChangedEventArgs e)

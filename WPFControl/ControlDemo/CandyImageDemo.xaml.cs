@@ -21,9 +21,9 @@ namespace WPFControl.ControlDemo
         {
             Img = new ObservableCollection<TestImageModel>
             {
-                  new TestImageModel { Key="1",Value="https://fc.sinaimg.cn/mw1024/006yt1Omgy1hfwrvzvdztj30nh0xcqbh.jpg"},
-                  new TestImageModel { Key="2",Value="https://fc.sinaimg.cn/mw1024/006yt1Omgy1hfwrvzvdztj30nh0xcqbh.jpg"},
-                  new TestImageModel { Key="3",Value="https://fc.sinaimg.cn/mw1024/006yt1Omgy1hfwrvzvdztj30nh0xcqbh.jpg"},
+                  new TestImageModel { Key="1",Value="https://lz.sinaimg.cn/mw1024/006yt1Omgy1hfwrvzvdztj30nh0xcqbh.jpg"},
+                  new TestImageModel { Key="2",Value="https://lz.sinaimg.cn/mw1024/006yt1Omgy1hfwrvzvdztj30nh0xcqbh.jpg"},
+                  new TestImageModel { Key="3",Value="https://lz.sinaimg.cn/mw1024/006yt1Omgy1hfwrvzvdztj30nh0xcqbh.jpg"},
             };
         }
         [ObservableProperty]

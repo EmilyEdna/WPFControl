@@ -269,6 +269,15 @@ namespace CandyControls
         }
         public static readonly DependencyProperty ItemSourceProperty =
             DependencyProperty.Register("ItemSource", typeof(IEnumerable), typeof(CandyImage), new PropertyMetadata(default));
+
+        public Style ItemStyle
+        {
+            get { return (Style)GetValue(ItemStyleProperty); }
+            set { SetValue(ItemStyleProperty, value); }
+        }
+        public static readonly DependencyProperty ItemStyleProperty =
+            DependencyProperty.Register("ItemStyle", typeof(Style), typeof(CandyImage), new PropertyMetadata(default));
+
         /// <summary>
         /// 弹出位置
         /// </summary>
@@ -358,8 +367,8 @@ namespace CandyControls
                 panal.Children.Add(new ListBox
                 {
                     ItemsSource = ItemSource,
+                    Style=ItemStyle,
                     ItemsPanel = new ItemsPanelTemplate(new FrameworkElementFactory(typeof(StackPanel))),
-                    Style = Style,
                     ItemTemplate = PopupTemplate
                 });
 
