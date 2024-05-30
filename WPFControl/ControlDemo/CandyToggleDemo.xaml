@@ -13,5 +13,8 @@
     <UserControl.DataContext>
         <local:CandyToggleDemoVM />
     </UserControl.DataContext>
-    <eda:CandyToggle Command="{Binding TestCommand}" ModelSource="{Binding Data}" />
+    <eda:CandyToggle
+        Command="{Binding TestCommand}"
+        ForeBrush="Red"
+        ModelSource="{Binding Data}" />
 </UserControl>

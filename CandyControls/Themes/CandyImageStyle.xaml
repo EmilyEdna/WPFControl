@@ -1,7 +1,8 @@
 ﻿<ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:eda="clr-namespace:CandyControls">
+    xmlns:eda="clr-namespace:CandyControls"
+    xmlns:skia="https://github.com/kekyo/SkiaImageView">
 
     <Storyboard x:Key="Open">
         <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_RECT" Storyboard.TargetProperty="Height">
@@ -22,9 +23,9 @@
                             BorderThickness="{TemplateBinding BorderThickness}"
                             CornerRadius="{TemplateBinding BorderRadius}">
                             <Grid>
-                                <Image
-                                    eda:ImageAttach.SourceAsync="{TemplateBinding Source}"
-                                    eda:ImageAttach.Base64Soucre="{TemplateBinding Base64Source}"
+                                <skia:SKImageView
+                                    eda:SkiaViewAttach.Base64Soucre="{TemplateBinding Base64Source}"
+                                    eda:SkiaViewAttach.Source="{TemplateBinding Source}"
                                     RenderOptions.BitmapScalingMode="HighQuality"
                                     SnapsToDevicePixels="True"
                                     Stretch="Uniform" />

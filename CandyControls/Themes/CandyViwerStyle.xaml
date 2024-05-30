@@ -1,6 +1,8 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                      xmlns:eda="clr-namespace:CandyControls"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:eda="clr-namespace:CandyControls"
+    xmlns:skia="https://github.com/kekyo/SkiaImageView">
     <Style TargetType="eda:CandyViewer">
         <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="HorizontalAlignment" Value="Center" />
@@ -27,7 +29,7 @@
                             </Ellipse.RenderTransform>
                         </Ellipse>
                         <eda:CandyBorder BorderType="Fatal">
-                            <Image
+                            <skia:SKImageView
                                 x:Name="PART_IMG"
                                 Width="{TemplateBinding Width}"
                                 Height="{TemplateBinding Height}"

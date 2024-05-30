@@ -35,7 +35,7 @@ namespace CandyControls
             set { SetValue(SelectedBrushProperty, value); }
         }
         public static readonly DependencyProperty SelectedBrushProperty =
-            DependencyProperty.Register("SelectedBrush", typeof(Brush), typeof(CandyToggle), new PropertyMetadata(new SolidColorBrush(Color.FromArgb(0x70, 0x80, 0xCB, 0xCC))));
+            DependencyProperty.Register("SelectedBrush", typeof(Brush), typeof(CandyToggle), new FrameworkPropertyMetadata(new SolidColorBrush(Color.FromArgb(0x70, 0x80, 0xCB, 0xCC))));
 
         public Brush MouseOverBrush
         {
@@ -43,7 +43,7 @@ namespace CandyControls
             set { SetValue(MouseOverBrushProperty, value); }
         }
         public static readonly DependencyProperty MouseOverBrushProperty =
-            DependencyProperty.Register("MouseOverBrush", typeof(Brush), typeof(CandyToggle), new PropertyMetadata(new SolidColorBrush(Color.FromArgb(0x70, 0xE0, 0xE0, 0xDB))));
+            DependencyProperty.Register("MouseOverBrush", typeof(Brush), typeof(CandyToggle), new FrameworkPropertyMetadata(new SolidColorBrush(Color.FromArgb(0x70, 0xE0, 0xE0, 0xDB))));
 
         public Brush BackBrush
         {
@@ -51,7 +51,7 @@ namespace CandyControls
             set { SetValue(BackBrushProperty, value); }
         }
         public static readonly DependencyProperty BackBrushProperty =
-            DependencyProperty.Register("BackBrush", typeof(Brush), typeof(CandyToggle), new PropertyMetadata(new SolidColorBrush(Color.FromArgb(0x40, 0xB3, 0xB3, 0xB3))));
+            DependencyProperty.Register("BackBrush", typeof(Brush), typeof(CandyToggle), new FrameworkPropertyMetadata(new SolidColorBrush(Color.FromArgb(0x40, 0xB3, 0xB3, 0xB3))));
 
         public Brush ForeBrush
         {
@@ -59,7 +59,7 @@ namespace CandyControls
             set { SetValue(ForeBrushProperty, value); }
         }
         public static readonly DependencyProperty ForeBrushProperty =
-            DependencyProperty.Register("ForeBrush", typeof(Brush), typeof(CandyToggle), new PropertyMetadata(new SolidColorBrush(Color.FromRgb(0xFD, 0xF5, 0xE6))));
+            DependencyProperty.Register("ForeBrush", typeof(Brush), typeof(CandyToggle), new FrameworkPropertyMetadata(new SolidColorBrush(Color.FromRgb(0xFD, 0xF5, 0xE6))));
 
         /// <summary>
         /// 命令
@@ -70,7 +70,7 @@ namespace CandyControls
             set { SetValue(CommandProperty, value); }
         }
         public static readonly DependencyProperty CommandProperty =
-            DependencyProperty.Register("Command", typeof(ICommand), typeof(CandyToggle), new PropertyMetadata(default));
+            DependencyProperty.Register("Command", typeof(ICommand), typeof(CandyToggle), new FrameworkPropertyMetadata(default));
 
         public bool FirstSelect
         {
@@ -78,7 +78,7 @@ namespace CandyControls
             set { SetValue(FirstSelectProperty, value); }
         }
         public static readonly DependencyProperty FirstSelectProperty =
-            DependencyProperty.Register("FirstSelect", typeof(bool), typeof(CandyToggle), new PropertyMetadata(false));
+            DependencyProperty.Register("FirstSelect", typeof(bool), typeof(CandyToggle), new FrameworkPropertyMetadata(false));
 
         public int UnderBorderWidth
         {
@@ -86,7 +86,7 @@ namespace CandyControls
             set { SetValue(UnderBorderWidthProperty, value); }
         }
         public static readonly DependencyProperty UnderBorderWidthProperty =
-            DependencyProperty.Register("UnderBorderWidth", typeof(int), typeof(CandyToggle), new PropertyMetadata(80));
+            DependencyProperty.Register("UnderBorderWidth", typeof(int), typeof(CandyToggle), new FrameworkPropertyMetadata(80));
 
         public Thickness ContentPadding
         {
@@ -94,7 +94,7 @@ namespace CandyControls
             set { SetValue(ContentPaddingProperty, value); }
         }
         public static readonly DependencyProperty ContentPaddingProperty =
-            DependencyProperty.Register("ContentPadding", typeof(Thickness), typeof(CandyToggle), new PropertyMetadata(new Thickness(50, 0, 50, 0)));
+            DependencyProperty.Register("ContentPadding", typeof(Thickness), typeof(CandyToggle), new FrameworkPropertyMetadata(new Thickness(50, 0, 50, 0)));
 
         private static void OnModelChanged(DependencyObject dp, DependencyPropertyChangedEventArgs eve)
         {

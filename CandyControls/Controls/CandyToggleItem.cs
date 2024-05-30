@@ -24,7 +24,7 @@ namespace CandyControls
         }
 
         public static readonly DependencyProperty UnderLineProperty =
-            DependencyProperty.Register("UnderLine", typeof(Visibility), typeof(CandyToggleItem), new PropertyMetadata(Visibility.Visible));
+            DependencyProperty.Register("UnderLine", typeof(Visibility), typeof(CandyToggleItem), new FrameworkPropertyMetadata(Visibility.Visible));
 
         /// <summary>
         /// 命令参数
@@ -35,7 +35,7 @@ namespace CandyControls
             set { SetValue(ParentElementProperty, value); }
         }
         public static readonly DependencyProperty ParentElementProperty =
-            DependencyProperty.Register("ParentElement", typeof(object), typeof(CandyToggleItem), new PropertyMetadata(default));
+            DependencyProperty.Register("ParentElement", typeof(object), typeof(CandyToggleItem), new FrameworkPropertyMetadata(default));
 
         private void ToggleItemClicked(object sender, MouseButtonEventArgs e)
         {

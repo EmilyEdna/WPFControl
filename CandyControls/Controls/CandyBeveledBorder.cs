@@ -12,6 +12,8 @@ namespace CandyControls
 {
     public class CandyBeveledBorder : Decorator
     {
+        private PathGeometry _currenGeometry = null;
+        private bool _isrendersizechanged = true;
 
         static CandyBeveledBorder()
         {
@@ -108,7 +110,9 @@ namespace CandyControls
             if (CornerRadius == null)
             {
                 _currenGeometry.Figures[0].StartPoint = new Point(0, 0);
-                _currenGeometry.Figures[0].Segments.Add(ToLineSegment(new Point(nsize.Width, 0))); _currenGeometry.Figures[0].Segments.Add(ToLineSegment(new Point(nsize.Width, nsize.Height))); _currenGeometry.Figures[0].Segments.Add(ToLineSegment(new Point(0, nsize.Height)));
+                _currenGeometry.Figures[0].Segments.Add(new LineSegment(new Point(nsize.Width, 0),true)); 
+                _currenGeometry.Figures[0].Segments.Add(new LineSegment(new Point(nsize.Width, nsize.Height),true)); 
+                _currenGeometry.Figures[0].Segments.Add(new LineSegment(new Point(0, nsize.Height), true));
             }
             else
             {
@@ -116,48 +120,41 @@ namespace CandyControls
 
                 if (CornerRadius.TopRight <= 0)
                 {
-                    _currenGeometry.Figures[0].Segments.Add(ToLineSegment(new Point(nsize.Width, 0)));
+                    _currenGeometry.Figures[0].Segments.Add(new LineSegment(new Point(nsize.Width, 0), true));
                 }
                 else
                 {
-                    _currenGeometry.Figures[0].Segments.Add(ToLineSegment(new Point(nsize.Width - CornerRadius.TopRight, 0)));
-                    _currenGeometry.Figures[0].Segments.Add(ToLineSegment(new Point(nsize.Width, CornerRadius.TopRight)));
+                    _currenGeometry.Figures[0].Segments.Add(new LineSegment(new Point(nsize.Width - CornerRadius.TopRight, 0), true));
+                    _currenGeometry.Figures[0].Segments.Add(new LineSegment(new Point(nsize.Width, CornerRadius.TopRight), true));
                 }
 
                 if (CornerRadius.BottomRight <= 0)
                 {
-                    _currenGeometry.Figures[0].Segments.Add(ToLineSegment(new Point(nsize.Width, nsize.Height)));
+                    _currenGeometry.Figures[0].Segments.Add(new LineSegment(new Point(nsize.Width, nsize.Height), true));
                 }
                 else
                 {
-                    _currenGeometry.Figures[0].Segments.Add(ToLineSegment(new Point(nsize.Width, nsize.Height - CornerRadius.BottomRight)));
-                    _currenGeometry.Figures[0].Segments.Add(ToLineSegment(new Point(nsize.Width - CornerRadius.BottomRight, nsize.Height)));
+                    _currenGeometry.Figures[0].Segments.Add(new LineSegment(new Point(nsize.Width, nsize.Height - CornerRadius.BottomRight), true));
+                    _currenGeometry.Figures[0].Segments.Add(new LineSegment(new Point(nsize.Width - CornerRadius.BottomRight, nsize.Height), true));
                 }
 
                 if (CornerRadius.BottomLeft <= 0)
                 {
-                    _currenGeometry.Figures[0].Segments.Add(ToLineSegment(new Point(0, nsize.Height)));
+                    _currenGeometry.Figures[0].Segments.Add(new LineSegment(new Point(0, nsize.Height), true));
                 }
                 else
                 {
-                    _currenGeometry.Figures[0].Segments.Add(ToLineSegment(new Point(CornerRadius.BottomLeft, nsize.Height)));
-                    _currenGeometry.Figures[0].Segments.Add(ToLineSegment(new Point(0, nsize.Height - CornerRadius.BottomLeft)));
+                    _currenGeometry.Figures[0].Segments.Add(new LineSegment(new Point(CornerRadius.BottomLeft, nsize.Height), true));
+                    _currenGeometry.Figures[0].Segments.Add(new LineSegment(new Point(0, nsize.Height - CornerRadius.BottomLeft), true));
                 }
 
                 if (CornerRadius.TopLeft > 0)
                 {
-                    _currenGeometry.Figures[0].Segments.Add(ToLineSegment(new Point(0, CornerRadius.TopLeft)));
+                    _currenGeometry.Figures[0].Segments.Add(new LineSegment(new Point(0, CornerRadius.TopLeft), true));
                 }
             }
         }
 
-        private LineSegment ToLineSegment(Point pt)
-        {
-            return new LineSegment(pt, true);
-        }
 
-
-        private PathGeometry _currenGeometry = null;
-        private bool _isrendersizechanged = true;
     }
 }

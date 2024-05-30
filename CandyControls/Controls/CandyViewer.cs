@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SkiaImageView;
+using System;
 using System.Net.Http;
 using System.Net.Http.Handlers;
 using System.Windows;
@@ -17,11 +18,11 @@ namespace CandyControls
             DefaultStyleKeyProperty.OverrideMetadata(typeof(CandyViewer), new FrameworkPropertyMetadata(typeof(CandyViewer)));
         }
 
-        private Image PART_IMG;
+        private SKImageView PART_IMG;
         private static Action<double> ProcessAction;
         public override void OnApplyTemplate()
         {
-            PART_IMG = (Image)this.Template.FindName("PART_IMG", this);
+            PART_IMG = (SKImageView)this.Template.FindName("PART_IMG", this);
             ProcessAction = (process) =>
             {
                 Application.Current.Dispatcher.Invoke(() =>
@@ -79,7 +80,7 @@ namespace CandyControls
                 var bytes = await Client.GetByteArrayAsync(e.NewValue.ToString());
                 var data = BitmapHelper.Bytes2Image(bytes, (int)uc.Width, (int)uc.Height);
                 Caches.RunTimeCacheSet(key, bytes, 5);
-                uc.PART_IMG.Source = data;
+               uc.PART_IMG.Source = data;
             }
         }
         private static ProgressMessageHandler ProgressHandler()

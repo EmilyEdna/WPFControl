@@ -65,7 +65,7 @@ namespace CandyControls
             set { SetValue(EnableMaskProperty, value); }
         }
         public static readonly DependencyProperty EnableMaskProperty =
-            DependencyProperty.Register("EnableMask", typeof(bool), typeof(CandyImage), new PropertyMetadata(true));
+            DependencyProperty.Register("EnableMask", typeof(bool), typeof(CandyImage), new FrameworkPropertyMetadata(true));
         /// <summary>
         /// 遮罩层颜色默认透明
         /// </summary>
@@ -75,7 +75,7 @@ namespace CandyControls
             set { SetValue(MaskFillProperty, value); }
         }
         public static readonly DependencyProperty MaskFillProperty =
-            DependencyProperty.Register("MaskFill", typeof(Brush), typeof(CandyImage), new PropertyMetadata(Brushes.Transparent));
+            DependencyProperty.Register("MaskFill", typeof(Brush), typeof(CandyImage), new FrameworkPropertyMetadata(Brushes.Transparent));
         /// <summary>
         /// 边框圆角
         /// </summary>
@@ -85,7 +85,7 @@ namespace CandyControls
             set { SetValue(BorderRadiusProperty, value); }
         }
         public static readonly DependencyProperty BorderRadiusProperty =
-            DependencyProperty.Register("BorderRadius", typeof(CornerRadius), typeof(CandyImage), new PropertyMetadata(default));
+            DependencyProperty.Register("BorderRadius", typeof(CornerRadius), typeof(CandyImage), new FrameworkPropertyMetadata(default));
         /// <summary>
         /// 边框阴影
         /// </summary>
@@ -95,7 +95,7 @@ namespace CandyControls
             set { SetValue(BorderEffectProperty, value); }
         }
         public static readonly DependencyProperty BorderEffectProperty =
-          DependencyProperty.Register("BorderEffect", typeof(Effect), typeof(CandyImage), new PropertyMetadata(default));
+          DependencyProperty.Register("BorderEffect", typeof(Effect), typeof(CandyImage), new FrameworkPropertyMetadata(default));
         /// <summary>
         /// 图片长宽大小
         /// </summary>
@@ -105,7 +105,7 @@ namespace CandyControls
             set { SetValue(ImageThicknessProperty, value); }
         }
         public static readonly DependencyProperty ImageThicknessProperty =
-          DependencyProperty.Register("ImageThickness", typeof(ImageThickness), typeof(CandyImage), new PropertyMetadata(new ImageThickness(160, 240)));
+          DependencyProperty.Register("ImageThickness", typeof(ImageThickness), typeof(CandyImage), new FrameworkPropertyMetadata(new ImageThickness(160, 240)));
         /// <summary>
         /// 等待图像的大小
         /// </summary>
@@ -115,7 +115,7 @@ namespace CandyControls
             set { SetValue(LoadingThicknessProperty, value); }
         }
         public static readonly DependencyProperty LoadingThicknessProperty =
-        DependencyProperty.Register("LoadingThickness", typeof(ImageThickness), typeof(CandyImage), new PropertyMetadata(new ImageThickness(25, 25)));
+        DependencyProperty.Register("LoadingThickness", typeof(ImageThickness), typeof(CandyImage), new FrameworkPropertyMetadata(new ImageThickness(25, 25)));
         /// <summary>
         /// 是否启用加载等待默认启用
         /// </summary>
@@ -125,7 +125,7 @@ namespace CandyControls
             set { SetValue(EnableLoadingProperty, value); }
         }
         public static readonly DependencyProperty EnableLoadingProperty =
-          DependencyProperty.Register("EnableLoading", typeof(bool), typeof(CandyImage), new PropertyMetadata(true));
+          DependencyProperty.Register("EnableLoading", typeof(bool), typeof(CandyImage), new FrameworkPropertyMetadata(true));
         /// <summary>
         /// 遮罩层模板
         /// </summary>
@@ -135,7 +135,7 @@ namespace CandyControls
             set { SetValue(MaskTemplateProperty, value); }
         }
         public static readonly DependencyProperty MaskTemplateProperty =
-            DependencyProperty.Register("MaskTemplate", typeof(DataTemplate), typeof(CandyImage), new PropertyMetadata(default));
+            DependencyProperty.Register("MaskTemplate", typeof(DataTemplate), typeof(CandyImage), new FrameworkPropertyMetadata(default));
         /// <summary>
         /// 弹出层模板
         /// </summary>
@@ -145,7 +145,7 @@ namespace CandyControls
             set { SetValue(PopupTemplateProperty, value); }
         }
         public static readonly DependencyProperty PopupTemplateProperty =
-            DependencyProperty.Register("PopupTemplate", typeof(DataTemplate), typeof(CandyImage), new PropertyMetadata(default));
+            DependencyProperty.Register("PopupTemplate", typeof(DataTemplate), typeof(CandyImage), new FrameworkPropertyMetadata(default));
         /// <summary>
         /// 图片链接
         /// </summary>
@@ -155,7 +155,8 @@ namespace CandyControls
             set { SetValue(SourceProperty, value); }
         }
         public static readonly DependencyProperty SourceProperty =
-            DependencyProperty.Register("Source", typeof(string), typeof(CandyImage), new PropertyMetadata(default));
+            DependencyProperty.Register("Source", typeof(string), typeof(CandyImage), new FrameworkPropertyMetadata(default));
+
         /// <summary>
         /// bytes数据
         /// </summary>
@@ -165,7 +166,8 @@ namespace CandyControls
             set { SetValue(Base64SourceProperty, value); }
         }
         public static readonly DependencyProperty Base64SourceProperty =
-            DependencyProperty.Register("Base64Source", typeof(object), typeof(CandyImage), new PropertyMetadata(null));
+            DependencyProperty.Register("Base64Source", typeof(object), typeof(CandyImage), new FrameworkPropertyMetadata(default));
+
         /// <summary>
         /// 命令参数
         /// </summary>
@@ -175,7 +177,7 @@ namespace CandyControls
             set { SetValue(CommandParameterProperty, value); }
         }
         public static readonly DependencyProperty CommandParameterProperty =
-            DependencyProperty.Register("CommandParameter", typeof(object), typeof(CandyImage), new PropertyMetadata(default));
+            DependencyProperty.Register("CommandParameter", typeof(object), typeof(CandyImage), new FrameworkPropertyMetadata(default));
         /// <summary>
         /// 命令
         /// </summary>
@@ -185,7 +187,7 @@ namespace CandyControls
             set { SetValue(CommandProperty, value); }
         }
         public static readonly DependencyProperty CommandProperty =
-            DependencyProperty.Register("Command", typeof(ICommand), typeof(CandyImage), new PropertyMetadata(default));
+            DependencyProperty.Register("Command", typeof(ICommand), typeof(CandyImage), new FrameworkPropertyMetadata(default));
         /// <summary>
         /// 弹出层的长宽
         /// </summary>
@@ -195,7 +197,7 @@ namespace CandyControls
             set { SetValue(PopupThicknessProperty, value); }
         }
         public static readonly DependencyProperty PopupThicknessProperty =
-         DependencyProperty.Register("PopupThickness", typeof(ImageThickness), typeof(CandyImage), new PropertyMetadata(new ImageThickness(0, 0)));
+         DependencyProperty.Register("PopupThickness", typeof(ImageThickness), typeof(CandyImage), new FrameworkPropertyMetadata(new ImageThickness(0, 0)));
         /// <summary>
         /// 是否显示弹出层按钮默认不显示
         /// </summary>
@@ -205,7 +207,7 @@ namespace CandyControls
             set { SetValue(EnablePopupBtnProperty, value); }
         }
         public static readonly DependencyProperty EnablePopupBtnProperty =
-            DependencyProperty.Register("EnablePopupBtn", typeof(Visibility), typeof(CandyImage), new PropertyMetadata(Visibility.Collapsed));
+            DependencyProperty.Register("EnablePopupBtn", typeof(Visibility), typeof(CandyImage), new FrameworkPropertyMetadata(Visibility.Collapsed));
         /// <summary>
         /// 是否启用图片缓存默认启用
         /// </summary>
@@ -215,7 +217,7 @@ namespace CandyControls
             set { SetValue(EnableCacheProperty, value); }
         }
         public static readonly DependencyProperty EnableCacheProperty =
-            DependencyProperty.Register("EnableCache", typeof(bool), typeof(CandyImage), new PropertyMetadata(true));
+            DependencyProperty.Register("EnableCache", typeof(bool), typeof(CandyImage), new FrameworkPropertyMetadata(true));
         /// <summary>
         /// 缓存时常默认5分钟
         /// </summary>
@@ -225,7 +227,7 @@ namespace CandyControls
             set { SetValue(CacheSpanProperty, value); }
         }
         public static readonly DependencyProperty CacheSpanProperty =
-            DependencyProperty.Register("CacheSpan", typeof(int), typeof(CandyImage), new PropertyMetadata(5));
+            DependencyProperty.Register("CacheSpan", typeof(int), typeof(CandyImage), new FrameworkPropertyMetadata(5));
         /// <summary>
         /// 绑定参数
         /// </summary>
@@ -235,7 +237,7 @@ namespace CandyControls
             set { SetValue(EntityProperty, value); }
         }
         public static readonly DependencyProperty EntityProperty =
-            DependencyProperty.Register("Entity", typeof(object), typeof(CandyImage), new PropertyMetadata(default));
+            DependencyProperty.Register("Entity", typeof(object), typeof(CandyImage), new FrameworkPropertyMetadata(default));
         /// <summary>
         /// 完成后停用动画
         /// </summary>
@@ -245,17 +247,17 @@ namespace CandyControls
             set { SetValue(CompleteProperty, value); }
         }
         internal static readonly DependencyProperty CompleteProperty =
-            DependencyProperty.Register("Complete", typeof(bool), typeof(CandyImage), new PropertyMetadata(false));
+            DependencyProperty.Register("Complete", typeof(bool), typeof(CandyImage), new FrameworkPropertyMetadata(false));
         /// <summary>
         /// 是否启用异步下载默认启用
         /// </summary>
-        public bool EnableAsyncLoad
+        public bool PushDown
         {
             get { return (bool)GetValue(EnableAsyncLoadProperty); }
             set { SetValue(EnableAsyncLoadProperty, value); }
         }
         public static readonly DependencyProperty EnableAsyncLoadProperty =
-            DependencyProperty.Register("EnableAsyncLoad", typeof(bool), typeof(CandyImage), new PropertyMetadata(true));
+            DependencyProperty.Register("EnableAsyncLoad", typeof(bool), typeof(CandyImage), new FrameworkPropertyMetadata(true));
         /// <summary>
         /// 数据集合
         /// </summary>
@@ -265,15 +267,18 @@ namespace CandyControls
             set { SetValue(ItemSourceProperty, value); }
         }
         public static readonly DependencyProperty ItemSourceProperty =
-            DependencyProperty.Register("ItemSource", typeof(IEnumerable), typeof(CandyImage), new PropertyMetadata(default));
+            DependencyProperty.Register("ItemSource", typeof(IEnumerable), typeof(CandyImage), new FrameworkPropertyMetadata(default));
 
-        public Style ItemStyle
+        /// <summary>
+        /// ListItemStyle
+        /// </summary>
+        public Style ListItemStyle
         {
-            get { return (Style)GetValue(ItemStyleProperty); }
-            set { SetValue(ItemStyleProperty, value); }
+            get { return (Style)GetValue(ListItemStyleProperty); }
+            set { SetValue(ListItemStyleProperty, value); }
         }
-        public static readonly DependencyProperty ItemStyleProperty =
-            DependencyProperty.Register("ItemStyle", typeof(Style), typeof(CandyImage), new PropertyMetadata(default));
+        public static readonly DependencyProperty ListItemStyleProperty =
+            DependencyProperty.Register("ListItemStyle", typeof(Style), typeof(CandyImage), new FrameworkPropertyMetadata(default));
 
         /// <summary>
         /// 弹出位置
@@ -284,7 +289,7 @@ namespace CandyControls
             set { SetValue(PlacementProperty, value); }
         }
         public static readonly DependencyProperty PlacementProperty =
-            DependencyProperty.Register("Placement", typeof(PlacementMode), typeof(CandyImage), new PropertyMetadata(PlacementMode.Bottom));
+            DependencyProperty.Register("Placement", typeof(PlacementMode), typeof(CandyImage), new FrameworkPropertyMetadata(PlacementMode.Bottom));
         #endregion
 
         #region Anime
@@ -364,7 +369,7 @@ namespace CandyControls
                 panal.Children.Add(new ListBox
                 {
                     ItemsSource = ItemSource,
-                    Style=ItemStyle,
+                    Style = ListItemStyle,
                     ItemsPanel = new ItemsPanelTemplate(new FrameworkElementFactory(typeof(StackPanel))),
                     ItemTemplate = PopupTemplate
                 });
@@ -386,6 +391,5 @@ namespace CandyControls
             };
         }
         #endregion
-
     }
 }

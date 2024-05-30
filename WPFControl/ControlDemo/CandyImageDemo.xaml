@@ -16,13 +16,13 @@
             Height="300"
             BorderBrush="Black"
             BorderThickness="1"
-            EnableAsyncLoad="True"
             EnableLoading="True"
             EnableMask="True"
             EnablePopupBtn="Visible"
             ImageThickness="240,300"
             MaskFill="WhiteSmoke"
             PopupThickness="400,200"
+            PushDown="True"
             Source="https://fc.sinaimg.cn/mw1024/006yt1Omgy1hfwrvzvdztj30nh0xcqbh.jpg">
             <eda:CandyImage.PopupTemplate>
                 <DataTemplate>
@@ -46,7 +46,6 @@
             Height="300"
             BorderBrush="Black"
             BorderThickness="1"
-            EnableAsyncLoad="True"
             EnableLoading="True"
             EnableMask="True"
             EnablePopupBtn="Visible"
@@ -54,6 +53,7 @@
             ItemSource="{Binding Img}"
             MaskFill="WhiteSmoke"
             PopupThickness="400,200"
+            PushDown="True"
             Source="https://lz.sinaimg.cn/mw1024/006yt1Omgy1hfwrvzvdztj30nh0xcqbh.jpg">
             <eda:CandyImage.PopupTemplate>
                 <DataTemplate>
