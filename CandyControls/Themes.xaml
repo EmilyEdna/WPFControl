@@ -9,5 +9,6 @@
         <ResourceDictionary Source="Themes/CandyContainerStyle.xaml" />
         <ResourceDictionary Source="Themes/CandySearchBox.xaml" />
         <ResourceDictionary Source="Themes/CandyViwerStyle.xaml" />
+        <ResourceDictionary Source="Themes/CandyWindowStyle.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

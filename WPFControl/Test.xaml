@@ -1,0 +1,22 @@
+﻿<eda:CandyWindow
+    x:Class="WPFControl.Test"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:eda="http://edacoder.github.io"
+    xmlns:local="clr-namespace:WPFControl"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="123123"
+    Width="800"
+    Height="450"
+    BlurBrush="#7F6B3333"
+    Style="{DynamicResource BlurWindow}"
+    WindowStartupLocation="CenterScreen"
+    mc:Ignorable="d">
+    <Grid>
+        <Button
+            Width="40"
+            Height="20"
+            Content="test" />
+    </Grid>
+</eda:CandyWindow>
