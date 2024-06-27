@@ -10,5 +10,6 @@
         <ResourceDictionary Source="Themes/CandySearchBox.xaml" />
         <ResourceDictionary Source="Themes/CandyViwerStyle.xaml" />
         <ResourceDictionary Source="Themes/CandyWindowStyle.xaml" />
+        <ResourceDictionary Source="Themes/CandyWaterButtonStyle.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

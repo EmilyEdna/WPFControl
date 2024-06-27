@@ -10,6 +10,7 @@ namespace CandyControls
         public CandyWindow()
         {
             this.SetResourceReference(StyleProperty, "BlurWindow");
+            this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
         }
 
         public double BlurRadius
@@ -63,7 +64,7 @@ namespace CandyControls
                 if (ResizeMode == ResizeMode.CanResize || ResizeMode == ResizeMode.CanResizeWithGrip)
                     SystemCommands.MaximizeWindow(this);
                 this.Width = SystemParameters.PrimaryScreenWidth;
-                this.Height = SystemParameters.PrimaryScreenHeight-50;
+                this.Height = SystemParameters.PrimaryScreenHeight-48;
                 this.InfoAlignment = VerticalAlignment.Bottom;
             }
             else
