@@ -7,16 +7,10 @@
     xmlns:local="clr-namespace:WPFControl"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="123123"
-    Width="800"
-    Height="450"
-    BlurBrush="#7F6B3333"
-    Style="{DynamicResource BlurWindow}"
+    BlurRadius="15"
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
-    <Grid>
-        <Button
-            Width="40"
-            Height="20"
-            Content="test" />
-    </Grid>
+    <eda:CandyWindow.Background>
+        <ImageBrush ImageSource="/MusciBackgroud.jpg" />
+    </eda:CandyWindow.Background>
 </eda:CandyWindow>

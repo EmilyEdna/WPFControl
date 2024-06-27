@@ -109,37 +109,67 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="eda:CandyWindow">
-                    <Border>
-                        <Grid x:Name="LayoutRoot">
+                    <Grid ClipToBounds="True">
+                        <Grid
+                            x:Name="LayoutRoot"
+                            Width="{TemplateBinding Width}"
+                            Height="{TemplateBinding Height}"
+                            VerticalAlignment="Top"
+                            Background="{TemplateBinding Background}" />
+                        <Border
+                            x:Name="Blur"
+                            Width="{Binding Width, ElementName=LayoutRoot}"
+                            Height="{Binding Height, ElementName=LayoutRoot}"
+                            Margin="0"
+                            VerticalAlignment="Top">
+                            <Border.Effect>
+                                <BlurEffect Radius="{Binding BlurRadius, RelativeSource={RelativeSource AncestorType=eda:CandyWindow}}" RenderingBias="Performance" />
+                            </Border.Effect>
+                            <Border.Background>
+                                <VisualBrush
+                                    Stretch="Fill"
+                                    Viewbox="0,0,1,1"
+                                    Visual="{Binding ElementName=LayoutRoot}" />
+                            </Border.Background>
+                        </Border>
+                        <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="26.4" />
                                 <RowDefinition />
                             </Grid.RowDefinitions>
                             <Grid>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition x:Name="X1" Width="*" />
                                     <ColumnDefinition Width="Auto" />
                                 </Grid.ColumnDefinitions>
-                                <StackPanel x:Name="HeadLayout" Orientation="Horizontal">
-                                    <!--  icon  -->
-                                    <Image
-                                        Width="{x:Static SystemParameters.SmallIconWidth}"
-                                        Height="{x:Static SystemParameters.SmallIconHeight}"
-                                        Margin="7,0,5,0"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
-                                        Source="{TemplateBinding Icon}"
-                                        Stretch="UniformToFill" />
-                                    <!--  title  -->
-                                    <ContentControl
-                                        Margin="5,0,0,0"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
-                                        Content="{TemplateBinding Title}"
-                                        FontFamily="{TemplateBinding FontFamily}"
-                                        FontSize="{DynamicResource {x:Static SystemFonts.CaptionFontSize}}"
-                                        Foreground="{TemplateBinding Foreground}" />
-                                </StackPanel>
+                                <Grid>
+                                    <Border
+                                        x:Name="HeadLayout"
+                                        Width="{Binding Width, ElementName=X1}"
+                                        Height="26.4"
+                                        Background="White"
+                                        Opacity="0" />
+                                    <StackPanel Orientation="Horizontal">
+                                        <!--  icon  -->
+                                        <Image
+                                            Width="{x:Static SystemParameters.SmallIconWidth}"
+                                            Height="{x:Static SystemParameters.SmallIconHeight}"
+                                            Margin="7,0,5,0"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="{Binding InfoAlignment, RelativeSource={RelativeSource AncestorType=eda:CandyWindow}}"
+                                            Source="{TemplateBinding Icon}"
+                                            Stretch="UniformToFill" />
+                                        <!--  title  -->
+                                        <ContentControl
+                                            Margin="5,0,0,0"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="{Binding InfoAlignment, RelativeSource={RelativeSource AncestorType=eda:CandyWindow}}"
+                                            Content="{TemplateBinding Title}"
+                                            FontFamily="{TemplateBinding FontFamily}"
+                                            FontSize="{DynamicResource {x:Static SystemFonts.CaptionFontSize}}"
+                                            Foreground="{TemplateBinding Foreground}" />
+                                    </StackPanel>
+                                </Grid>
                                 <StackPanel
                                     x:Name="WindowCommandButtonsStackPanel"
                                     Grid.Column="1"
@@ -244,12 +274,11 @@
                                     </Button>
                                 </StackPanel>
                             </Grid>
-
                             <AdornerDecorator Grid.Row="1" KeyboardNavigation.IsTabStop="False">
                                 <ContentPresenter />
                             </AdornerDecorator>
                         </Grid>
-                    </Border>
+                    </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="WindowState" Value="Maximized">
                             <Setter TargetName="Maximize" Property="Visibility" Value="Collapsed" />

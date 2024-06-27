@@ -1,37 +1,40 @@
-﻿using System;
-using System.Diagnostics.Tracing;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Media;
 using XExten.Advance.LinqFramework;
 
 namespace CandyControls
 {
     public class CandyWindow : Window
     {
-
-        static CandyWindow()
+        public CandyWindow()
         {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(CandyWindow), new FrameworkPropertyMetadata(typeof(CandyWindow)));
+            this.SetResourceReference(StyleProperty, "BlurWindow");
         }
 
-        public Brush BlurBrush
+        public double BlurRadius
         {
-            get { return (Brush)GetValue(BlurBrushProperty); }
-            set { SetValue(BlurBrushProperty, value); }
+            get { return (double)GetValue(BlurRadiusProperty); }
+            set { SetValue(BlurRadiusProperty, value); }
         }
 
-        public static readonly DependencyProperty BlurBrushProperty =
-            DependencyProperty.Register("BlurBrush", typeof(Brush), typeof(CandyWindow), new PropertyMetadata(default));
+        public static readonly DependencyProperty BlurRadiusProperty =
+            DependencyProperty.Register("BlurRadius", typeof(double), typeof(CandyWindow), new PropertyMetadata(15d));
 
+        internal VerticalAlignment InfoAlignment
+        {
+            get { return (VerticalAlignment)GetValue(InfoAlignmentProperty); }
+            set { SetValue(InfoAlignmentProperty, value); }
+        }
+
+        internal static readonly DependencyProperty InfoAlignmentProperty =
+            DependencyProperty.Register("InfoAlignment", typeof(VerticalAlignment), typeof(CandyWindow), new PropertyMetadata(VerticalAlignment.Center));
 
         public override void OnApplyTemplate()
         {
-            Color blurColor = (Color)ColorConverter.ConvertFromString(this.BlurBrush.ToString());
-            var Opacity = blurColor.R << 0 | blurColor.G << 8 | blurColor.B << 16 | blurColor.A << 24;
-            WindowHelper.SetBlurWindow(this, Opacity);
-            ((StackPanel)this.Template.FindName("HeadLayout", this)).PreviewMouseLeftButtonDown += MoveEvent;
+            this.Width =this.MinWidth= 1900;
+            this.Height =this.MinHeight= 1000;
+            ((Border)this.Template.FindName("HeadLayout", this)).PreviewMouseLeftButtonDown += MoveEvent;
             ((Button)this.Template.FindName("Minimize", this)).Click += HandleEvent;
             ((Button)this.Template.FindName("Restore", this)).Click += HandleEvent;
             ((Button)this.Template.FindName("Maximize", this)).Click += HandleEvent;
@@ -51,11 +54,17 @@ namespace CandyControls
             {
                 if (ResizeMode == ResizeMode.CanResize || ResizeMode == ResizeMode.CanResizeWithGrip)
                     SystemCommands.RestoreWindow(this);
+                this.InfoAlignment = VerticalAlignment.Center;
+                this.Width = this.MinWidth;
+                this.Height = this.MinHeight;
             }
             else if (data == 3)
             {
                 if (ResizeMode == ResizeMode.CanResize || ResizeMode == ResizeMode.CanResizeWithGrip)
                     SystemCommands.MaximizeWindow(this);
+                this.Width = SystemParameters.PrimaryScreenWidth;
+                this.Height = SystemParameters.PrimaryScreenHeight-50;
+                this.InfoAlignment = VerticalAlignment.Bottom;
             }
             else
                 this.Close();
