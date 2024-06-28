@@ -1,12 +1,10 @@
-﻿using CandyControls.ControlsModel.Enums;
-using System;
+﻿using System;
 using System.Collections;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 
 namespace CandyControls
@@ -46,14 +44,6 @@ namespace CandyControls
         }
         internal static readonly DependencyProperty PointProperty =
             DependencyProperty.Register("Point", typeof(Point), typeof(CandySearchBox), new PropertyMetadata(new Point(0, 0)));
-
-        public EPlacment Placment
-        {
-            get { return (EPlacment)GetValue(PlacmentProperty); }
-            set { SetValue(PlacmentProperty, value); }
-        }
-        public static readonly DependencyProperty PlacmentProperty =
-            DependencyProperty.Register("Placment", typeof(EPlacment), typeof(CandySearchBox), new FrameworkPropertyMetadata(EPlacment.Right, OnPlacementChanged));
 
         public double BoxWidth
         {
@@ -134,13 +124,6 @@ namespace CandyControls
         }
         public static readonly DependencyProperty MaskFillProperty =
             DependencyProperty.Register("MaskFill", typeof(Brush), typeof(CandySearchBox), new PropertyMetadata(new SolidColorBrush((Color)ColorConverter.ConvertFromString("#20DADADA"))));
-        public Style ListStyle
-        {
-            get { return (Style)GetValue(ListStyleProperty); }
-            set { SetValue(ListStyleProperty, value); }
-        }
-        public static readonly DependencyProperty ListStyleProperty =
-            DependencyProperty.Register("ListStyle", typeof(Style), typeof(CandySearchBox), new PropertyMetadata(default));
         #endregion
 
         #region Method
@@ -160,8 +143,7 @@ namespace CandyControls
             if (e.Key == Key.Enter && EnterCommand != null)
             {
                 EnterCommand.Execute(box.Text);
-                CloseAnime();
-                if(popup!=null) popup.IsOpen = false;
+                if (popup != null) popup.IsOpen = false;
             }
         }
 
@@ -185,13 +167,17 @@ namespace CandyControls
                     Width = box.BoxWidth,
                     Fill = MaskFill,
                 });
-                panal.Children.Add(new ListBox
+                panal.Children.Add(new ScrollViewer
                 {
-                    Style=box.ListStyle,
+                    VerticalScrollBarVisibility = ScrollBarVisibility.Hidden,
                     Height = panal.Height,
-                    ItemsPanel = ItemsPanel,
-                    ItemsSource = box.ItemsSource,
-                    ItemTemplate = AutoComplete
+                    Content = new ItemsControl
+                    {
+                        Height = double.NaN,
+                        ItemsPanel = ItemsPanel,
+                        ItemsSource = box.ItemsSource,
+                        ItemTemplate = AutoComplete
+                    }
                 });
                 popup = new Popup
                 {
@@ -204,10 +190,6 @@ namespace CandyControls
                     Child = panal
                 };
                 popup.IsOpen = true;
-                popup.Closed += delegate
-                {
-                    CloseAnime();
-                };
                 popup.LostFocus += delegate
                 {
                     popup.IsOpen = false;
@@ -217,62 +199,9 @@ namespace CandyControls
 
         private void SearchIconEvent(object sender, MouseButtonEventArgs e)
         {
-            OpenAnime();
             this.Focusable = true;
         }
 
-        private static void OnPlacementChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            var box = (d as CandySearchBox);
-            if ((EPlacment)e.NewValue == EPlacment.Left)
-                box.Point = new Point(1, 1);
-            else
-                box.Point = new Point(0, 0);
-        }
-        #endregion
-
-        #region Anime
-        Storyboard Close;
-        Storyboard Open;
-        private void CloseAnime()
-        {
-            Close = new Storyboard();
-            DoubleAnimationUsingKeyFrames Revolve = new DoubleAnimationUsingKeyFrames();
-            Storyboard.SetTarget(Revolve, PART_TXT);
-            Storyboard.SetTargetProperty(Revolve, new PropertyPath("(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)"));
-            Revolve.KeyFrames.Add(new EasingDoubleKeyFrame(1, TimeSpan.FromSeconds(0)));
-            Revolve.KeyFrames.Add(new EasingDoubleKeyFrame(0, TimeSpan.FromSeconds(1)));
-
-            DoubleAnimationUsingKeyFrames Revolve2 = new DoubleAnimationUsingKeyFrames();
-            Storyboard.SetTarget(Revolve2, PART_TXT);
-            Storyboard.SetTargetProperty(Revolve2, new PropertyPath("(UIElement.Opacity)"));
-            Revolve2.KeyFrames.Add(new EasingDoubleKeyFrame(1, TimeSpan.FromSeconds(0)));
-            Revolve2.KeyFrames.Add(new EasingDoubleKeyFrame(0, TimeSpan.FromSeconds(1)));
-
-            Close.Children.Add(Revolve);
-            Close.Children.Add(Revolve2);
-            Close.Begin();
-        }
-
-        private void OpenAnime()
-        {
-            Open = new Storyboard();
-            DoubleAnimationUsingKeyFrames Revolve = new DoubleAnimationUsingKeyFrames();
-            Storyboard.SetTarget(Revolve, PART_TXT);
-            Storyboard.SetTargetProperty(Revolve, new PropertyPath("(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)"));
-            Revolve.KeyFrames.Add(new EasingDoubleKeyFrame(0, TimeSpan.FromSeconds(0)));
-            Revolve.KeyFrames.Add(new EasingDoubleKeyFrame(1, TimeSpan.FromSeconds(1)));
-
-            DoubleAnimationUsingKeyFrames Revolve2 = new DoubleAnimationUsingKeyFrames();
-            Storyboard.SetTarget(Revolve2, PART_TXT);
-            Storyboard.SetTargetProperty(Revolve2, new PropertyPath("(UIElement.Opacity)"));
-            Revolve2.KeyFrames.Add(new EasingDoubleKeyFrame(0, TimeSpan.FromSeconds(0)));
-            Revolve2.KeyFrames.Add(new EasingDoubleKeyFrame(1, TimeSpan.FromSeconds(1)));
-
-            Open.Children.Add(Revolve);
-            Open.Children.Add(Revolve2);
-            Open.Begin();
-        }
         #endregion
     }
 }

@@ -13,17 +13,13 @@
     <eda:CandySearchBox
         x:Name="Search"
         AutoKeyCommand="{Binding SearchCommand}"
+        BorderBrush="DeepSkyBlue"
+        BoxWidth="200"
         EnterCommand="{Binding QueryCommand}"
         ItemsSource="{Binding Data}"
-        Placment="Right"
         ShowClear="True"
         Text="{Binding Key, Mode=TwoWay}"
         UseAutoComplete="True">
-        <eda:CandySearchBox.ListStyle>
-            <Style TargetType="ListBox">
-                <Setter Property="BorderThickness" Value="1" />
-            </Style>
-        </eda:CandySearchBox.ListStyle>
         <eda:CandySearchBox.AutoComplete>
             <DataTemplate>
                 <eda:CandyButton
