@@ -20,7 +20,7 @@
             EnableMask="True"
             EnablePopupBtn="Visible"
             ImageThickness="240,300"
-            MaskFill="WhiteSmoke"
+            MaskFill="#50B2A4E4"
             PopupThickness="400,200"
             PushDown="True"
             Source="https://fc.sinaimg.cn/mw1024/006yt1Omgy1hfwrvzvdztj30nh0xcqbh.jpg">
@@ -51,7 +51,7 @@
             EnablePopupBtn="Visible"
             ImageThickness="240,300"
             ItemSource="{Binding Img}"
-            MaskFill="WhiteSmoke"
+            MaskFill="#50B2A4E4"
             PopupThickness="400,200"
             PushDown="True"
             Source="https://lz.sinaimg.cn/mw1024/006yt1Omgy1hfwrvzvdztj30nh0xcqbh.jpg">

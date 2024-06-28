@@ -8,8 +8,6 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     x:Name="IndexWin"
     Title="MainWindow"
-    Width="1200"
-    Height="800"
     d:DataContext="{d:DesignInstance local:MainViewModel}"
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
