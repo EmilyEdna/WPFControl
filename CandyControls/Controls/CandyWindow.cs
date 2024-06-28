@@ -23,15 +23,6 @@ namespace CandyControls
         public static readonly DependencyProperty BlurRadiusProperty =
             DependencyProperty.Register("BlurRadius", typeof(double), typeof(CandyWindow), new PropertyMetadata(15d));
 
-        internal VerticalAlignment InfoAlignment
-        {
-            get { return (VerticalAlignment)GetValue(InfoAlignmentProperty); }
-            set { SetValue(InfoAlignmentProperty, value); }
-        }
-
-        internal static readonly DependencyProperty InfoAlignmentProperty =
-            DependencyProperty.Register("InfoAlignment", typeof(VerticalAlignment), typeof(CandyWindow), new PropertyMetadata(VerticalAlignment.Center));
-
         public Control SearchBox
         {
             get { return (Control)GetValue(SearchBoxProperty); }
@@ -51,8 +42,8 @@ namespace CandyControls
 
         public override void OnApplyTemplate()
         {
-            this.Width =this.MinWidth= 1900;
-            this.Height =this.MinHeight= 1000;
+            this.Width =this.MinWidth= 800;
+            this.Height =this.MinHeight= 450;
             ((Border)this.Template.FindName("HeadLayout", this)).PreviewMouseLeftButtonDown += MoveEvent;
             ((Button)this.Template.FindName("Minimize", this)).Click += HandleEvent;
             ((Button)this.Template.FindName("Restore", this)).Click += HandleEvent;
@@ -73,7 +64,6 @@ namespace CandyControls
             {
                 if (ResizeMode == ResizeMode.CanResize || ResizeMode == ResizeMode.CanResizeWithGrip)
                     SystemCommands.RestoreWindow(this);
-                this.InfoAlignment = VerticalAlignment.Center;
                 this.Width = this.MinWidth;
                 this.Height = this.MinHeight;
             }
@@ -83,7 +73,6 @@ namespace CandyControls
                     SystemCommands.MaximizeWindow(this);
                 this.Width = SystemParameters.PrimaryScreenWidth;
                 this.Height = SystemParameters.PrimaryScreenHeight-48;
-                this.InfoAlignment = VerticalAlignment.Bottom;
             }
             else
                 this.Close();

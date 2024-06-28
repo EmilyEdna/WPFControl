@@ -9,7 +9,7 @@
     x:Name="IndexWin"
     Title="MainWindow"
     d:DataContext="{d:DesignInstance local:MainViewModel}"
-    BlurRadius="200"
+    BlurRadius="15"
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
     <eda:CandyWindow.SearchBox>

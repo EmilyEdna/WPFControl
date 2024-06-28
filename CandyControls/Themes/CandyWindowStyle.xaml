@@ -154,14 +154,14 @@
                                             Height="{x:Static SystemParameters.SmallIconHeight}"
                                             Margin="7,0,5,0"
                                             HorizontalAlignment="Center"
-                                            VerticalAlignment="{Binding InfoAlignment, RelativeSource={RelativeSource AncestorType=eda:CandyWindow}}"
+                                            VerticalAlignment="Center"
                                             Source="{TemplateBinding Icon}"
                                             Stretch="UniformToFill" />
                                         <!--  title  -->
                                         <ContentControl
                                             Margin="5,0,0,0"
                                             HorizontalAlignment="Center"
-                                            VerticalAlignment="{Binding InfoAlignment, RelativeSource={RelativeSource AncestorType=eda:CandyWindow}}"
+                                            VerticalAlignment="Center"
                                             Content="{TemplateBinding Title}"
                                             FontFamily="{TemplateBinding FontFamily}"
                                             FontSize="{DynamicResource {x:Static SystemFonts.CaptionFontSize}}"
