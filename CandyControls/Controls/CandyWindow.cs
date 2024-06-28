@@ -13,6 +13,7 @@ namespace CandyControls
             this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
         }
 
+        #region 依赖属性
         public double BlurRadius
         {
             get { return (double)GetValue(BlurRadiusProperty); }
@@ -30,6 +31,23 @@ namespace CandyControls
 
         internal static readonly DependencyProperty InfoAlignmentProperty =
             DependencyProperty.Register("InfoAlignment", typeof(VerticalAlignment), typeof(CandyWindow), new PropertyMetadata(VerticalAlignment.Center));
+
+        public Control SearchBox
+        {
+            get { return (Control)GetValue(SearchBoxProperty); }
+            set { SetValue(SearchBoxProperty, value); }
+        }
+        public static readonly DependencyProperty SearchBoxProperty =
+            DependencyProperty.Register("SearchBox", typeof(Control), typeof(CandyWindow), new PropertyMetadata(default));
+
+        public Control MenuBox
+        {
+            get { return (Control)GetValue(MenuBoxProperty); }
+            set { SetValue(MenuBoxProperty, value); }
+        }
+        public static readonly DependencyProperty MenuBoxProperty =
+            DependencyProperty.Register("MenuBox", typeof(Control), typeof(CandyWindow), new PropertyMetadata(default));
+        #endregion
 
         public override void OnApplyTemplate()
         {

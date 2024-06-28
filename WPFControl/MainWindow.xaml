@@ -9,11 +9,47 @@
     x:Name="IndexWin"
     Title="MainWindow"
     d:DataContext="{d:DesignInstance local:MainViewModel}"
+    BlurRadius="200"
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
-    <Window.DataContext>
+    <eda:CandyWindow.SearchBox>
+        <eda:CandySearchBox
+            BorderBrush="LightSkyBlue"
+            BorderThickness="0,0,0,.5"
+            BoxWidth="200"
+            ShowClear="False" />
+    </eda:CandyWindow.SearchBox>
+    <eda:CandyWindow.MenuBox>
+        <Menu>
+            <MenuItem
+                Width="Auto"
+                Height="30"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Header="菜单1">
+                <MenuItem Header="二级菜单">
+                    <MenuItem Header="三级菜单" />
+                </MenuItem>
+
+            </MenuItem>
+            <MenuItem
+                Width="Auto"
+                Height="30"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Header="菜单2">
+                <MenuItem Header="21" />
+                <MenuItem Header="22" />
+            </MenuItem>
+        </Menu>
+    </eda:CandyWindow.MenuBox>
+
+
+
+
+    <eda:CandyWindow.DataContext>
         <local:MainViewModel />
-    </Window.DataContext>
+    </eda:CandyWindow.DataContext>
     <eda:CandyWindow.Background>
         <ImageBrush ImageSource="/MusciBackgroud.jpg" />
     </eda:CandyWindow.Background>

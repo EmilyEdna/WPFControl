@@ -2,6 +2,7 @@
 using System;
 using System.Net.Http;
 using System.Net.Http.Handlers;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -20,6 +21,7 @@ namespace CandyControls
 
         private SKImageView PART_IMG;
         private static Action<double> ProcessAction;
+        private static bool ExcuteApply = false;
         public override void OnApplyTemplate()
         {
             PART_IMG = (SKImageView)this.Template.FindName("PART_IMG", this);
@@ -32,6 +34,7 @@ namespace CandyControls
                         Show = true;
                 });
             };
+            ExcuteApply = true;
         }
 
         public string ViewSoucre
@@ -64,6 +67,10 @@ namespace CandyControls
         private static async void Onchanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var uc = (CandyViewer)d;
+            while (!ExcuteApply)
+            {
+                await Task.Delay(100);
+            }
             uc.Show = false;
             uc.ProcessValue = [0, 0];
             var key = e.NewValue.ToString().ToMd5();
@@ -80,7 +87,7 @@ namespace CandyControls
                 var bytes = await Client.GetByteArrayAsync(e.NewValue.ToString());
                 var data = BitmapHelper.Bytes2Image(bytes, (int)uc.Width, (int)uc.Height);
                 Caches.RunTimeCacheSet(key, bytes, 5);
-               uc.PART_IMG.Source = data;
+                uc.PART_IMG.Source = data;
             }
         }
         private static ProgressMessageHandler ProgressHandler()
