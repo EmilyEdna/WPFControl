@@ -28,6 +28,10 @@
                 VerticalAlignment="Center"
                 Header="菜单1">
                 <MenuItem Header="二级菜单">
+                    <MenuItem Header="三级菜单">
+                        <MenuItem Header="四级菜单" />
+                    </MenuItem>
+                    <MenuItem Header="三级菜单" />
                     <MenuItem Header="三级菜单" />
                 </MenuItem>
 
