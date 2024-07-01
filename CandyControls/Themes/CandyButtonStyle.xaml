@@ -82,7 +82,7 @@
                                 <Trigger Property="IsPressed" Value="True">
                                     <Setter TargetName="Element" Property="Background">
                                         <Setter.Value>
-                                            <SolidColorBrush Opacity=".6" Color="HotPink" />
+                                            <SolidColorBrush Opacity=".6" Color="Magenta" />
                                         </Setter.Value>
                                     </Setter>
                                 </Trigger>
@@ -164,7 +164,7 @@
                                 <Trigger Property="IsPressed" Value="True">
                                     <Setter TargetName="Element" Property="Background">
                                         <Setter.Value>
-                                            <SolidColorBrush Opacity=".6" Color="HotPink" />
+                                            <SolidColorBrush Opacity=".6" Color="Magenta" />
                                         </Setter.Value>
                                     </Setter>
                                 </Trigger>
