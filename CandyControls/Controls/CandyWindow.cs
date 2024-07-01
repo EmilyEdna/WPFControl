@@ -52,8 +52,8 @@ namespace CandyControls
 
         public override void OnApplyTemplate()
         {
-            this.Width = this.MinWidth = 800;
-            this.Height = this.MinHeight = 450;
+            this.Width = this.MinWidth = 1000;
+            this.Height = this.MinHeight = 550;
             ((Border)this.Template.FindName("HeadLayout", this)).PreviewMouseLeftButtonDown += MoveEvent;
             ((Button)this.Template.FindName("Minimize", this)).Click += HandleEvent;
             ((Button)this.Template.FindName("Restore", this)).Click += HandleEvent;
