@@ -9,84 +9,171 @@
         <Setter Property="Height" Value="35" />
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="Foreground" Value="White" />
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="eda:CandyButton">
-                    <eda:CandyBorder
-                        x:Name="Element"
-                        BorderBrush="Gray"
-                        BorderThickness="{TemplateBinding BorderThickness}"
-                        BorderType="{TemplateBinding ButtonType}">
-                        <Border.Background>
-                            <SolidColorBrush Opacity=".6" Color=" DeepSkyBlue" />
-                        </Border.Background>
-                        <ContentPresenter
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            Content="{TemplateBinding Content}" />
-                    </eda:CandyBorder>
-                    <ControlTemplate.Triggers>
-                        <DataTrigger Binding="{Binding BorderType, ElementName=Element}" Value="{x:Static lib:ECatagory.Primary}">
-                            <Setter TargetName="Element" Property="Background">
-                                <Setter.Value>
-                                    <SolidColorBrush Opacity=".6" Color="DeepSkyBlue" />
-                                </Setter.Value>
-                            </Setter>
-                        </DataTrigger>
-                        <DataTrigger Binding="{Binding BorderType, ElementName=Element}" Value="{x:Static lib:ECatagory.Info}">
-                            <Setter TargetName="Element" Property="Background">
-                                <Setter.Value>
-                                    <SolidColorBrush Opacity=".6" Color="SkyBlue" />
-                                </Setter.Value>
-                            </Setter>
-                        </DataTrigger>
-                        <DataTrigger Binding="{Binding BorderType, ElementName=Element}" Value="{x:Static lib:ECatagory.Success}">
-                            <Setter TargetName="Element" Property="Background">
-                                <Setter.Value>
-                                    <SolidColorBrush Opacity=".6" Color="LightGreen" />
-                                </Setter.Value>
-                            </Setter>
-                        </DataTrigger>
-                        <DataTrigger Binding="{Binding BorderType, ElementName=Element}" Value="{x:Static lib:ECatagory.Warning}">
-                            <Setter TargetName="Element" Property="Background">
-                                <Setter.Value>
-                                    <SolidColorBrush Opacity=".6" Color="Tomato" />
-                                </Setter.Value>
-                            </Setter>
-                        </DataTrigger>
-                        <DataTrigger Binding="{Binding BorderType, ElementName=Element}" Value="{x:Static lib:ECatagory.Error}">
-                            <Setter TargetName="Element" Property="Background">
-                                <Setter.Value>
-                                    <SolidColorBrush Opacity=".6" Color="DeepPink" />
-                                </Setter.Value>
-                            </Setter>
-                        </DataTrigger>
-                        <DataTrigger Binding="{Binding BorderType, ElementName=Element}" Value="{x:Static lib:ECatagory.Fatal}">
-                            <Setter TargetName="Element" Property="Background">
-                                <Setter.Value>
-                                    <SolidColorBrush Opacity=".6" Color="DarkRed" />
-                                </Setter.Value>
-                            </Setter>
-                        </DataTrigger>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="Element" Property="Background">
-                                <Setter.Value>
-                                    <SolidColorBrush Opacity=".6" Color="HotPink" />
-                                </Setter.Value>
-                            </Setter>
-                            <Setter TargetName="Element" Property="BorderBrush" Value="Black" />
-                        </Trigger>
-                        <Trigger Property="IsPressed" Value="True">
-                            <Setter TargetName="Element" Property="Background">
-                                <Setter.Value>
-                                    <SolidColorBrush Opacity=".6" Color="HotPink" />
-                                </Setter.Value>
-                            </Setter>
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
+        <Style.Triggers>
+            <Trigger Property="EnableBeveleBorder" Value="False">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="eda:CandyButton">
+                            <eda:CandyBorder
+                                x:Name="Element"
+                                Height="Auto"
+                                BorderBrush="Gray"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                BorderType="{TemplateBinding ButtonType}">
+                                <Border.Background>
+                                    <SolidColorBrush Opacity=".6" Color=" DeepSkyBlue" />
+                                </Border.Background>
+                                <ContentPresenter
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Content="{TemplateBinding Content}" />
+                            </eda:CandyBorder>
+                            <ControlTemplate.Triggers>
+                                <DataTrigger Binding="{Binding BorderType, ElementName=Element}" Value="{x:Static lib:ECatagory.Primary}">
+                                    <Setter TargetName="Element" Property="Background">
+                                        <Setter.Value>
+                                            <SolidColorBrush Opacity=".6" Color="DeepSkyBlue" />
+                                        </Setter.Value>
+                                    </Setter>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding BorderType, ElementName=Element}" Value="{x:Static lib:ECatagory.Info}">
+                                    <Setter TargetName="Element" Property="Background">
+                                        <Setter.Value>
+                                            <SolidColorBrush Opacity=".6" Color="SkyBlue" />
+                                        </Setter.Value>
+                                    </Setter>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding BorderType, ElementName=Element}" Value="{x:Static lib:ECatagory.Success}">
+                                    <Setter TargetName="Element" Property="Background">
+                                        <Setter.Value>
+                                            <SolidColorBrush Opacity=".6" Color="LightGreen" />
+                                        </Setter.Value>
+                                    </Setter>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding BorderType, ElementName=Element}" Value="{x:Static lib:ECatagory.Warning}">
+                                    <Setter TargetName="Element" Property="Background">
+                                        <Setter.Value>
+                                            <SolidColorBrush Opacity=".6" Color="Tomato" />
+                                        </Setter.Value>
+                                    </Setter>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding BorderType, ElementName=Element}" Value="{x:Static lib:ECatagory.Error}">
+                                    <Setter TargetName="Element" Property="Background">
+                                        <Setter.Value>
+                                            <SolidColorBrush Opacity=".6" Color="DeepPink" />
+                                        </Setter.Value>
+                                    </Setter>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding BorderType, ElementName=Element}" Value="{x:Static lib:ECatagory.Fatal}">
+                                    <Setter TargetName="Element" Property="Background">
+                                        <Setter.Value>
+                                            <SolidColorBrush Opacity=".6" Color="DarkRed" />
+                                        </Setter.Value>
+                                    </Setter>
+                                </DataTrigger>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="Element" Property="Background">
+                                        <Setter.Value>
+                                            <SolidColorBrush Opacity=".6" Color="HotPink" />
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Setter TargetName="Element" Property="BorderBrush" Value="Black" />
+                                </Trigger>
+                                <Trigger Property="IsPressed" Value="True">
+                                    <Setter TargetName="Element" Property="Background">
+                                        <Setter.Value>
+                                            <SolidColorBrush Opacity=".6" Color="HotPink" />
+                                        </Setter.Value>
+                                    </Setter>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+            <Trigger Property="EnableBeveleBorder" Value="True">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="eda:CandyButton">
+                            <eda:CandyBeveledBorder
+                                x:Name="Element"
+                                Height="Auto"
+                                BorderBrush="Gray"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                BorderType="{TemplateBinding ButtonType}"
+                                CornerRadius="{TemplateBinding CornerRadius}">
+                                <eda:CandyBeveledBorder.Background>
+                                    <SolidColorBrush Opacity=".6" Color=" DeepSkyBlue" />
+                                </eda:CandyBeveledBorder.Background>
+                                <ContentPresenter
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Content="{TemplateBinding Content}" />
+                            </eda:CandyBeveledBorder>
+                            <ControlTemplate.Triggers>
+                                <DataTrigger Binding="{Binding BorderType, ElementName=Element}" Value="{x:Static lib:ECatagory.Primary}">
+                                    <Setter TargetName="Element" Property="Background">
+                                        <Setter.Value>
+                                            <SolidColorBrush Opacity=".6" Color="DeepSkyBlue" />
+                                        </Setter.Value>
+                                    </Setter>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding BorderType, ElementName=Element}" Value="{x:Static lib:ECatagory.Info}">
+                                    <Setter TargetName="Element" Property="Background">
+                                        <Setter.Value>
+                                            <SolidColorBrush Opacity=".6" Color="SkyBlue" />
+                                        </Setter.Value>
+                                    </Setter>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding BorderType, ElementName=Element}" Value="{x:Static lib:ECatagory.Success}">
+                                    <Setter TargetName="Element" Property="Background">
+                                        <Setter.Value>
+                                            <SolidColorBrush Opacity=".6" Color="LightGreen" />
+                                        </Setter.Value>
+                                    </Setter>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding BorderType, ElementName=Element}" Value="{x:Static lib:ECatagory.Warning}">
+                                    <Setter TargetName="Element" Property="Background">
+                                        <Setter.Value>
+                                            <SolidColorBrush Opacity=".6" Color="Tomato" />
+                                        </Setter.Value>
+                                    </Setter>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding BorderType, ElementName=Element}" Value="{x:Static lib:ECatagory.Error}">
+                                    <Setter TargetName="Element" Property="Background">
+                                        <Setter.Value>
+                                            <SolidColorBrush Opacity=".6" Color="DeepPink" />
+                                        </Setter.Value>
+                                    </Setter>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding BorderType, ElementName=Element}" Value="{x:Static lib:ECatagory.Fatal}">
+                                    <Setter TargetName="Element" Property="Background">
+                                        <Setter.Value>
+                                            <SolidColorBrush Opacity=".6" Color="DarkRed" />
+                                        </Setter.Value>
+                                    </Setter>
+                                </DataTrigger>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="Element" Property="Background">
+                                        <Setter.Value>
+                                            <SolidColorBrush Opacity=".6" Color="HotPink" />
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Setter TargetName="Element" Property="BorderBrush" Value="Black" />
+                                </Trigger>
+                                <Trigger Property="IsPressed" Value="True">
+                                    <Setter TargetName="Element" Property="Background">
+                                        <Setter.Value>
+                                            <SolidColorBrush Opacity=".6" Color="HotPink" />
+                                        </Setter.Value>
+                                    </Setter>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
     </Style>
     <!--#endregion-->
 </ResourceDictionary>

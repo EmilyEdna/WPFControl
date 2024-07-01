@@ -8,6 +8,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     x:Name="IndexWin"
     Title="MainWindow"
+    Width="800"
+    Height="450"
     d:DataContext="{d:DesignInstance local:MainViewModel}"
     BlurRadius="15"
     WindowStartupLocation="CenterScreen"
@@ -34,7 +36,6 @@
                     <MenuItem Header="三级菜单" />
                     <MenuItem Header="三级菜单" />
                 </MenuItem>
-
             </MenuItem>
             <MenuItem
                 Width="Auto"
@@ -47,9 +48,6 @@
             </MenuItem>
         </Menu>
     </eda:CandyWindow.MenuBox>
-
-
-
 
     <eda:CandyWindow.DataContext>
         <local:MainViewModel />
@@ -90,9 +88,14 @@
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <eda:CandyButton
+                        Margin="0,1"
+                        VerticalAlignment="Center"
+                        VerticalContentAlignment="Center"
                         Command="{Binding DataContext.MenuTargetCommand, ElementName=IndexWin}"
                         CommandParameter="{Binding Value}"
-                        Content="{Binding Key}" />
+                        Content="{Binding Key}"
+                        CornerRadius="10,0,10,0"
+                        EnableBeveleBorder="True" />
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
