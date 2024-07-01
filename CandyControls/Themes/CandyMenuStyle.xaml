@@ -1,11 +1,14 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:eda="clr-namespace:CandyControls">
 
-    <Style TargetType="MenuItem">
+    <Style x:Key="CandyMenuItem" TargetType="eda:CandyMenuItem">
         <Setter Property="Height" Value="30" />
         <Setter Property="Width" Value="80" />
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="MenuItem">
+                <ControlTemplate TargetType="eda:CandyMenuItem">
                     <Border
                         x:Name="Border"
                         Background="Transparent"
@@ -18,13 +21,13 @@
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="Border" Property="Background" Value="#20DADADA" />
+                            <Setter TargetName="Border" Property="Background" Value="#40DADADA" />
                         </Trigger>
                         <Trigger Property="IsHighlighted" Value="True">
-                            <Setter TargetName="Border" Property="Background" Value="#20DADADA" />
+                            <Setter TargetName="Border" Property="Background" Value="#40DADADA" />
                         </Trigger>
                         <Trigger Property="IsSubmenuOpen" Value="True">
-                            <Setter TargetName="Border" Property="Background" Value="#20DADADA" />
+                            <Setter TargetName="Border" Property="Background" Value="#40DADADA" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -35,7 +38,7 @@
                 <Setter Property="Margin" Value="0" />
                 <Setter Property="Template">
                     <Setter.Value>
-                        <ControlTemplate TargetType="MenuItem">
+                        <ControlTemplate TargetType="eda:CandyMenuItem">
                             <Border x:Name="templateRoot" Background="Transparent">
                                 <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
                                     <ContentPresenter
@@ -63,13 +66,13 @@
                             </Border>
                             <ControlTemplate.Triggers>
                                 <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter TargetName="templateRoot" Property="Background" Value="#20DADADA" />
+                                    <Setter TargetName="templateRoot" Property="Background" Value="#40DADADA" />
                                 </Trigger>
                                 <Trigger Property="IsHighlighted" Value="True">
-                                    <Setter TargetName="templateRoot" Property="Background" Value="#20DADADA" />
+                                    <Setter TargetName="templateRoot" Property="Background" Value="#40DADADA" />
                                 </Trigger>
                                 <Trigger Property="IsSubmenuOpen" Value="True">
-                                    <Setter TargetName="templateRoot" Property="Background" Value="#20DADADA" />
+                                    <Setter TargetName="templateRoot" Property="Background" Value="#40DADADA" />
                                 </Trigger>
                             </ControlTemplate.Triggers>
                         </ControlTemplate>
@@ -79,7 +82,7 @@
             <Trigger Property="Role" Value="TopLevelItem">
                 <Setter Property="Template">
                     <Setter.Value>
-                        <ControlTemplate TargetType="MenuItem">
+                        <ControlTemplate TargetType="eda:CandyMenuItem">
                             <Border
                                 x:Name="templateRoot"
                                 Background="Transparent"
@@ -92,13 +95,13 @@
                             </Border>
                             <ControlTemplate.Triggers>
                                 <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter TargetName="templateRoot" Property="Background" Value="#20DADADA" />
+                                    <Setter TargetName="templateRoot" Property="Background" Value="#40DADADA" />
                                 </Trigger>
                                 <Trigger Property="IsHighlighted" Value="True">
-                                    <Setter TargetName="templateRoot" Property="Background" Value="#20DADADA" />
+                                    <Setter TargetName="templateRoot" Property="Background" Value="#40DADADA" />
                                 </Trigger>
                                 <Trigger Property="IsSubmenuOpen" Value="True">
-                                    <Setter TargetName="templateRoot" Property="Background" Value="#20DADADA" />
+                                    <Setter TargetName="templateRoot" Property="Background" Value="#40DADADA" />
                                 </Trigger>
                             </ControlTemplate.Triggers>
                         </ControlTemplate>
@@ -108,7 +111,7 @@
             <Trigger Property="Role" Value="SubmenuHeader">
                 <Setter Property="Template">
                     <Setter.Value>
-                        <ControlTemplate TargetType="MenuItem">
+                        <ControlTemplate TargetType="eda:CandyMenuItem">
                             <Border
                                 x:Name="templateRoot"
                                 Background="Transparent"
@@ -137,13 +140,13 @@
                             </Border>
                             <ControlTemplate.Triggers>
                                 <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter TargetName="templateRoot" Property="Background" Value="#20DADADA" />
+                                    <Setter TargetName="templateRoot" Property="Background" Value="#40DADADA" />
                                 </Trigger>
                                 <Trigger Property="IsHighlighted" Value="True">
-                                    <Setter TargetName="templateRoot" Property="Background" Value="#20DADADA" />
+                                    <Setter TargetName="templateRoot" Property="Background" Value="#40DADADA" />
                                 </Trigger>
                                 <Trigger Property="IsSubmenuOpen" Value="True">
-                                    <Setter TargetName="templateRoot" Property="Background" Value="#20DADADA" />
+                                    <Setter TargetName="templateRoot" Property="Background" Value="#40DADADA" />
                                 </Trigger>
                             </ControlTemplate.Triggers>
                         </ControlTemplate>
@@ -151,7 +154,7 @@
                 </Setter>
             </Trigger>
             <Trigger Property="IsHighlighted" Value="True">
-                <Setter Property="Background" Value="#20DADADA" />
+                <Setter Property="Background" Value="#40DADADA" />
             </Trigger>
             <Trigger Property="IsEnabled" Value="False">
                 <Setter Property="Opacity" Value=".4" />
@@ -160,7 +163,7 @@
     </Style>
 
 
-    <Style TargetType="Menu">
+    <Style x:Key="CandyMenu" TargetType="eda:CandyMenu">
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="Foreground" Value="White" />
     </Style>
