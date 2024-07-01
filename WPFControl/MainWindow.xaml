@@ -7,7 +7,7 @@
     xmlns:local="clr-namespace:WPFControl"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     x:Name="IndexWin"
-    Title="MainWindow"
+    Title="Candy的控件"
     Width="800"
     Height="450"
     d:DataContext="{d:DesignInstance local:MainViewModel}"

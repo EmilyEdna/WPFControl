@@ -156,7 +156,8 @@
                                             HorizontalAlignment="Center"
                                             VerticalAlignment="Center"
                                             Source="{TemplateBinding Icon}"
-                                            Stretch="UniformToFill" />
+                                            Stretch="UniformToFill"
+                                            Visibility="{TemplateBinding IconVisibility}" />
                                         <!--  title  -->
                                         <ContentControl
                                             Margin="5,0,0,0"
@@ -195,7 +196,7 @@
                                         Margin="0,0,2,0"
                                         CommandParameter="1"
                                         Style="{StaticResource CaptionButtonStyle}"
-                                        ToolTip="Minimize"
+                                        ToolTip="最小化"
                                         Visibility="{Binding MinimizeVisibility, RelativeSource={RelativeSource TemplatedParent}}">
                                         <Button.ContentTemplate>
                                             <DataTemplate>
@@ -218,7 +219,7 @@
                                         Height="30"
                                         CommandParameter="2"
                                         Style="{StaticResource CaptionButtonStyle}"
-                                        ToolTip="Restore"
+                                        ToolTip="恢复"
                                         Visibility="Collapsed">
                                         <Button.ContentTemplate>
                                             <DataTemplate>
@@ -246,7 +247,7 @@
                                         Margin="0,0,1,0"
                                         CommandParameter="3"
                                         Style="{StaticResource CaptionButtonStyle}"
-                                        ToolTip="Maximize">
+                                        ToolTip="最大化">
                                         <Button.ContentTemplate>
                                             <DataTemplate>
                                                 <Grid>
@@ -266,7 +267,7 @@
                                         Height="30"
                                         CommandParameter="4"
                                         Style="{StaticResource CaptionButtonStyle}"
-                                        ToolTip="Close">
+                                        ToolTip="关闭">
                                         <Button.ContentTemplate>
                                             <DataTemplate>
                                                 <Grid Width="12" Height="12">

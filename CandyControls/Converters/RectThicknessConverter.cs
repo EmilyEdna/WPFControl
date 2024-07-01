@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using CandyControls.ControlsModel.Thicks;
 using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CandyControls.ControlsModel.Thicks;
 
 namespace CandyControls.Converters
 {

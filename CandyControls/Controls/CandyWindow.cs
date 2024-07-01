@@ -11,9 +11,19 @@ namespace CandyControls
         {
             this.SetResourceReference(StyleProperty, "BlurWindow");
             this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            this.IconVisibility = this.Icon == null ? Visibility.Collapsed : Visibility.Visible;
         }
 
         #region 依赖属性
+        internal Visibility IconVisibility
+        {
+            get { return (Visibility)GetValue(IconVisibilityProperty); }
+            set { SetValue(IconVisibilityProperty, value); }
+        }
+
+        internal static readonly DependencyProperty IconVisibilityProperty =
+            DependencyProperty.Register("IconVisibility", typeof(Visibility), typeof(CandyWindow), new(Visibility.Visible));
+
         public double BlurRadius
         {
             get { return (double)GetValue(BlurRadiusProperty); }
@@ -42,8 +52,8 @@ namespace CandyControls
 
         public override void OnApplyTemplate()
         {
-            this.Width =this.MinWidth= 800;
-            this.Height =this.MinHeight= 450;
+            this.Width = this.MinWidth = 800;
+            this.Height = this.MinHeight = 450;
             ((Border)this.Template.FindName("HeadLayout", this)).PreviewMouseLeftButtonDown += MoveEvent;
             ((Button)this.Template.FindName("Minimize", this)).Click += HandleEvent;
             ((Button)this.Template.FindName("Restore", this)).Click += HandleEvent;
@@ -72,7 +82,7 @@ namespace CandyControls
                 if (ResizeMode == ResizeMode.CanResize || ResizeMode == ResizeMode.CanResizeWithGrip)
                     SystemCommands.MaximizeWindow(this);
                 this.Width = SystemParameters.PrimaryScreenWidth;
-                this.Height = SystemParameters.PrimaryScreenHeight-48;
+                this.Height = SystemParameters.PrimaryScreenHeight - 48;
             }
             else
                 this.Close();
