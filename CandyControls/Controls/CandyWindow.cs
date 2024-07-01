@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Collections;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using XExten.Advance.LinqFramework;
@@ -48,6 +49,14 @@ namespace CandyControls
         }
         public static readonly DependencyProperty MenuBoxProperty =
             DependencyProperty.Register("MenuBox", typeof(Control), typeof(CandyWindow), new PropertyMetadata(default));
+
+        public IEnumerable ItemSource
+        {
+            get { return (IEnumerable)GetValue(ItemSourceProperty); }
+            set { SetValue(ItemSourceProperty, value); }
+        }
+        public static readonly DependencyProperty ItemSourceProperty =
+            DependencyProperty.Register("ItemSource", typeof(IEnumerable), typeof(CandyWindow), new PropertyMetadata(default));
         #endregion
 
         public override void OnApplyTemplate()
