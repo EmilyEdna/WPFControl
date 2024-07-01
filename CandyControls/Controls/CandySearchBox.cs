@@ -6,6 +6,7 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Shapes;
+using XExten.Advance.LinqFramework;
 
 namespace CandyControls
 {
@@ -22,6 +23,7 @@ namespace CandyControls
         ScrollViewer PART_CONTENTHOST;
         Border PART_TXT;
         TextBlock PART_SEARCH;
+        TextBlock PART_PLACEHOLDER;
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
@@ -29,21 +31,27 @@ namespace CandyControls
             PART_TXT = (Border)this.Template.FindName("PART_TXT", this);
             PART_CLEAR_BTN = (Button)this.Template.FindName("PART_CLEAR_BTN", this);
             PART_CONTENTHOST = (ScrollViewer)this.Template.FindName("PART_ContentHost", this);
+            PART_PLACEHOLDER = (TextBlock)this.Template.FindName("PART_PLACEHOLDER", this);
             PART_CLEAR_BTN.Click += ClearEvent;
             PART_CONTENTHOST.HorizontalScrollBarVisibility = ScrollBarVisibility.Auto;
             PART_SEARCH.PreviewMouseLeftButtonDown += SearchIconEvent;
             this.TextChanged += TextEvent;
             this.KeyDown += KeyEvent;
+            this.GotFocus += delegate { this.PART_PLACEHOLDER.Visibility = Visibility.Collapsed; };
+            this.LostFocus += delegate
+            {
+                if (this.Text.IsNullOrEmpty())
+                    this.PART_PLACEHOLDER.Visibility = Visibility.Visible;
+            };
         }
-
         #region Property
-        internal Point Point
+        public string Placeholder
         {
-            get { return (Point)GetValue(PointProperty); }
-            set { SetValue(PointProperty, value); }
+            get { return (string)GetValue(PlaceholderProperty); }
+            set { SetValue(PlaceholderProperty, value); }
         }
-        internal static readonly DependencyProperty PointProperty =
-            DependencyProperty.Register("Point", typeof(Point), typeof(CandySearchBox), new PropertyMetadata(new Point(0, 0)));
+        public static readonly DependencyProperty PlaceholderProperty =
+            DependencyProperty.Register("Placeholder", typeof(string), typeof(CandySearchBox), new PropertyMetadata("请输入搜索内容"));
 
         public double BoxWidth
         {
@@ -201,7 +209,6 @@ namespace CandyControls
         {
             this.Focusable = true;
         }
-
         #endregion
     }
 }

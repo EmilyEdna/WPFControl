@@ -21,7 +21,6 @@
                         Background="{TemplateBinding Background}"
                         BorderBrush="{TemplateBinding BorderBrush}"
                         BorderThickness="{TemplateBinding BorderThickness}"
-                        RenderTransformOrigin="{TemplateBinding Point}"
                         SnapsToDevicePixels="True">
                         <Grid>
                             <Grid.ColumnDefinitions>
@@ -47,6 +46,12 @@
                                 VerticalAlignment="Center"
                                 Focusable="false"
                                 VerticalScrollBarVisibility="Hidden" />
+                            <TextBlock
+                                x:Name="PART_PLACEHOLDER"
+                                Grid.Column="1"
+                                VerticalAlignment="Center"
+                                Foreground="LightSlateGray"
+                                Text="{TemplateBinding Placeholder}" />
                             <Button
                                 x:Name="PART_CLEAR_BTN"
                                 Grid.Column="2"
