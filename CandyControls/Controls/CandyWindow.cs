@@ -50,21 +50,13 @@ namespace CandyControls
         public static readonly DependencyProperty MenuBoxProperty =
             DependencyProperty.Register("MenuBox", typeof(Control), typeof(CandyWindow), new PropertyMetadata(default));
 
-        public IEnumerable MenuItemSource
+        public IEnumerable ItemSource
         {
-            get { return (IEnumerable)GetValue(MenuItemSourceProperty); }
-            set { SetValue(MenuItemSourceProperty, value); }
+            get { return (IEnumerable)GetValue(ItemSourceProperty); }
+            set { SetValue(ItemSourceProperty, value); }
         }
-        public static readonly DependencyProperty MenuItemSourceProperty =
-            DependencyProperty.Register("MenuItemSource", typeof(IEnumerable), typeof(CandyWindow), new PropertyMetadata(default));
-
-        public IEnumerable SearchItemSource
-        {
-            get { return (IEnumerable)GetValue(SearchItemSourceProperty); }
-            set { SetValue(SearchItemSourceProperty, value); }
-        }
-        public static readonly DependencyProperty SearchItemSourceProperty =
-            DependencyProperty.Register("SearchItemSource", typeof(IEnumerable), typeof(CandyWindow), new PropertyMetadata(default));
+        public static readonly DependencyProperty ItemSourceProperty =
+            DependencyProperty.Register("ItemSource", typeof(IEnumerable), typeof(CandyWindow), new PropertyMetadata(default));
         #endregion
 
         public override void OnApplyTemplate()
