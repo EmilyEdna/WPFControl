@@ -171,7 +171,7 @@
                                         Background="{TemplateBinding Background}"
                                         Command="NavigationCommands.IncreaseZoom"
                                         Foreground="{TemplateBinding Foreground}"
-                                        IsEnabled="{TemplateBinding CanDecreaseZoom}"
+                                        IsEnabled="{TemplateBinding CanIncreaseZoom}"
                                         Template="{DynamicResource Add}" />
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Visibility="{TemplateBinding PerNext}">
@@ -184,7 +184,6 @@
                                         Command="{TemplateBinding Command}"
                                         CommandParameter="-1"
                                         Foreground="{TemplateBinding Foreground}"
-                                        IsEnabled="{TemplateBinding CanDecreaseZoom}"
                                         Template="{DynamicResource Left}" />
                                     <Button
                                         Width="20"
@@ -195,7 +194,6 @@
                                         Command="{TemplateBinding Command}"
                                         CommandParameter="1"
                                         Foreground="{TemplateBinding Foreground}"
-                                        IsEnabled="{TemplateBinding CanDecreaseZoom}"
                                         Template="{DynamicResource Right}" />
                                 </StackPanel>
                                 <Button
@@ -207,7 +205,6 @@
                                     Command="{TemplateBinding Command}"
                                     CommandParameter="0"
                                     Foreground="{TemplateBinding Foreground}"
-                                    IsEnabled="{TemplateBinding CanDecreaseZoom}"
                                     Template="{DynamicResource Back}"
                                     Visibility="{TemplateBinding Back}" />
                             </StackPanel>
