@@ -225,6 +225,7 @@ namespace CandyControls
                 Name = $"btn_{i}",
                 Width = _itemSize,
                 Height = _itemSize,
+                FontSize=8,
                 Opacity = 0,//在圆心时,透明
                 IsHitTestVisible = false,//在圆心时,按钮不能点击
                 RenderTransform = new TranslateTransform() { X = 0, Y = 0 },
@@ -237,6 +238,7 @@ namespace CandyControls
             }else
                 btn.Content = data[i];
 
+            btn.ToolTip = btn.Content.ToString();
             btn.SetResourceReference(Button.StyleProperty, "ItemWaterBtn");
             return btn;
         }
