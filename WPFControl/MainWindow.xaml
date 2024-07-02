@@ -19,7 +19,9 @@
             BorderBrush="LightSkyBlue"
             BorderThickness="0,0,0,.5"
             BoxWidth="200"
-            ShowClear="False" />
+            EnterCommand="{Binding SearchActiveCommand}"
+            ShowClear="False"
+            Text="{Binding Key}" />
     </eda:CandyWindow.SearchBox>
     <eda:CandyWindow.MenuBox>
         <eda:CandyMenu>
@@ -39,7 +41,6 @@
             </eda:CandyMenuItem>
         </eda:CandyMenu>
     </eda:CandyWindow.MenuBox>
-
     <eda:CandyWindow.DataContext>
         <local:MainViewModel />
     </eda:CandyWindow.DataContext>

@@ -17,11 +17,11 @@ namespace WPFControl
                 {"边框",1 }, {"按钮",2 },{"图片",3},{"切换",4},{"容器标签",5},{"标签",6 },
                 {"滚动条",7 },{ "搜索框",8},{ "缓冲图",9},{"水滴按钮",10 }
             };
-            Item = [1, 2, 3];
+
         }
 
         [ObservableProperty]
-        private ObservableCollection<int> _Item;
+        private string _Key;
 
         [ObservableProperty]
         private Control _Ctrl;
@@ -65,6 +65,12 @@ namespace WPFControl
                     Ctrl = new CandyWaterButtonDemo();
                     break;
             }
+        }
+
+        [RelayCommand]
+        public void SearchActive(string obj)
+        {
+            var mm = obj;
         }
     }
 }
