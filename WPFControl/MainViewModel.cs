@@ -15,7 +15,7 @@ namespace WPFControl
             Funcs = new Dictionary<string, int>
             {
                 {"边框",1 }, {"按钮",2 },{"图片",3},{"切换",4},{"容器标签",5},{"标签",6 },
-                {"滚动条",7 },{ "搜索框",8},{ "缓冲图",9},{"水滴按钮",10 }
+                {"滚动条",7 },{ "搜索框",8},{ "缓冲图",9},{"水滴按钮",10 },{"文档流",11 }
             };
 
         }
@@ -63,6 +63,9 @@ namespace WPFControl
                     break;
                 case 10:
                     Ctrl = new CandyWaterButtonDemo();
+                    break;
+                case 11:
+                    Ctrl = new CandyFlowScrollDemo();
                     break;
             }
         }

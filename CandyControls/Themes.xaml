@@ -11,6 +11,7 @@
         <ResourceDictionary Source="Themes/CandyViwerStyle.xaml" />
         <ResourceDictionary Source="Themes/CandyWaterButtonStyle.xaml" />
         <ResourceDictionary Source="Themes/CandyMenuStyle.xaml" />
+        <ResourceDictionary Source="Themes/CandyFlowScrollStyle.xaml" />
         <ResourceDictionary Source="Themes/CandyWindowStyle.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>
