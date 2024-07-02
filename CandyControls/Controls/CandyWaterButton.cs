@@ -9,6 +9,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
+using XExten.Advance.LinqFramework;
 
 namespace CandyControls
 {
@@ -57,6 +58,7 @@ namespace CandyControls
         #region 属性
         public int Index { get; set; }
         public string SelectName { get; set; }
+        public object SelectValue {  get; set; }
         #endregion
 
         #region 依赖属性
@@ -217,17 +219,24 @@ namespace CandyControls
         /// <returns>button</returns>
         private Button GetItemButton(IList<object> data, int i)
         {
-
+            var ObjType = data[i].GetType();
             Button btn = new Button()
             {
                 Name = $"btn_{i}",
                 Width = _itemSize,
                 Height = _itemSize,
-                Content = data[i],
                 Opacity = 0,//在圆心时,透明
                 IsHitTestVisible = false,//在圆心时,按钮不能点击
                 RenderTransform = new TranslateTransform() { X = 0, Y = 0 },
             };
+            if (ObjType.IsGenericType && ObjType.GetGenericTypeDefinition() == typeof(KeyValuePair<,>))
+            {
+                var result = data[i].ToJson().ToModel<KeyValuePair<object, object>>();
+                btn.Content= result.Key;
+                btn.CommandParameter = result.Value;
+            }else
+                btn.Content = data[i];
+
             btn.SetResourceReference(Button.StyleProperty, "ItemWaterBtn");
             return btn;
         }
@@ -425,7 +434,8 @@ namespace CandyControls
                 RoutedEventArgs args = new RoutedEventArgs(ClickRoutedEvent, this);
                 Index = int.Parse(btn.Name.Substring(4, 1));
                 SelectName = btn.Content.ToString();
-                Command?.Execute(new { Index, SelectName, RoutedEventArgs = args });
+                SelectValue = btn.CommandParameter;
+                Command?.Execute(new { Index, SelectName, SelectValue, RoutedEventArgs = args });
                 RaiseEvent(args);
             }
         }
@@ -445,7 +455,8 @@ namespace CandyControls
             RoutedEventArgs args = new RoutedEventArgs(ClickRoutedEvent, this);
             Index = -1;
             SelectName = string.Empty;
-            Command?.Execute(new { Index, SelectName, RoutedEventArgs = args });
+            SelectValue = null;
+            Command?.Execute(new { Index, SelectName, SelectValue, RoutedEventArgs = args });
             RaiseEvent(args);
         }
         #endregion
