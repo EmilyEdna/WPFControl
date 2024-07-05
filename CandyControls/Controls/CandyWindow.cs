@@ -13,8 +13,10 @@ namespace CandyControls
             this.SetResourceReference(StyleProperty, "BlurWindow");
             this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             this.IconVisibility = this.Icon == null ? Visibility.Collapsed : Visibility.Visible;
-            this.Width  = 1200;
-            this.Height = 700;
+            this.Width = this.MinWidth = 1200;
+            this.Height = this.MinHeight = 700;
+            this.MaxHeight = SystemParameters.FullPrimaryScreenHeight;
+            this.MaxWidth= SystemParameters.FullPrimaryScreenWidth;
         }
 
         #region 依赖属性
