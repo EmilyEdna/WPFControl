@@ -4,17 +4,17 @@
 		<TargetFramework>net8.0-windows7.0</TargetFramework>
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 		<UseWPF>true</UseWPF>
-		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<Authors>EmilyEdna</Authors>
 		<Description>XExten对应的WPFUI套件包</Description>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageId>XExten.WPFControls</PackageId>
 		<Product>XExten.WPFControls</Product>
-		<Version>1.0.0</Version>
-		<AssemblyVersion>1.0.0</AssemblyVersion>
+		<Version>1.0.1</Version>
+		<AssemblyVersion>1.0.1</AssemblyVersion>
 		<PackageProjectUrl>https://github.com/EdaCoder/WPFControl</PackageProjectUrl>
 		<Copyright>EdnaCoder Oganization</Copyright>
-		<FileVersion>1.0.0</FileVersion>
+		<FileVersion>1.0.1</FileVersion>
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="6.0.0" />

@@ -13,6 +13,8 @@ namespace CandyControls
             this.SetResourceReference(StyleProperty, "BlurWindow");
             this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             this.IconVisibility = this.Icon == null ? Visibility.Collapsed : Visibility.Visible;
+            this.Width  = 1200;
+            this.Height = 700;
         }
 
         #region 依赖属性
@@ -53,8 +55,6 @@ namespace CandyControls
 
         public override void OnApplyTemplate()
         {
-            this.Width = this.MinWidth = 1000;
-            this.Height = this.MinHeight = 550;
             ((Border)this.Template.FindName("HeadLayout", this)).PreviewMouseLeftButtonDown += MoveEvent;
             ((Button)this.Template.FindName("Minimize", this)).Click += HandleEvent;
             ((Button)this.Template.FindName("Restore", this)).Click += HandleEvent;
