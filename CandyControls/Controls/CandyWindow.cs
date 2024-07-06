@@ -83,7 +83,7 @@ namespace CandyControls
                 if (ResizeMode == ResizeMode.CanResize || ResizeMode == ResizeMode.CanResizeWithGrip)
                     SystemCommands.MaximizeWindow(this);
                 this.Width = SystemParameters.PrimaryScreenWidth;
-                this.Height = SystemParameters.PrimaryScreenHeight - 48;
+                this.Height = SystemParameters.PrimaryScreenHeight;
             }
             else
                 this.Close();
