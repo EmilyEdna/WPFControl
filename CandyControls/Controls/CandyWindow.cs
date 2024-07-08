@@ -52,6 +52,15 @@ namespace CandyControls
         }
         public static readonly DependencyProperty MenuBoxProperty =
             DependencyProperty.Register("MenuBox", typeof(Control), typeof(CandyWindow), new PropertyMetadata(default));
+
+        public Control PopBox
+        {
+            get { return (Control)GetValue(PopBoxProperty); }
+            set { SetValue(PopBoxProperty, value); }
+        }
+        public static readonly DependencyProperty PopBoxProperty =
+            DependencyProperty.Register("PopBox", typeof(Control), typeof(CandyWindow), new PropertyMetadata(default));
+
         #endregion
 
         public override void OnApplyTemplate()
