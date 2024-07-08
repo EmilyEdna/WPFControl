@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using XExten.Advance.LinqFramework;
 
@@ -54,8 +55,9 @@ namespace CandyControls
         #endregion
 
         public override void OnApplyTemplate()
-        {
+        {      
             ((Border)this.Template.FindName("HeadLayout", this)).PreviewMouseLeftButtonDown += MoveEvent;
+            ((Button)this.Template.FindName("Setting", this)).Click += HandleEvent;
             ((Button)this.Template.FindName("Minimize", this)).Click += HandleEvent;
             ((Button)this.Template.FindName("Restore", this)).Click += HandleEvent;
             ((Button)this.Template.FindName("Maximize", this)).Click += HandleEvent;
@@ -68,17 +70,23 @@ namespace CandyControls
             var data = (sender as Button).CommandParameter.AsString().AsInt();
             if (data == 1)
             {
+                var Popup = ((Popup)this.Template.FindName("SettingCanvas", this));
+                if (Popup.IsOpen) Popup.IsOpen = false;
+                else Popup.IsOpen = true;
+            }
+            else if (data == 2)
+            {
                 if (ResizeMode != ResizeMode.NoResize)
                     SystemCommands.MinimizeWindow(this);
             }
-            else if (data == 2)
+            else if (data == 3)
             {
                 if (ResizeMode == ResizeMode.CanResize || ResizeMode == ResizeMode.CanResizeWithGrip)
                     SystemCommands.RestoreWindow(this);
                 this.Width = this.MinWidth;
                 this.Height = this.MinHeight;
             }
-            else if (data == 3)
+            else if (data == 4)
             {
                 if (ResizeMode == ResizeMode.CanResize || ResizeMode == ResizeMode.CanResizeWithGrip)
                     SystemCommands.MaximizeWindow(this);
