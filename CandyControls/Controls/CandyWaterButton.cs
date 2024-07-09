@@ -21,7 +21,7 @@ namespace CandyControls
 
         public CandyWaterButton()
         {
-            this.Width = this.Height = 80;
+            this.Width = this.Height = 50;
             this.Foreground=Brushes.White;
             this.Content = ElementCreate();
         }
@@ -230,15 +230,31 @@ namespace CandyControls
                 IsHitTestVisible = false,//在圆心时,按钮不能点击
                 RenderTransform = new TranslateTransform() { X = 0, Y = 0 },
             };
+            Viewbox viewbox = new Viewbox
+            {
+                RenderTransformOrigin = new Point(.5, .5),
+                RenderTransform = new ScaleTransform(.9, .9)
+            };
+
             if (ObjType.IsGenericType && ObjType.GetGenericTypeDefinition() == typeof(KeyValuePair<,>))
             {
                 var result = data[i].ToJson().ToModel<KeyValuePair<object, object>>();
-                btn.Content= result.Key;
+                viewbox.Child = new TextBlock
+                {
+                    Text = result.Key.ToString()
+                };
                 btn.CommandParameter = result.Value;
-            }else
-                btn.Content = data[i];
+            }
+            else
+            {
+                viewbox.Child = new TextBlock
+                {
+                    Text = data[i].ToString()
+                };
+            }
 
-            btn.ToolTip = btn.Content.ToString();
+            btn.Content = viewbox;
+            btn.ToolTip = ((TextBlock)viewbox.Child).Text;
             btn.SetResourceReference(Button.StyleProperty, "ItemWaterBtn");
             return btn;
         }

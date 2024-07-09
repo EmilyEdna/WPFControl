@@ -1,0 +1,89 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:eda="clr-namespace:CandyControls">
+    <Style TargetType="eda:CandySwitch">
+        <Setter Property="Width" Value="20" />
+        <Setter Property="Height" Value="20" />
+        <Setter Property="Background" Value="#5075D6FF" />
+        <Setter Property="BorderBrush" Value="White" />
+        <Setter Property="BorderThickness" Value=".2" />
+        <Setter Property="IsChecked" Value="False" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="eda:CandySwitch">
+                    <Border
+                        Grid.Column="1"
+                        Width="{TemplateBinding Width}"
+                        Height="{TemplateBinding Height}"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="{TemplateBinding BorderRadius}"
+                        SnapsToDevicePixels="True">
+                        <Viewbox
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            RenderTransformOrigin=".5,.5"
+                            Stretch="Uniform">
+                            <Viewbox.RenderTransform>
+                                <ScaleTransform ScaleX="0.7" ScaleY="0.7" />
+                            </Viewbox.RenderTransform>
+                            <TextBlock
+                                x:Name="PART_INFO"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                FontFamily="{TemplateBinding FontFamily}"
+                                RenderTransformOrigin=".5,.5"
+                                Text="关">
+                                <TextBlock.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform />
+                                    </TransformGroup>
+                                </TextBlock.RenderTransform>
+                            </TextBlock>
+                        </Viewbox>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="{Binding HoverBrushes, RelativeSource={RelativeSource Mode=Self}}" />
+                        </Trigger>
+                        <EventTrigger RoutedEvent="Checked">
+                            <EventTrigger.Actions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_INFO" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)">
+                                            <EasingDoubleKeyFrame KeyTime="0" Value="1" />
+                                            <EasingDoubleKeyFrame KeyTime="0:0:01" Value="-1" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <StringAnimationUsingKeyFrames Storyboard.TargetName="PART_INFO" Storyboard.TargetProperty="Text">
+                                            <DiscreteStringKeyFrame KeyTime="0" Value="开" />
+                                            <DiscreteStringKeyFrame KeyTime="0:0:0.500" Value="关" />
+                                        </StringAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger.Actions>
+                        </EventTrigger>
+                        <EventTrigger RoutedEvent="Unchecked">
+                            <EventTrigger.Actions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_INFO" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)">
+                                            <EasingDoubleKeyFrame KeyTime="0" Value="-1" />
+                                            <EasingDoubleKeyFrame KeyTime="0:0:01" Value="1" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <StringAnimationUsingKeyFrames Storyboard.TargetName="PART_INFO" Storyboard.TargetProperty="Text">
+                                            <DiscreteStringKeyFrame KeyTime="0" Value="关" />
+                                            <DiscreteStringKeyFrame KeyTime="0:0:0.500" Value="开" />
+                                        </StringAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger.Actions>
+                        </EventTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

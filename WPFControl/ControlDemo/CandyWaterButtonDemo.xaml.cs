@@ -39,11 +39,11 @@ namespace WPFControl.ControlDemo
     {
         public CandyWaterButtonDemoVM()
         {
-            Data = new Dictionary<int, string> { { 1, "1" }, { 2, "2" } };
+            Data = new Dictionary<string, string> { { "热门小说", "1" }, { "最近更新", "2" } };
         }
 
         [ObservableProperty]
-        private Dictionary<int,string> _Data;
+        private Dictionary<string, string> _Data;
 
         [RelayCommand]
         public void Click(object param) 
