@@ -41,6 +41,13 @@ namespace CandyControls
         public static readonly DependencyProperty ThumbBackgroudProperty =
             DependencyProperty.Register("ThumbBackgroud", typeof(Brush), typeof(CandySlider), new PropertyMetadata(Brushes.Pink));
 
+        public string Text
+        {
+            get { return (string)GetValue(TextProperty); }
+            set { SetValue(TextProperty, value); }
+        }
+        public static readonly DependencyProperty TextProperty =
+            DependencyProperty.Register("Text", typeof(string), typeof(CandySlider), new PropertyMetadata(default));
 
         public ICommand Command
         {
@@ -49,6 +56,5 @@ namespace CandyControls
         }
         public static readonly DependencyProperty CommandProperty =
             DependencyProperty.Register("Command", typeof(ICommand), typeof(CandySlider), new PropertyMetadata(default));
-
     }
 }

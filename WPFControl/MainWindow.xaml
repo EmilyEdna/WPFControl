@@ -3,7 +3,7 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:eda="http://edacoder.github.io"
+    xmlns:eda="https://github.com/EmilyEdna"
     xmlns:local="clr-namespace:WPFControl"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     x:Name="IndexWin"
@@ -47,6 +47,13 @@
     <eda:CandyWindow.Background>
         <ImageBrush ImageSource="/MusciBackgroud.jpg" />
     </eda:CandyWindow.Background>
+    <eda:CandyWindow.PopBox>
+        <ContentControl>
+            <StackPanel>
+                <eda:CandySlider Width="150" Text="玻璃效果:" />
+            </StackPanel>
+        </ContentControl>
+    </eda:CandyWindow.PopBox>
     <Window.Resources>
         <ResourceDictionary>
             <Style x:Key="Nav" TargetType="ListBox">

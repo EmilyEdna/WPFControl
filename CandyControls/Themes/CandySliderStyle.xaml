@@ -6,6 +6,8 @@
     <Style TargetType="eda:CandySlider">
         <Setter Property="Minimum" Value="0" />
         <Setter Property="Maximum" Value="100" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="ToolTip" Value="{Binding Value, StringFormat=0, RelativeSource={RelativeSource Self}}" />
         <Setter Property="Background" Value="White" />
         <Setter Property="Foreground" Value="DeepSkyBlue" />
@@ -13,101 +15,116 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="eda:CandySlider">
-                    <Grid>
-                        <Border
-                            Name="TrackBackground"
-                            Grid.Row="1"
-                            Height="{TemplateBinding BarHeight}"
-                            Background="{TemplateBinding Background}" />
-                        <Track Name="PART_Track" Grid.Row="1">
-                            <Track.DecreaseRepeatButton>
-                                <RepeatButton Command="Slider.DecreaseLarge">
-                                    <RepeatButton.Style>
-                                        <Style TargetType="RepeatButton">
-                                            <Setter Property="IsTabStop" Value="False" />
-                                            <Setter Property="Template">
-                                                <Setter.Value>
-                                                    <ControlTemplate TargetType="RepeatButton">
-                                                        <Border Height="{Binding BarHeight, RelativeSource={RelativeSource AncestorType=eda:CandySlider}}" Background="{Binding Foreground, RelativeSource={RelativeSource AncestorType=eda:CandySlider}}" />
-                                                    </ControlTemplate>
-                                                </Setter.Value>
-                                            </Setter>
-                                        </Style>
-                                    </RepeatButton.Style>
-                                </RepeatButton>
-                            </Track.DecreaseRepeatButton>
-                            <Track.Thumb>
-                                <Thumb>
-                                    <Thumb.Style>
-                                        <Style TargetType="Thumb">
-                                            <Setter Property="Width" Value="{Binding ThumbWidthAndHeight, RelativeSource={RelativeSource AncestorType=eda:CandySlider}}" />
-                                            <Setter Property="Height" Value="{Binding ThumbWidthAndHeight, RelativeSource={RelativeSource AncestorType=eda:CandySlider}}" />
-                                            <Setter Property="Background" Value="{Binding ThumbBackgroud, RelativeSource={RelativeSource AncestorType=eda:CandySlider}}" />
-                                            <Setter Property="SnapsToDevicePixels" Value="True" />
-                                            <Setter Property="Template">
-                                                <Setter.Value>
-                                                    <ControlTemplate TargetType="Thumb">
-                                                        <Ellipse
-                                                            Width="{TemplateBinding Width}"
-                                                            Height="{TemplateBinding Height}"
-                                                            Fill="{TemplateBinding Background}">
-                                                            <Ellipse.Effect>
-                                                                <DropShadowEffect
-                                                                    BlurRadius="5"
-                                                                    Opacity="0.3"
-                                                                    ShadowDepth="0"
-                                                                    Color="Black" />
-                                                            </Ellipse.Effect>
-                                                        </Ellipse>
-                                                        <ControlTemplate.Triggers>
-                                                            <Trigger Property="IsMouseOver" Value="True">
-                                                                <Setter Property="Effect">
-                                                                    <Setter.Value>
-                                                                        <DropShadowEffect
-                                                                            BlurRadius="5"
-                                                                            Opacity="0.5"
-                                                                            ShadowDepth="0"
-                                                                            Color="Black" />
-                                                                    </Setter.Value>
-                                                                </Setter>
-                                                                <Setter Property="Cursor" Value="Hand" />
-                                                            </Trigger>
-                                                            <Trigger Property="IsDragging" Value="True">
-                                                                <Setter Property="Effect">
-                                                                    <Setter.Value>
-                                                                        <DropShadowEffect
-                                                                            BlurRadius="8"
-                                                                            Opacity="1"
-                                                                            ShadowDepth="0"
-                                                                            Color="Black" />
-                                                                    </Setter.Value>
-                                                                </Setter>
-                                                            </Trigger>
-                                                        </ControlTemplate.Triggers>
-                                                    </ControlTemplate>
-                                                </Setter.Value>
-                                            </Setter>
-                                        </Style>
-                                    </Thumb.Style>
-                                </Thumb>
-                            </Track.Thumb>
-                            <Track.IncreaseRepeatButton>
-                                <RepeatButton Command="Slider.IncreaseLarge">
-                                    <RepeatButton.Style>
-                                        <Style TargetType="RepeatButton">
-                                            <Setter Property="IsTabStop" Value="False" />
-                                            <Setter Property="Template">
-                                                <Setter.Value>
-                                                    <ControlTemplate TargetType="RepeatButton">
-                                                        <Border Background="Transparent" />
-                                                    </ControlTemplate>
-                                                </Setter.Value>
-                                            </Setter>
-                                        </Style>
-                                    </RepeatButton.Style>
-                                </RepeatButton>
-                            </Track.IncreaseRepeatButton>
-                        </Track>
+                    <Grid
+                        Width="{TemplateBinding Width}"
+                        Margin="2,3"
+                        HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                        VerticalAlignment="{TemplateBinding VerticalAlignment}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock
+                            Margin="2,0"
+                            FontFamily="{TemplateBinding FontFamily}"
+                            FontSize="12"
+                            Foreground="{TemplateBinding Background}"
+                            Text="{TemplateBinding Text}" />
+                        <Grid Grid.Column="1">
+                            <Border
+                                Name="TrackBackground"
+                                Height="{TemplateBinding BarHeight}"
+                                Background="{TemplateBinding Background}" />
+                            <Track Name="PART_Track">
+                                <Track.DecreaseRepeatButton>
+                                    <RepeatButton Command="Slider.DecreaseLarge">
+                                        <RepeatButton.Style>
+                                            <Style TargetType="RepeatButton">
+                                                <Setter Property="IsTabStop" Value="False" />
+                                                <Setter Property="Template">
+                                                    <Setter.Value>
+                                                        <ControlTemplate TargetType="RepeatButton">
+                                                            <Border Height="{Binding BarHeight, RelativeSource={RelativeSource AncestorType=eda:CandySlider}}" Background="{Binding Foreground, RelativeSource={RelativeSource AncestorType=eda:CandySlider}}" />
+                                                        </ControlTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </Style>
+                                        </RepeatButton.Style>
+                                    </RepeatButton>
+                                </Track.DecreaseRepeatButton>
+                                <Track.Thumb>
+                                    <Thumb>
+                                        <Thumb.Style>
+                                            <Style TargetType="Thumb">
+                                                <Setter Property="Width" Value="{Binding ThumbWidthAndHeight, RelativeSource={RelativeSource AncestorType=eda:CandySlider}}" />
+                                                <Setter Property="Height" Value="{Binding ThumbWidthAndHeight, RelativeSource={RelativeSource AncestorType=eda:CandySlider}}" />
+                                                <Setter Property="Background" Value="{Binding ThumbBackgroud, RelativeSource={RelativeSource AncestorType=eda:CandySlider}}" />
+                                                <Setter Property="SnapsToDevicePixels" Value="True" />
+                                                <Setter Property="Template">
+                                                    <Setter.Value>
+                                                        <ControlTemplate TargetType="Thumb">
+                                                            <Ellipse
+                                                                Width="{TemplateBinding Width}"
+                                                                Height="{TemplateBinding Height}"
+                                                                Fill="{TemplateBinding Background}">
+                                                                <Ellipse.Effect>
+                                                                    <DropShadowEffect
+                                                                        BlurRadius="5"
+                                                                        Opacity="0.3"
+                                                                        ShadowDepth="0"
+                                                                        Color="Black" />
+                                                                </Ellipse.Effect>
+                                                            </Ellipse>
+                                                            <ControlTemplate.Triggers>
+                                                                <Trigger Property="IsMouseOver" Value="True">
+                                                                    <Setter Property="Effect">
+                                                                        <Setter.Value>
+                                                                            <DropShadowEffect
+                                                                                BlurRadius="5"
+                                                                                Opacity="0.5"
+                                                                                ShadowDepth="0"
+                                                                                Color="Black" />
+                                                                        </Setter.Value>
+                                                                    </Setter>
+                                                                    <Setter Property="Cursor" Value="Hand" />
+                                                                </Trigger>
+                                                                <Trigger Property="IsDragging" Value="True">
+                                                                    <Setter Property="Effect">
+                                                                        <Setter.Value>
+                                                                            <DropShadowEffect
+                                                                                BlurRadius="8"
+                                                                                Opacity="1"
+                                                                                ShadowDepth="0"
+                                                                                Color="Black" />
+                                                                        </Setter.Value>
+                                                                    </Setter>
+                                                                </Trigger>
+                                                            </ControlTemplate.Triggers>
+                                                        </ControlTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </Style>
+                                        </Thumb.Style>
+                                    </Thumb>
+                                </Track.Thumb>
+                                <Track.IncreaseRepeatButton>
+                                    <RepeatButton Command="Slider.IncreaseLarge">
+                                        <RepeatButton.Style>
+                                            <Style TargetType="RepeatButton">
+                                                <Setter Property="IsTabStop" Value="False" />
+                                                <Setter Property="Template">
+                                                    <Setter.Value>
+                                                        <ControlTemplate TargetType="RepeatButton">
+                                                            <Border Background="Transparent" />
+                                                        </ControlTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </Style>
+                                        </RepeatButton.Style>
+                                    </RepeatButton>
+                                </Track.IncreaseRepeatButton>
+                            </Track>
+                        </Grid>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
