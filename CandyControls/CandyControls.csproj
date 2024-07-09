@@ -16,6 +16,7 @@
 		<RepositoryUrl>https://github.com/EmilyEdna/WPFControl</RepositoryUrl>
 		<PackageProjectUrl>https://github.com/EmilyEdna/WPFControl</PackageProjectUrl>
 		<Copyright>EmilyEdna Oganization</Copyright>
+		<License>MIT</License>
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="6.0.0" />
