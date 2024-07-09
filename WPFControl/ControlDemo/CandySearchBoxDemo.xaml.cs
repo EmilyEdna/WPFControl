@@ -41,7 +41,6 @@ namespace WPFControl.ControlDemo
         [ObservableProperty]
         private string key;
 
-
         [RelayCommand]
         public void Search(string input)
         {
