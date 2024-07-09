@@ -341,12 +341,6 @@
                             <Setter TargetName="Restore" Property="Visibility" Value="Visible" />
                             <Setter TargetName="LayoutRoot" Property="Margin" Value="7" />
                         </Trigger>
-                        <Trigger Property="ResizeMode" Value="NoResize">
-                            <Setter TargetName="Setting" Property="Visibility" Value="Collapsed" />
-                            <Setter TargetName="Minimize" Property="Visibility" Value="Collapsed" />
-                            <Setter TargetName="Maximize" Property="Visibility" Value="Collapsed" />
-                            <Setter TargetName="Restore" Property="Visibility" Value="Collapsed" />
-                        </Trigger>
                         <DataTrigger Binding="{Binding Handle.IsSettingHidden, RelativeSource={RelativeSource Self}}" Value="true">
                             <Setter TargetName="Setting" Property="Visibility" Value="Visible" />
                         </DataTrigger>
