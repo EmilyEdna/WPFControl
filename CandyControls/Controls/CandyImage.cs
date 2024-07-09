@@ -99,23 +99,23 @@ namespace CandyControls
         /// <summary>
         /// 图片长宽大小
         /// </summary>
-        public ImageThickness ImageThickness
+        public WidthHeightStruct ImageThickness
         {
-            get { return (ImageThickness)GetValue(ImageThicknessProperty); }
+            get { return (WidthHeightStruct)GetValue(ImageThicknessProperty); }
             set { SetValue(ImageThicknessProperty, value); }
         }
         public static readonly DependencyProperty ImageThicknessProperty =
-          DependencyProperty.Register("ImageThickness", typeof(ImageThickness), typeof(CandyImage), new FrameworkPropertyMetadata(new ImageThickness(160, 240)));
+          DependencyProperty.Register("ImageThickness", typeof(WidthHeightStruct), typeof(CandyImage), new FrameworkPropertyMetadata(new WidthHeightStruct(160, 240)));
         /// <summary>
         /// 等待图像的大小
         /// </summary>
-        public ImageThickness LoadingThickness
+        public WidthHeightStruct LoadingThickness
         {
-            get { return (ImageThickness)GetValue(LoadingThicknessProperty); }
+            get { return (WidthHeightStruct)GetValue(LoadingThicknessProperty); }
             set { SetValue(LoadingThicknessProperty, value); }
         }
         public static readonly DependencyProperty LoadingThicknessProperty =
-        DependencyProperty.Register("LoadingThickness", typeof(ImageThickness), typeof(CandyImage), new FrameworkPropertyMetadata(new ImageThickness(25, 25)));
+        DependencyProperty.Register("LoadingThickness", typeof(WidthHeightStruct), typeof(CandyImage), new FrameworkPropertyMetadata(new WidthHeightStruct(25, 25)));
         /// <summary>
         /// 是否启用加载等待默认启用
         /// </summary>
@@ -191,13 +191,13 @@ namespace CandyControls
         /// <summary>
         /// 弹出层的长宽
         /// </summary>
-        public ImageThickness PopupThickness
+        public WidthHeightStruct PopupThickness
         {
-            get { return (ImageThickness)GetValue(PopupThicknessProperty); }
+            get { return (WidthHeightStruct)GetValue(PopupThicknessProperty); }
             set { SetValue(PopupThicknessProperty, value); }
         }
         public static readonly DependencyProperty PopupThicknessProperty =
-         DependencyProperty.Register("PopupThickness", typeof(ImageThickness), typeof(CandyImage), new FrameworkPropertyMetadata(new ImageThickness(0, 0)));
+         DependencyProperty.Register("PopupThickness", typeof(WidthHeightStruct), typeof(CandyImage), new FrameworkPropertyMetadata(new WidthHeightStruct(0, 0)));
         /// <summary>
         /// 是否显示弹出层按钮默认不显示
         /// </summary>

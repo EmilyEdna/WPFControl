@@ -38,13 +38,13 @@ namespace CandyControls
         /// <summary>
         /// 区域边框
         /// </summary>
-        public RectThickness RectRadius
+        public WidthHeightStruct RectRadius
         {
-            get { return (RectThickness)GetValue(RectRadiusProperty); }
+            get { return (WidthHeightStruct)GetValue(RectRadiusProperty); }
             set { SetValue(RectRadiusProperty, value); }
         }
         public static readonly DependencyProperty RectRadiusProperty =
-            DependencyProperty.Register("RectRadius", typeof(RectThickness), typeof(CandyContainer), new PropertyMetadata(new RectThickness(10, 10)));
+            DependencyProperty.Register("RectRadius", typeof(WidthHeightStruct), typeof(CandyContainer), new PropertyMetadata(new WidthHeightStruct(10, 10)));
         /// <summary>
         /// 标签
         /// </summary>

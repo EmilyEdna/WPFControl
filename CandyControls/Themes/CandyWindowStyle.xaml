@@ -347,6 +347,30 @@
                             <Setter TargetName="Maximize" Property="Visibility" Value="Collapsed" />
                             <Setter TargetName="Restore" Property="Visibility" Value="Collapsed" />
                         </Trigger>
+                        <DataTrigger Binding="{Binding Handle.IsSettingHidden, RelativeSource={RelativeSource Self}}" Value="true">
+                            <Setter TargetName="Setting" Property="Visibility" Value="Visible" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Handle.IsMinimizeHidden, RelativeSource={RelativeSource Self}}" Value="true">
+                            <Setter TargetName="Minimize" Property="Visibility" Value="Visible" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Handle.IsMaximizeHidden, RelativeSource={RelativeSource Self}}" Value="true">
+                            <Setter TargetName="Maximize" Property="Visibility" Value="Visible" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Handle.IsCloseHidden, RelativeSource={RelativeSource Self}}" Value="true">
+                            <Setter TargetName="Close" Property="Visibility" Value="Visible" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Handle.IsSettingHidden, RelativeSource={RelativeSource Self}}" Value="false">
+                            <Setter TargetName="Setting" Property="Visibility" Value="Collapsed" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Handle.IsMinimizeHidden, RelativeSource={RelativeSource Self}}" Value="false">
+                            <Setter TargetName="Minimize" Property="Visibility" Value="Collapsed" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Handle.IsMaximizeHidden, RelativeSource={RelativeSource Self}}" Value="false">
+                            <Setter TargetName="Maximize" Property="Visibility" Value="Collapsed" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Handle.IsCloseHidden, RelativeSource={RelativeSource Self}}" Value="false">
+                            <Setter TargetName="Close" Property="Visibility" Value="Collapsed" />
+                        </DataTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>

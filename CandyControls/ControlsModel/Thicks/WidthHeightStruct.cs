@@ -3,18 +3,18 @@ using CandyControls.Converters;
 
 namespace CandyControls.ControlsModel.Thicks
 {
-    [TypeConverter(typeof(ImageThicknessConverter))]
-    public struct ImageThickness
+    [TypeConverter(typeof(WidthHeightConverter))]
+    public struct WidthHeightStruct
     {
-        public ImageThickness(int length) 
+        public WidthHeightStruct(int length) 
         {
             Width = length;
             Height = length;
         }
 
-        public ImageThickness(int w, int h)
+        public WidthHeightStruct(int width, int height)
         {
-            Width=w; Height=h;
+            Width= width; Height= height;
         }
         
         public int Width { get; set; }

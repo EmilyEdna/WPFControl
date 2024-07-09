@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using CandyControls.ControlsModel.Thicks;
+using System.Collections;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -36,6 +37,14 @@ namespace CandyControls
 
         public static readonly DependencyProperty BlurRadiusProperty =
             DependencyProperty.Register("BlurRadius", typeof(double), typeof(CandyWindow), new PropertyMetadata(15d));
+
+        public WindowHandleStruct Handle
+        {
+            get { return (WindowHandleStruct)GetValue(HandleProperty); }
+            set { SetValue(HandleProperty, value); }
+        }
+        public static readonly DependencyProperty HandleProperty =
+            DependencyProperty.Register("Handle", typeof(WindowHandleStruct), typeof(CandyWindow), new PropertyMetadata(new WindowHandleStruct(true)));
 
         public Control SearchBox
         {
