@@ -12,7 +12,6 @@
     Height="700"
     d:DataContext="{d:DesignInstance local:MainViewModel}"
     BlurRadius="15"
-    Handle="1,false"
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
     <eda:CandyWindow.SearchBox>

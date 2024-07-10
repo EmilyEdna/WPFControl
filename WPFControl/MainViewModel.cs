@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Controls;
@@ -16,7 +17,7 @@ namespace WPFControl
             {
                 {"边框",1 }, {"按钮",2 },{"图片",3},{"切换",4},{"容器标签",5},{"标签",6 },
                 {"滚动条",7 },{ "搜索框",8},{ "缓冲图",9},{"水滴按钮",10 },{"文档流",11 },
-                {"滑块",12 },{"开关",13}
+                {"滑块",12 },{"开关",13},{"标签页",14 }
             };
 
         }
@@ -74,13 +75,16 @@ namespace WPFControl
                 case 13:
                     Ctrl = new CandySwitchDemo();
                     break;
+                case 14:
+                    Ctrl = new CandyTabControlDemo();
+                    break;
             }
         }
 
         [RelayCommand]
         public void SearchActive(string obj)
         {
-            var mm = obj;
+            Console.WriteLine(obj);
         }
     }
 }

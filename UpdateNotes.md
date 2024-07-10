@@ -32,4 +32,6 @@ The current package contains a subset of the WPF Beautification UI, and the foll
 
 16.CandyWindow
 
+17.CandyTabControl
+
 For more information on how to use the above controls, please refer to [WPFControl](https://github.com/EmilyEdna/WPFControl)

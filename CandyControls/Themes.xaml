@@ -14,6 +14,7 @@
         <ResourceDictionary Source="Themes/CandyFlowScrollStyle.xaml" />
         <ResourceDictionary Source="Themes/CandySliderStyle.xaml" />
         <ResourceDictionary Source="Themes/CandySwitchStyle.xaml" />
+        <ResourceDictionary Source="Themes/CandyTabControlStyle.xaml" />
         <ResourceDictionary Source="Themes/CandyWindowStyle.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

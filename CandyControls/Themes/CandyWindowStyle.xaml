@@ -347,9 +347,13 @@
                         <DataTrigger Binding="{Binding Handle.IsMinimizeHidden, RelativeSource={RelativeSource Self}}" Value="true">
                             <Setter TargetName="Minimize" Property="Visibility" Value="Visible" />
                         </DataTrigger>
-                        <DataTrigger Binding="{Binding Handle.IsMaximizeHidden, RelativeSource={RelativeSource Self}}" Value="true">
-                            <Setter TargetName="Maximize" Property="Visibility" Value="Visible" />
-                        </DataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding Handle.IsMaximizeHidden, RelativeSource={RelativeSource Self}}" Value="true" />
+                                <Condition Binding="{Binding WindowState, RelativeSource={RelativeSource Self}}" Value="Maximized" />
+                            </MultiDataTrigger.Conditions>
+                            <Setter TargetName="Maximize" Property="Visibility" Value="Collapsed" />
+                        </MultiDataTrigger>
                         <DataTrigger Binding="{Binding Handle.IsCloseHidden, RelativeSource={RelativeSource Self}}" Value="true">
                             <Setter TargetName="Close" Property="Visibility" Value="Visible" />
                         </DataTrigger>
