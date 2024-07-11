@@ -26,6 +26,8 @@
                                     Grid.Column="1"
                                     HorizontalAlignment="Center"
                                     VerticalAlignment="Center"
+                                    Background="Transparent"
+                                    BorderThickness="0"
                                     Content="{TemplateBinding Header}"
                                     Foreground="{Binding HeadBackgroud, RelativeSource={RelativeSource AncestorType=eda:CandyTabControl}}" />
                             </Viewbox>
