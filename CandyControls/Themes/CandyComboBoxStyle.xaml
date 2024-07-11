@@ -1,0 +1,144 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:eda="clr-namespace:CandyControls">
+
+    <Style x:Key="ComboBoxItemStyle" TargetType="ComboBoxItem">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ComboBoxItem">
+                    <Border x:Name="PART_BG">
+                        <Label Content="{TemplateBinding Content}" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="PART_BG" Property="Background" Value="#20DADADA" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="ComboBox">
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="BorderBrush" Value="DeepSkyBlue" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Width" Value="200" />
+        <Setter Property="Height" Value="30" />
+        <Setter Property="IsEditable" Value="True" />
+        <Setter Property="ItemContainerStyle" Value="{DynamicResource ComboBoxItemStyle}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ComboBox">
+                    <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width=".7*" />
+                                <ColumnDefinition Width=".3*" MaxWidth="30" />
+                            </Grid.ColumnDefinitions>
+                            <ContentPresenter
+                                x:Name="ContentSite"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Content="{TemplateBinding SelectionBoxItem}"
+                                ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                                ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+                                IsHitTestVisible="False" />
+                            <TextBox
+                                x:Name="PART_EditableTextBox"
+                                VerticalAlignment="Center"
+                                Background="{TemplateBinding Background}"
+                                BorderThickness="0"
+                                Focusable="True"
+                                Foreground="{TemplateBinding Foreground}" />
+                            <ToggleButton
+                                x:Name="ToggleButton"
+                                Grid.Column="1"
+                                ClickMode="Press"
+                                Focusable="false"
+                                IsChecked="{Binding IsDropDownOpen, RelativeSource={RelativeSource Mode=TemplatedParent}}">
+                                <ToggleButton.Style>
+                                    <Style TargetType="ToggleButton">
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="ToggleButton">
+                                                    <Grid Height="25">
+                                                        <Border
+                                                            Grid.Column="1"
+                                                            Background="{Binding Foreground, RelativeSource={RelativeSource AncestorType=ComboBox}}"
+                                                            Cursor="Hand"
+                                                            Opacity="0" />
+                                                        <Path
+                                                            x:Name="Arrow"
+                                                            Grid.Column="1"
+                                                            HorizontalAlignment="Center"
+                                                            VerticalAlignment="Center"
+                                                            Data="M 0 0  6 6 12 0 Z"
+                                                            Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType=ComboBox}}"
+                                                            Stretch="None" />
+                                                    </Grid>
+                                                    <ControlTemplate.Triggers>
+                                                        <Trigger Property="IsChecked" Value="true">
+                                                            <Setter TargetName="Arrow" Property="RenderTransform">
+                                                                <Setter.Value>
+                                                                    <RotateTransform Angle="180" CenterX="6" CenterY="3" />
+                                                                </Setter.Value>
+                                                            </Setter>
+                                                            <Setter TargetName="Arrow" Property="Margin" Value="0,0,0,2" />
+                                                        </Trigger>
+                                                    </ControlTemplate.Triggers>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </ToggleButton.Style>
+                            </ToggleButton>
+                            <Popup
+                                x:Name="Popup"
+                                AllowsTransparency="True"
+                                Focusable="False"
+                                HorizontalOffset="-1"
+                                IsOpen="{TemplateBinding IsDropDownOpen}"
+                                Placement="Bottom"
+                                PopupAnimation="Slide">
+                                <Grid
+                                    x:Name="DropDown"
+                                    MinWidth="{TemplateBinding ActualWidth}"
+                                    MaxHeight="150"
+                                    SnapsToDevicePixels="True">
+                                    <Border
+                                        x:Name="DropDownBorder"
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="1,0,1,1" />
+                                    <ScrollViewer
+                                        Margin="0"
+                                        CanContentScroll="True"
+                                        HorizontalScrollBarVisibility="Auto"
+                                        SnapsToDevicePixels="True"
+                                        VerticalScrollBarVisibility="Auto">
+                                        <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained">
+                                            <StackPanel.Background>
+                                                <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                                                    <GradientStop Color="#337AE2FD" />
+                                                    <GradientStop Offset="1" Color="#33F1C6C6" />
+                                                </LinearGradientBrush>
+                                            </StackPanel.Background>
+                                        </StackPanel>
+                                    </ScrollViewer>
+                                </Grid>
+                            </Popup>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEditable" Value="true">
+                            <Setter TargetName="PART_EditableTextBox" Property="Visibility" Value="Visible" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>
