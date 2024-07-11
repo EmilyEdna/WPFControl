@@ -13,6 +13,7 @@ namespace WPFControl
 
         public MainViewModel()
         {
+            Blur = 15d;
             Funcs = new Dictionary<string, int>
             {
                 {"边框",1 }, {"按钮",2 },{"图片",3},{"切换",4},{"容器标签",5},{"标签",6 },
@@ -30,6 +31,9 @@ namespace WPFControl
 
         [ObservableProperty]
         private Dictionary<string, int> _Funcs;
+
+        [ObservableProperty]
+        private double _Blur;
 
         [RelayCommand]
         public void MenuTarget(int key)
