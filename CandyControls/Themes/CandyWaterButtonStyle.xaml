@@ -10,7 +10,10 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ToggleButton">
-                    <Grid SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+                    <Grid
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
                         <Path Fill="{TemplateBinding Background}" Stretch="Fill">
                             <Path.Data>
                                 <PathGeometry>
@@ -39,17 +42,25 @@
                                 </PathGeometry>
                             </Path.Data>
                         </Path>
-                        <TextBlock
+                        <Viewbox
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center"
-                            FontSize="25"
-                            Foreground="{TemplateBinding Foreground}"
-                            RenderTransformOrigin="0.5,0.5"
-                            Text="+">
-                            <TextBlock.RenderTransform>
-                                <RotateTransform x:Name="Icon" Angle="0" />
-                            </TextBlock.RenderTransform>
-                        </TextBlock>
+                            RenderTransformOrigin=".5,.5">
+                            <Viewbox.RenderTransform>
+                                <ScaleTransform ScaleX=".5" ScaleY=".5" />
+                            </Viewbox.RenderTransform>
+                            <Path
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Data="M763.733333 469.333333h-204.8a4.266667 4.266667 0 0 1-4.266666-4.266666V260.266667a4.266667 4.266667 0 0 0-4.266667-4.266667h-76.8a4.266667 4.266667 0 0 0-4.266667 4.266667v204.8a4.266667 4.266667 0 0 1-4.266666 4.266666H260.266667a4.266667 4.266667 0 0 0-4.266667 4.266667v76.8a4.266667 4.266667 0 0 0 4.266667 4.266667h204.8a4.266667 4.266667 0 0 1 4.266666 4.266666v204.8a4.266667 4.266667 0 0 0 4.266667 4.266667h76.8a4.266667 4.266667 0 0 0 4.266667-4.266667v-204.8a4.266667 4.266667 0 0 1 4.266666-4.266666h204.8a4.266667 4.266667 0 0 0 4.266667-4.266667v-76.8a4.266667 4.266667 0 0 0-4.266667-4.266667z"
+                                Fill="White"
+                                RenderTransformOrigin="0.5,0.5"
+                                Stretch="Fill">
+                                <Path.RenderTransform>
+                                    <RotateTransform x:Name="Icon" Angle="0" />
+                                </Path.RenderTransform>
+                            </Path>
+                        </Viewbox>
                     </Grid>
                     <ControlTemplate.Triggers>
                         <EventTrigger RoutedEvent="Checked">

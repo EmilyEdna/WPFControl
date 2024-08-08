@@ -433,7 +433,6 @@ namespace CandyControls
 
         #endregion
 
-
         #region 事件
         private static void OnItemChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {

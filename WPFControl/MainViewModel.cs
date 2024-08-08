@@ -13,11 +13,12 @@ namespace WPFControl
 
         public MainViewModel()
         {
+            Blur = 15d;
             Funcs = new Dictionary<string, int>
             {
                 {"边框",1 }, {"按钮",2 },{"图片",3},{"切换",4},{"容器标签",5},{"标签",6 },
                 {"滚动条",7 },{ "搜索框",8},{ "缓冲图",9},{"水滴按钮",10 },{"文档流",11 },
-                {"滑块",12 },{"开关",13},{"标签页",14 }
+                {"滑块",12 },{"开关",13},{"标签页",14 },{"下拉框",15}
             };
 
         }
@@ -30,6 +31,9 @@ namespace WPFControl
 
         [ObservableProperty]
         private Dictionary<string, int> _Funcs;
+
+        [ObservableProperty]
+        private double _Blur;
 
         [RelayCommand]
         public void MenuTarget(int key)
@@ -77,6 +81,9 @@ namespace WPFControl
                     break;
                 case 14:
                     Ctrl = new CandyTabControlDemo();
+                    break;
+                case 15:
+                    Ctrl = new CandyComboBoxDemo();
                     break;
             }
         }

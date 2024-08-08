@@ -11,7 +11,7 @@
     Width="1200"
     Height="700"
     d:DataContext="{d:DesignInstance local:MainViewModel}"
-    BlurRadius="15"
+    BlurRadius="{Binding Blur}"
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
     <eda:CandyWindow.SearchBox>
@@ -50,7 +50,10 @@
     <eda:CandyWindow.PopBox>
         <ContentControl>
             <StackPanel>
-                <eda:CandySlider Width="150" Text="玻璃效果:" />
+                <eda:CandySlider
+                    Width="150"
+                    Text="玻璃效果:"
+                    Value="{Binding Blur}" />
             </StackPanel>
         </ContentControl>
     </eda:CandyWindow.PopBox>
