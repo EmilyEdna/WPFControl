@@ -51,7 +51,134 @@
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="ItemContainerStyle" Value="{DynamicResource TabItemStyle}" />
         <Style.Triggers>
-            <Trigger Property="Placement" Value="Bottom">
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="Placement" Value="Top" />
+                    <Condition Property="UseViewBox" Value="True" />
+                </MultiTrigger.Conditions>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="eda:CandyTabControl">
+                            <Grid KeyboardNavigation.TabNavigation="Local">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <StackPanel
+                                    x:Name="PART_HD"
+                                    Background="{TemplateBinding Background}"
+                                    IsItemsHost="True"
+                                    KeyboardNavigation.TabIndex="1"
+                                    Orientation="Horizontal" />
+                                <eda:CandyBeveledBorder
+                                    x:Name="PART_BG"
+                                    Grid.Row="1"
+                                    Width="Auto"
+                                    Height="Auto"
+                                    Background="{TemplateBinding BorderBackgroud}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    BorderType="{TemplateBinding BorderType}"
+                                    CornerRadius="{TemplateBinding CornerRadius}"
+                                    RenderTransformOrigin=".5,.5">
+                                    <eda:CandyBeveledBorder.RenderTransform>
+                                        <TransformGroup>
+                                            <TranslateTransform />
+                                        </TransformGroup>
+                                    </eda:CandyBeveledBorder.RenderTransform>
+                                    <Viewbox RenderTransformOrigin=".5,.5">
+                                        <Viewbox.RenderTransform>
+                                            <ScaleTransform ScaleX="0.9" ScaleY="0.9" />
+                                        </Viewbox.RenderTransform>
+                                        <ContentPresenter x:Name="PART_SelectedContentHost" ContentSource="SelectedContent" />
+                                    </Viewbox>
+                                </eda:CandyBeveledBorder>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <EventTrigger RoutedEvent="SelectionChanged">
+                                    <EventTrigger.Actions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_BG" Storyboard.TargetProperty="RenderTransform.(TransformGroup.Children)[0].(TranslateTransform.X)">
+                                                    <EasingDoubleKeyFrame KeyTime="0:0:0" Value="120" />
+                                                    <EasingDoubleKeyFrame KeyTime="0:0:0.300" Value="0" />
+                                                </DoubleAnimationUsingKeyFrames>
+                                                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_BG" Storyboard.TargetProperty="Opacity">
+                                                    <EasingDoubleKeyFrame KeyTime="0" Value="0" />
+                                                    <EasingDoubleKeyFrame KeyTime="0:0:0.600" Value="1" />
+                                                </DoubleAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger.Actions>
+                                </EventTrigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="Placement" Value="Top" />
+                    <Condition Property="UseViewBox" Value="False" />
+                </MultiTrigger.Conditions>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="eda:CandyTabControl">
+                            <Grid KeyboardNavigation.TabNavigation="Local">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <StackPanel
+                                    x:Name="PART_HD"
+                                    Background="{TemplateBinding Background}"
+                                    IsItemsHost="True"
+                                    KeyboardNavigation.TabIndex="1"
+                                    Orientation="Horizontal" />
+                                <eda:CandyBeveledBorder
+                                    x:Name="PART_BG"
+                                    Grid.Row="1"
+                                    Width="Auto"
+                                    Height="Auto"
+                                    Background="{TemplateBinding BorderBackgroud}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    BorderType="{TemplateBinding BorderType}"
+                                    CornerRadius="{TemplateBinding CornerRadius}"
+                                    RenderTransformOrigin=".5,.5">
+                                    <eda:CandyBeveledBorder.RenderTransform>
+                                        <TransformGroup>
+                                            <TranslateTransform />
+                                        </TransformGroup>
+                                    </eda:CandyBeveledBorder.RenderTransform>
+                                    <ContentPresenter x:Name="PART_SelectedContentHost" ContentSource="SelectedContent" />
+                                </eda:CandyBeveledBorder>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <EventTrigger RoutedEvent="SelectionChanged">
+                                    <EventTrigger.Actions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_BG" Storyboard.TargetProperty="RenderTransform.(TransformGroup.Children)[0].(TranslateTransform.X)">
+                                                    <EasingDoubleKeyFrame KeyTime="0:0:0" Value="120" />
+                                                    <EasingDoubleKeyFrame KeyTime="0:0:0.300" Value="0" />
+                                                </DoubleAnimationUsingKeyFrames>
+                                                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_BG" Storyboard.TargetProperty="Opacity">
+                                                    <EasingDoubleKeyFrame KeyTime="0" Value="0" />
+                                                    <EasingDoubleKeyFrame KeyTime="0:0:0.600" Value="1" />
+                                                </DoubleAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger.Actions>
+                                </EventTrigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="Placement" Value="Bottom" />
+                    <Condition Property="UseViewBox" Value="True" />
+                </MultiTrigger.Conditions>
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="eda:CandyTabControl">
@@ -111,25 +238,30 @@
                         </ControlTemplate>
                     </Setter.Value>
                 </Setter>
-            </Trigger>
-            <Trigger Property="Placement" Value="Top">
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="Placement" Value="Bottom" />
+                    <Condition Property="UseViewBox" Value="False" />
+                </MultiTrigger.Conditions>
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="eda:CandyTabControl">
                             <Grid KeyboardNavigation.TabNavigation="Local">
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto" />
                                     <RowDefinition />
+                                    <RowDefinition Height="Auto" />
                                 </Grid.RowDefinitions>
                                 <StackPanel
                                     x:Name="PART_HD"
+                                    Grid.Row="1"
                                     Background="{TemplateBinding Background}"
                                     IsItemsHost="True"
                                     KeyboardNavigation.TabIndex="1"
                                     Orientation="Horizontal" />
                                 <eda:CandyBeveledBorder
                                     x:Name="PART_BG"
-                                    Grid.Row="1"
+                                    Grid.Row="0"
                                     Width="Auto"
                                     Height="Auto"
                                     Background="{TemplateBinding BorderBackgroud}"
@@ -142,12 +274,7 @@
                                             <TranslateTransform />
                                         </TransformGroup>
                                     </eda:CandyBeveledBorder.RenderTransform>
-                                    <Viewbox RenderTransformOrigin=".5,.5">
-                                        <Viewbox.RenderTransform>
-                                            <ScaleTransform ScaleX="0.9" ScaleY="0.9" />
-                                        </Viewbox.RenderTransform>
-                                        <ContentPresenter x:Name="PART_SelectedContentHost" ContentSource="SelectedContent" />
-                                    </Viewbox>
+                                    <ContentPresenter x:Name="PART_SelectedContentHost" ContentSource="SelectedContent" />
                                 </eda:CandyBeveledBorder>
                             </Grid>
                             <ControlTemplate.Triggers>
@@ -171,8 +298,12 @@
                         </ControlTemplate>
                     </Setter.Value>
                 </Setter>
-            </Trigger>
-            <Trigger Property="Placement" Value="Left">
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="Placement" Value="Left" />
+                    <Condition Property="UseViewBox" Value="True" />
+                </MultiTrigger.Conditions>
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="eda:CandyTabControl">
@@ -231,8 +362,71 @@
                         </ControlTemplate>
                     </Setter.Value>
                 </Setter>
-            </Trigger>
-            <Trigger Property="Placement" Value="Right">
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="Placement" Value="Left" />
+                    <Condition Property="UseViewBox" Value="False" />
+                </MultiTrigger.Conditions>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="eda:CandyTabControl">
+                            <Grid KeyboardNavigation.TabNavigation="Local">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <StackPanel
+                                    x:Name="PART_HD"
+                                    Background="{TemplateBinding Background}"
+                                    IsItemsHost="True"
+                                    KeyboardNavigation.TabIndex="1"
+                                    Orientation="Vertical" />
+                                <eda:CandyBeveledBorder
+                                    x:Name="PART_BG"
+                                    Grid.Column="1"
+                                    Width="Auto"
+                                    Height="Auto"
+                                    Background="{TemplateBinding BorderBackgroud}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    BorderType="{TemplateBinding BorderType}"
+                                    CornerRadius="{TemplateBinding CornerRadius}"
+                                    RenderTransformOrigin=".5,.5">
+                                    <eda:CandyBeveledBorder.RenderTransform>
+                                        <TransformGroup>
+                                            <TranslateTransform />
+                                        </TransformGroup>
+                                    </eda:CandyBeveledBorder.RenderTransform>
+                                    <ContentPresenter x:Name="PART_SelectedContentHost" ContentSource="SelectedContent" />
+                                </eda:CandyBeveledBorder>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <EventTrigger RoutedEvent="SelectionChanged">
+                                    <EventTrigger.Actions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_BG" Storyboard.TargetProperty="RenderTransform.(TransformGroup.Children)[0].(TranslateTransform.X)">
+                                                    <EasingDoubleKeyFrame KeyTime="0:0:0" Value="120" />
+                                                    <EasingDoubleKeyFrame KeyTime="0:0:0.300" Value="0" />
+                                                </DoubleAnimationUsingKeyFrames>
+                                                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_BG" Storyboard.TargetProperty="Opacity">
+                                                    <EasingDoubleKeyFrame KeyTime="0" Value="0" />
+                                                    <EasingDoubleKeyFrame KeyTime="0:0:0.600" Value="1" />
+                                                </DoubleAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger.Actions>
+                                </EventTrigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="Placement" Value="Right" />
+                    <Condition Property="UseViewBox" Value="True" />
+                </MultiTrigger.Conditions>
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="eda:CandyTabControl">
@@ -291,7 +485,66 @@
                         </ControlTemplate>
                     </Setter.Value>
                 </Setter>
-            </Trigger>
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="Placement" Value="Right" />
+                    <Condition Property="UseViewBox" Value="False" />
+                </MultiTrigger.Conditions>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="eda:CandyTabControl">
+                            <Grid KeyboardNavigation.TabNavigation="Local">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <StackPanel
+                                    x:Name="PART_HD"
+                                    Grid.Column="1"
+                                    Background="{TemplateBinding Background}"
+                                    IsItemsHost="True"
+                                    KeyboardNavigation.TabIndex="1"
+                                    Orientation="Vertical" />
+                                <eda:CandyBeveledBorder
+                                    x:Name="PART_BG"
+                                    Width="Auto"
+                                    Height="Auto"
+                                    Background="{TemplateBinding BorderBackgroud}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    BorderType="{TemplateBinding BorderType}"
+                                    CornerRadius="{TemplateBinding CornerRadius}"
+                                    RenderTransformOrigin=".5,.5">
+                                    <eda:CandyBeveledBorder.RenderTransform>
+                                        <TransformGroup>
+                                            <TranslateTransform />
+                                        </TransformGroup>
+                                    </eda:CandyBeveledBorder.RenderTransform>
+                                    <ContentPresenter x:Name="PART_SelectedContentHost" ContentSource="SelectedContent" />
+                                </eda:CandyBeveledBorder>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <EventTrigger RoutedEvent="SelectionChanged">
+                                    <EventTrigger.Actions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_BG" Storyboard.TargetProperty="RenderTransform.(TransformGroup.Children)[0].(TranslateTransform.X)">
+                                                    <EasingDoubleKeyFrame KeyTime="0:0:0" Value="120" />
+                                                    <EasingDoubleKeyFrame KeyTime="0:0:0.300" Value="0" />
+                                                </DoubleAnimationUsingKeyFrames>
+                                                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_BG" Storyboard.TargetProperty="Opacity">
+                                                    <EasingDoubleKeyFrame KeyTime="0" Value="0" />
+                                                    <EasingDoubleKeyFrame KeyTime="0:0:0.600" Value="1" />
+                                                </DoubleAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger.Actions>
+                                </EventTrigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </MultiTrigger>
         </Style.Triggers>
     </Style>
 </ResourceDictionary>

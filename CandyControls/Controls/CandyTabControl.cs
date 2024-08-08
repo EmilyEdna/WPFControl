@@ -75,5 +75,12 @@ namespace CandyControls
         public static readonly DependencyProperty PlacementProperty =
             DependencyProperty.Register("Placement", typeof(EPlacement), typeof(CandyTabControl), new PropertyMetadata(EPlacement.Top));
 
+        public bool UseViewBox
+        {
+            get { return (bool)GetValue(UseViewBoxProperty); }
+            set { SetValue(UseViewBoxProperty, value); }
+        }
+        public static readonly DependencyProperty UseViewBoxProperty =
+            DependencyProperty.Register("UseViewBox", typeof(bool), typeof(CandyTabControl), new PropertyMetadata(false));
     }
-}
+}           
