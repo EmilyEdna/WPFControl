@@ -7,7 +7,7 @@
         <ResourceDictionary Source="Themes/CandyToggleStyle.xaml" />
         <ResourceDictionary Source="Themes/CandyTagStyle.xaml" />
         <ResourceDictionary Source="Themes/CandyContainerStyle.xaml" />
-        <ResourceDictionary Source="Themes/CandySearchBox.xaml" />
+        <ResourceDictionary Source="Themes/CandySearchBoxStyle.xaml" />
         <ResourceDictionary Source="Themes/CandyViwerStyle.xaml" />
         <ResourceDictionary Source="Themes/CandyWaterButtonStyle.xaml" />
         <ResourceDictionary Source="Themes/CandyMenuStyle.xaml" />
@@ -16,6 +16,7 @@
         <ResourceDictionary Source="Themes/CandySwitchStyle.xaml" />
         <ResourceDictionary Source="Themes/CandyTabControlStyle.xaml" />
         <ResourceDictionary Source="Themes/CandyComboBoxStyle.xaml" />
+        <ResourceDictionary Source="Themes/CandyListStyle.xaml" />
         <ResourceDictionary Source="Themes/CandyWindowStyle.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>
