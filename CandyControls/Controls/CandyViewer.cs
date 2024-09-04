@@ -72,21 +72,30 @@ namespace CandyControls
                 await Task.Delay(100);
             }
             uc.Show = false;
-            uc.ProcessValue = [0, 0];
-            var key = e.NewValue.ToString().ToMd5();
-            var result = Caches.RunTimeCacheGet<byte[]>(key);
-            if (result != null)
+
+            if (e.NewValue.ToString().Contains("http://") || e.NewValue.ToString().Contains("https://"))
             {
-                var data = BitmapHelper.Bytes2Image(result, (int)uc.Width, (int)uc.Height);
-                uc.PART_IMG.Source = data;
+                var key = e.NewValue.ToString().ToMd5();
+                uc.ProcessValue = [0, 0];
+                var result = Caches.RunTimeCacheGet<byte[]>(key);
+                if (result != null)
+                {
+                    var data = BitmapHelper.Bytes2Image(result, (int)uc.Width, (int)uc.Height);
+                    uc.PART_IMG.Source = data;
+                }
+                else
+                {
+                    HttpClient Client = new(ProgressHandler());
+                    Client.DefaultRequestHeaders.Add(ConstDefault.UserAgent, ConstDefault.UserAgentValue);
+                    var bytes = await Client.GetByteArrayAsync(e.NewValue.ToString());
+                    var data = BitmapHelper.Bytes2Image(bytes, (int)uc.Width, (int)uc.Height);
+                    Caches.RunTimeCacheSet(key, bytes, 5);
+                    uc.PART_IMG.Source = data;
+                }
             }
             else
             {
-                HttpClient Client = new(ProgressHandler());
-                Client.DefaultRequestHeaders.Add(ConstDefault.UserAgent, ConstDefault.UserAgentValue);
-                var bytes = await Client.GetByteArrayAsync(e.NewValue.ToString());
-                var data = BitmapHelper.Bytes2Image(bytes, (int)uc.Width, (int)uc.Height);
-                Caches.RunTimeCacheSet(key, bytes, 5);
+                var data = BitmapHelper.Bytes2Image(Convert.FromBase64String(e.NewValue.ToString()), (int)uc.Width, (int)uc.Height);
                 uc.PART_IMG.Source = data;
             }
         }
