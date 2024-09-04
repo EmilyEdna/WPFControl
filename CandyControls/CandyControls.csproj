@@ -10,9 +10,9 @@
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageId>XExten.WPFControls</PackageId>
 		<Product>XExten.WPFControls</Product>
-		<Version>1.0.6.3</Version>
-		<FileVersion>1.0.6.3</FileVersion>
-		<AssemblyVersion>1.0.6.3</AssemblyVersion>
+		<Version>1.0.6.4</Version>
+		<FileVersion>1.0.6.4</FileVersion>
+		<AssemblyVersion>1.0.6.4</AssemblyVersion>
 		<RepositoryUrl>https://github.com/EmilyEdna/WPFControl</RepositoryUrl>
 		<PackageProjectUrl>https://github.com/EmilyEdna/WPFControl</PackageProjectUrl>
 		<Copyright>EmilyEdna Oganization</Copyright>
