@@ -1,5 +1,6 @@
 ﻿using SkiaImageView;
 using System;
+using System.IO;
 using System.Net.Http;
 using System.Net.Http.Handlers;
 using System.Threading.Tasks;
@@ -9,10 +10,11 @@ using System.Windows.Media;
 using XExten.Advance.CacheFramework;
 using XExten.Advance.LinqFramework;
 using XExten.Advance.NetFramework;
+using XExten.Advance.StaticFramework;
 
 namespace CandyControls
 {
-    public class CandyViewer:UserControl
+    public class CandyViewer : UserControl
     {
         static CandyViewer()
         {
@@ -72,7 +74,7 @@ namespace CandyControls
                 await Task.Delay(100);
             }
             uc.Show = false;
-
+            if (e.NewValue == null) return;
             if (e.NewValue.ToString().Contains("http://") || e.NewValue.ToString().Contains("https://"))
             {
                 var key = e.NewValue.ToString().ToMd5();
@@ -95,8 +97,10 @@ namespace CandyControls
             }
             else
             {
-                var data = BitmapHelper.Bytes2Image(Convert.FromBase64String(e.NewValue.ToString()), (int)uc.Width, (int)uc.Height);
+                var bytes = SyncStatic.ConvertBytesImage(Convert.FromBase64String(e.NewValue.ToString()));
+                var data = BitmapHelper.Bytes2Image(bytes, (int)uc.Width, (int)uc.Height);
                 uc.PART_IMG.Source = data;
+                uc.Show = true;
             }
         }
         private static ProgressMessageHandler ProgressHandler()
