@@ -450,7 +450,7 @@ namespace CandyControls
                 Button btn = e.OriginalSource as Button;
                 RoutedEventArgs args = new RoutedEventArgs(ClickRoutedEvent, this);
                 Index = int.Parse(btn.Name.Substring(4, 1));
-                SelectName = btn.Content.ToString();
+                SelectName = ((Viewbox)btn.Content).FindChildren<TextBlock>().First().Text;
                 SelectValue = btn.CommandParameter;
                 Command?.Execute(new { Index, SelectName, SelectValue, RoutedEventArgs = args });
                 RaiseEvent(args);
