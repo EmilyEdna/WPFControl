@@ -10,9 +10,9 @@
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageId>XExten.WPFControls</PackageId>
 		<Product>XExten.WPFControls</Product>
-		<Version>1.0.6.5</Version>
-		<FileVersion>1.0.6.5</FileVersion>
-		<AssemblyVersion>1.0.6.5</AssemblyVersion>
+		<Version>1.0.6.6</Version>
+		<FileVersion>1.0.6.6</FileVersion>
+		<AssemblyVersion>1.0.6.6</AssemblyVersion>
 		<RepositoryUrl>https://github.com/EmilyEdna/WPFControl</RepositoryUrl>
 		<PackageProjectUrl>https://github.com/EmilyEdna/WPFControl</PackageProjectUrl>
 		<Copyright>EmilyEdna Oganization</Copyright>
@@ -22,6 +22,6 @@
 		<PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="6.0.0" />
 		<PackageReference Include="SkiaImageView.Wpf" Version="1.5.0" />
 		<PackageReference Include="System.Drawing.Common" Version="8.0.8" />
-		<PackageReference Include="XExten.Advance" Version="2.2.2.4" />
+		<PackageReference Include="XExten.Advance" Version="2.2.2.5" />
 	</ItemGroup>
 </Project>
