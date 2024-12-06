@@ -1,10 +1,13 @@
 ﻿using CandyControls.ControlsModel.Thicks;
-using System.Collections;
+using System.Windows.Interop;
+using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using XExten.Advance.LinqFramework;
+using System;
+using CandyControls.Utils;
 
 namespace CandyControls
 {
@@ -17,6 +20,8 @@ namespace CandyControls
             this.IconVisibility = this.Icon == null ? Visibility.Collapsed : Visibility.Visible;
             this.Width = this.MinWidth = 1200;
             this.Height = this.MinHeight = 700;
+            this.SourceInitialized += (s, e) => Win32Helper.TaskBarShow(this);
+
         }
 
         #region 依赖属性
