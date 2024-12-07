@@ -34,4 +34,10 @@ The current package contains a subset of the WPF Beautification UI, and the foll
 
 17.CandyTabControl
 
+18.CandyTextBox
+
+Notes:
+
+In the latest 1.0.7 release, the additional properties and styles for dynamic validation of TextBox data have been updated
+
 For more information on how to use the above controls, please refer to [WPFControl](https://github.com/EmilyEdna/WPFControl)
