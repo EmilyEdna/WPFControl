@@ -23,6 +23,7 @@ namespace CandyControls
                             {
                                 box.Text = string.Empty;
                                 box.Background = null;
+                                box.Foreground = Brushes.White;
                             }
 
                         };
@@ -32,6 +33,11 @@ namespace CandyControls
                             box.Foreground = Brushes.Gray;
                             box.Background = Brushes.Transparent;
                             box.Text = args.NewValue.ToString();
+                        };
+
+                        box.TextChanged += (s, e) =>
+                        {
+                            box.Foreground = Brushes.White;
                         };
                     }
                 }));

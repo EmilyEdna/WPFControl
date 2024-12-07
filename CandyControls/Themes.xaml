@@ -16,6 +16,7 @@
         <ResourceDictionary Source="Themes/CandySwitchStyle.xaml" />
         <ResourceDictionary Source="Themes/CandyTabControlStyle.xaml" />
         <ResourceDictionary Source="Themes/CandyComboBoxStyle.xaml" />
+        <ResourceDictionary Source="Themes/CandyTextBoxStyle.xaml" />
         <ResourceDictionary Source="Themes/CandyListStyle.xaml" />
         <ResourceDictionary Source="Themes/CandyWindowStyle.xaml" />
     </ResourceDictionary.MergedDictionaries>
