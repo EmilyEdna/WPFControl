@@ -9,30 +9,62 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="TabItem">
-                    <Grid Margin="3,5">
-                        <eda:CandyBeveledBorder
-                            x:Name="PART_BG"
-                            Width="Auto"
-                            Height="30"
-                            Background="{Binding BorderBackgroud, RelativeSource={RelativeSource AncestorType=eda:CandyTabControl}}"
-                            BorderThickness="{Binding BorderThickness, RelativeSource={RelativeSource AncestorType=eda:CandyTabControl}}"
-                            BorderType="{Binding BorderType, RelativeSource={RelativeSource AncestorType=eda:CandyTabControl}}"
-                            CornerRadius="{Binding CornerRadius, RelativeSource={RelativeSource AncestorType=eda:CandyTabControl}}">
-                            <Viewbox RenderTransformOrigin=".5,.5">
-                                <Viewbox.RenderTransform>
-                                    <ScaleTransform ScaleX="0.9" ScaleY="0.9" />
-                                </Viewbox.RenderTransform>
-                                <Label
-                                    Grid.Column="1"
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Center"
-                                    Background="Transparent"
-                                    BorderThickness="0"
-                                    Content="{TemplateBinding Header}"
-                                    Foreground="{Binding HeadBackgroud, RelativeSource={RelativeSource AncestorType=eda:CandyTabControl}}" />
-                            </Viewbox>
-                        </eda:CandyBeveledBorder>
-                    </Grid>
+                    <eda:CandyBeveledBorder
+                        x:Name="PART_BG"
+                        Width="Auto"
+                        Height="30"
+                        Margin="3,5"
+                        Background="{Binding BorderBackgroud, RelativeSource={RelativeSource AncestorType=eda:CandyTabControl}}"
+                        BorderThickness="{Binding BorderThickness, RelativeSource={RelativeSource AncestorType=eda:CandyTabControl}}"
+                        BorderType="{Binding BorderType, RelativeSource={RelativeSource AncestorType=eda:CandyTabControl}}"
+                        CornerRadius="{Binding CornerRadius, RelativeSource={RelativeSource AncestorType=eda:CandyTabControl}}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <ContentPresenter
+                                x:Name="contentPresenter"
+                                Margin="10,0"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                ContentSource="Header"
+                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                TextElement.Foreground="{Binding HeadBackgroud, RelativeSource={RelativeSource AncestorType=eda:CandyTabControl}}" />
+                            <Button
+                                Grid.Column="1"
+                                Width="30"
+                                Height="30"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Background="Transparent"
+                                BorderThickness="0"
+                                Command="{Binding Close, RelativeSource={RelativeSource AncestorType=eda:CandyTabControl}}"
+                                CommandParameter="{Binding ., RelativeSource={RelativeSource AncestorType=TabItem}}">
+                                <Button.Template>
+                                    <ControlTemplate TargetType="Button">
+                                        <eda:CandyBeveledBorder
+                                            x:Name="Back"
+                                            BorderThickness="0"
+                                            CornerRadius="{Binding CornerRadius, RelativeSource={RelativeSource AncestorType=eda:CandyTabControl}}">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                        </eda:CandyBeveledBorder>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter TargetName="Back" Property="Background" Value="{Binding MoveBackgroud, RelativeSource={RelativeSource AncestorType=eda:CandyTabControl}}" />
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Button.Template>
+                                <Path
+                                    Width="10"
+                                    Height="10"
+                                    Data="M512 570.88l196.864 196.8 58.88-58.88L570.752 512l196.864-196.864-58.88-58.88L512 453.248 315.136 256.32l-58.88 58.88L453.248 512l-196.864 196.864 58.88 58.88L512 570.752z"
+                                    Fill="WhiteSmoke"
+                                    Stretch="Uniform" />
+                            </Button>
+                        </Grid>
+                    </eda:CandyBeveledBorder>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter TargetName="PART_BG" Property="Background" Value="{Binding MoveBackgroud, RelativeSource={RelativeSource AncestorType=eda:CandyTabControl}}" />

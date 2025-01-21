@@ -49,12 +49,5 @@ namespace CandyControls
         }
         public static readonly DependencyProperty CommandProperty =
             DependencyProperty.Register("Command", typeof(ICommand), typeof(CandyFlowScroll), new PropertyMetadata(default));
-
-
-
-
-
-
-
     }
 }

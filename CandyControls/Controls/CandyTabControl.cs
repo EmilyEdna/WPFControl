@@ -1,6 +1,7 @@
 ﻿using CandyControls.ControlsModel.Enums;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
 
 namespace CandyControls
@@ -65,7 +66,7 @@ namespace CandyControls
             set { SetValue(CornerRadiusProperty, value); }
         }
         public static readonly DependencyProperty CornerRadiusProperty =
-            Border.CornerRadiusProperty.AddOwner(typeof(CandyTabControl), new PropertyMetadata(new CornerRadius(5)));
+            Border.CornerRadiusProperty.AddOwner(typeof(CandyTabControl), new PropertyMetadata(new CornerRadius(3)));
 
         public EPlacement Placement
         {
@@ -82,5 +83,16 @@ namespace CandyControls
         }
         public static readonly DependencyProperty UseViewBoxProperty =
             DependencyProperty.Register("UseViewBox", typeof(bool), typeof(CandyTabControl), new PropertyMetadata(false));
+
+        public ICommand Close
+        {
+            get { return (ICommand)GetValue(CloseProperty); }
+            set { SetValue(CloseProperty, value); }
+        }
+        public static readonly DependencyProperty CloseProperty =
+            DependencyProperty.Register("Close", typeof(ICommand), typeof(CandyTabControl), new PropertyMetadata(default));
+
+    
+    
     }
 }           

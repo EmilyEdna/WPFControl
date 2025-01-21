@@ -6,20 +6,22 @@
     xmlns:eda="https://github.com/EmilyEdna"
     xmlns:local="clr-namespace:WPFControl.ControlDemo"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DataContext="{d:DesignInstance local:CandyTabControlDemoVM}"
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d">
     <Grid>
-        <eda:CandyTabControl>
-            <TabItem Header="我是第一个">
-                <TextBlock Text="1" />
-            </TabItem>
-            <TabItem Header="我是第二个">
-                <TextBlock Text="2" />
-            </TabItem>
-            <TabItem Header="我是第三个">
-                <TextBlock Text="3" />
-            </TabItem>
+        <eda:CandyTabControl Close="{Binding CloseCommand}" ItemsSource="{Binding Title}">
+            <eda:CandyTabControl.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Key}" />
+                </DataTemplate>
+            </eda:CandyTabControl.ItemTemplate>
+            <eda:CandyTabControl.ContentTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Value}" />
+                </DataTemplate>
+            </eda:CandyTabControl.ContentTemplate>
         </eda:CandyTabControl>
     </Grid>
 </UserControl>
