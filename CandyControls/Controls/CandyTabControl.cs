@@ -1,8 +1,13 @@
 ﻿using CandyControls.ControlsModel.Enums;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using XExten.Advance.LinqFramework;
 
 namespace CandyControls
 {
@@ -84,15 +89,132 @@ namespace CandyControls
         public static readonly DependencyProperty UseViewBoxProperty =
             DependencyProperty.Register("UseViewBox", typeof(bool), typeof(CandyTabControl), new PropertyMetadata(false));
 
-        public ICommand Close
+        public ICommand OpenCommand
         {
-            get { return (ICommand)GetValue(CloseProperty); }
-            set { SetValue(CloseProperty, value); }
+            get { return (ICommand)GetValue(OpenCommandProperty); }
+            set { SetValue(OpenCommandProperty, value); }
         }
-        public static readonly DependencyProperty CloseProperty =
-            DependencyProperty.Register("Close", typeof(ICommand), typeof(CandyTabControl), new PropertyMetadata(default));
+        public static readonly DependencyProperty OpenCommandProperty =
+            DependencyProperty.Register("OpenCommand", typeof(ICommand), typeof(CandyTabControl), new PropertyMetadata(default));
 
-    
-    
+        private int _MenuItemSelectIndex = -1;
+
+        protected override void OnRender(DrawingContext drawingContext)
+        {
+            base.OnRender(drawingContext);
+            InitTabItemHandle();
+        }
+
+        protected override void OnItemsChanged(NotifyCollectionChangedEventArgs e)
+        {
+            base.OnItemsChanged(e);
+            if (e.Action == NotifyCollectionChangedAction.Add)
+                this.SelectedIndex = Items.Count - 1;
+            InitTabItemHandle();
+        }
+
+        private void InitTabItemHandle()
+        {
+            List<TabItem> TabItems = this.FindChildren<TabItem>();
+            if (TabItems.Count > 0)
+            {
+                foreach (TabItem Item in TabItems)
+                {
+                    Item.Loaded -= TabItemLoadEvent;
+                    Item.Loaded += TabItemLoadEvent;
+
+                    Item.MouseRightButtonDown -= RightClickEvent;
+                    Item.MouseRightButtonDown += RightClickEvent;
+
+                    Item.ContextMenu.Items.OfType<MenuItem>().ForEnumerEach(Menu =>
+                    {
+                        var Flag = Menu.Tag.AsString().AsInt();
+                        Menu.CommandParameter = Item;
+
+                        if (Flag == 1)
+                        {
+                            Menu.Click -= CloseAllEvent;
+                            Menu.Click += CloseAllEvent;
+                        }
+                        if (Flag == 2)
+                        {
+                            Menu.Click -= CloseOtherEvent;
+                            Menu.Click += CloseOtherEvent;
+                        }
+                        if (Flag == 3)
+                        {
+                            Menu.Click -= OpenWindowEvent;
+                            Menu.Click += OpenWindowEvent;
+                        }
+                    });
+
+                }
+            }
+        }
+
+
+        private void OpenWindowEvent(object sender, RoutedEventArgs e)
+        {
+            var Item = ((TabItem)((MenuItem)sender).CommandParameter);
+            if (ItemsControl.ItemsControlFromItemContainer(Item) is not CandyTabControl parent) return;
+            var current = parent.ItemContainerGenerator.ItemFromContainer(Item);
+            parent.OpenCommand?.Execute(current);
+        }
+
+        private void CloseOtherEvent(object sender, RoutedEventArgs e)
+        {
+            var Item = ((TabItem)((MenuItem)sender).CommandParameter);
+            if (ItemsControl.ItemsControlFromItemContainer(Item) is not CandyTabControl parent) return;
+            if (parent.ItemsSource is IList list)
+            {
+                var Current = list[_MenuItemSelectIndex];
+                for (var i = 0; i < list.Count; i++)
+                {
+                    var item = list[i];
+                    if (!Equals(item, Current) && item != null)
+                    {
+                        if (ItemContainerGenerator.ContainerFromItem(item) is not TabItem tabItem) continue;
+                        list.Remove(item);
+                        i--;
+                    }
+                }
+                parent.SelectedIndex = 0;
+            }
+        }
+
+        private void CloseAllEvent(object sender, RoutedEventArgs e)
+        {
+            var Item = ((TabItem)((MenuItem)sender).CommandParameter);
+            if (ItemsControl.ItemsControlFromItemContainer(Item) is not CandyTabControl parent) return;
+            if (parent.ItemsSource is IList list)
+                list.Clear();
+            parent.SelectedIndex = -1;
+        }
+
+        private void RightClickEvent(object sender, MouseButtonEventArgs e)
+        {
+            TabItem Item = sender as TabItem;
+            if (ItemsControl.ItemsControlFromItemContainer(Item) is not CandyTabControl parent) return;
+            var current = parent.ItemContainerGenerator.ItemFromContainer(Item);
+            if (parent.ItemsSource is IList list)
+                _MenuItemSelectIndex = list.IndexOf(current);
+        }
+
+        private void TabItemLoadEvent(object sender, RoutedEventArgs e)
+        {
+            TabItem Item = sender as TabItem;
+            Button Btn = (Button)Item.Template.FindName("PART_CLOSE", Item);
+            Btn.Click -= CloseSingleEvent;
+            Btn.Click += CloseSingleEvent;
+        }
+
+        private void CloseSingleEvent(object sender, RoutedEventArgs e)
+        {
+            var Item = ((TabItem)((Button)sender).CommandParameter);
+            if (ItemsControl.ItemsControlFromItemContainer(Item) is not CandyTabControl parent) return;
+            var current = parent.ItemContainerGenerator.ItemFromContainer(Item);
+            if (parent.ItemsSource is IList list)
+                list.Remove(current);
+        }
     }
-}           
+}

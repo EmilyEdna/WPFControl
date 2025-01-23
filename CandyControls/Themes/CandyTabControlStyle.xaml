@@ -6,6 +6,24 @@
     <Style x:Key="TabItemStyle" TargetType="TabItem">
         <Setter Property="OverridesDefaultStyle" Value="True" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="ContextMenu">
+            <Setter.Value>
+                <ContextMenu Style="{DynamicResource CandyContextMenu}">
+                    <eda:CandyMenuItem
+                        Header="关闭全部"
+                        Style="{DynamicResource CandyMenuItem}"
+                        Tag="1" />
+                    <eda:CandyMenuItem
+                        Header="关闭其他"
+                        Style="{DynamicResource CandyMenuItem}"
+                        Tag="2" />
+                    <eda:CandyMenuItem
+                        Header="新窗口打开"
+                        Style="{DynamicResource CandyMenuItem}"
+                        Tag="3" />
+                </ContextMenu>
+            </Setter.Value>
+        </Setter>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="TabItem">
@@ -32,6 +50,7 @@
                                 SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
                                 TextElement.Foreground="{Binding HeadBackgroud, RelativeSource={RelativeSource AncestorType=eda:CandyTabControl}}" />
                             <Button
+                                x:Name="PART_CLOSE"
                                 Grid.Column="1"
                                 Width="30"
                                 Height="30"
@@ -39,7 +58,6 @@
                                 VerticalAlignment="Center"
                                 Background="Transparent"
                                 BorderThickness="0"
-                                Command="{Binding Close, RelativeSource={RelativeSource AncestorType=eda:CandyTabControl}}"
                                 CommandParameter="{Binding ., RelativeSource={RelativeSource AncestorType=TabItem}}">
                                 <Button.Template>
                                     <ControlTemplate TargetType="Button">

@@ -50,13 +50,9 @@ namespace WPFControl.ControlDemo
         private ObservableCollection<CandyTabControlDemoDto> _Title;
 
         [RelayCommand]
-        public void Close(TabItem item)
-        {
-            var parent = ItemsControl.ItemsControlFromItemContainer(item) as CandyTabControl;
-            if (parent == null) return;
-            var current = parent.ItemContainerGenerator.ItemFromContainer(item);
-            var ls = (parent.ItemsSource as IList);
-            ls.Remove(current);
+        private void Open(object dto)
+        { 
+        
         }
     }
 }
