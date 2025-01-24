@@ -29,21 +29,14 @@ namespace WPFControl.ControlDemo
         public CandyTabControlDemoVM()
         {
             Title = [];
-            Title.Add(new CandyTabControlDemoDto
+            for (int i = 0; i < 20; i++)
             {
-                Key = "我是第1个",
-                Value = "1"
-            });
-            Title.Add(new CandyTabControlDemoDto
-            {
-                Key = "我是第2个",
-                Value = "2"
-            });
-            Title.Add(new CandyTabControlDemoDto
-            {
-                Key = "我是第3个",
-                Value = "3"
-            });
+                Title.Add(new CandyTabControlDemoDto
+                {
+                    Key = $"我是第{i+1}个",
+                    Value = $"{i+1}"
+                });
+            }
         }
 
         [ObservableProperty]

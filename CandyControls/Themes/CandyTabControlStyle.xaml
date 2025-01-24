@@ -116,12 +116,18 @@
                                     <RowDefinition Height="Auto" />
                                     <RowDefinition />
                                 </Grid.RowDefinitions>
-                                <StackPanel
-                                    x:Name="PART_HD"
-                                    Background="{TemplateBinding Background}"
-                                    IsItemsHost="True"
-                                    KeyboardNavigation.TabIndex="1"
-                                    Orientation="Horizontal" />
+                                <ScrollViewer
+                                    eda:ScrollViewAttach.Orientation="Horizontal"
+                                    HorizontalScrollBarVisibility="Hidden"
+                                    VerticalScrollBarVisibility="Hidden">
+                                    <StackPanel
+                                        x:Name="PART_HD"
+                                        Background="{TemplateBinding Background}"
+                                        IsItemsHost="True"
+                                        KeyboardNavigation.TabIndex="1"
+                                        Orientation="Horizontal" />
+                                </ScrollViewer>
+
                                 <eda:CandyBeveledBorder
                                     x:Name="PART_BG"
                                     Grid.Row="1"
@@ -180,12 +186,17 @@
                                     <RowDefinition Height="Auto" />
                                     <RowDefinition />
                                 </Grid.RowDefinitions>
-                                <StackPanel
-                                    x:Name="PART_HD"
-                                    Background="{TemplateBinding Background}"
-                                    IsItemsHost="True"
-                                    KeyboardNavigation.TabIndex="1"
-                                    Orientation="Horizontal" />
+                                <ScrollViewer
+                                    eda:ScrollViewAttach.Orientation="Horizontal"
+                                    HorizontalScrollBarVisibility="Hidden"
+                                    VerticalScrollBarVisibility="Hidden">
+                                    <StackPanel
+                                        x:Name="PART_HD"
+                                        Background="{TemplateBinding Background}"
+                                        IsItemsHost="True"
+                                        KeyboardNavigation.TabIndex="1"
+                                        Orientation="Horizontal" />
+                                </ScrollViewer>
                                 <eda:CandyBeveledBorder
                                     x:Name="PART_BG"
                                     Grid.Row="1"
@@ -239,13 +250,18 @@
                                     <RowDefinition />
                                     <RowDefinition Height="Auto" />
                                 </Grid.RowDefinitions>
-                                <StackPanel
-                                    x:Name="PART_HD"
-                                    Grid.Row="1"
-                                    Background="{TemplateBinding Background}"
-                                    IsItemsHost="True"
-                                    KeyboardNavigation.TabIndex="1"
-                                    Orientation="Horizontal" />
+                                <ScrollViewer
+                                    eda:ScrollViewAttach.Orientation="Horizontal"
+                                    HorizontalScrollBarVisibility="Hidden"
+                                    VerticalScrollBarVisibility="Hidden">
+                                    <StackPanel
+                                        x:Name="PART_HD"
+                                        Grid.Row="1"
+                                        Background="{TemplateBinding Background}"
+                                        IsItemsHost="True"
+                                        KeyboardNavigation.TabIndex="1"
+                                        Orientation="Horizontal" />
+                                </ScrollViewer>
                                 <eda:CandyBeveledBorder
                                     x:Name="PART_BG"
                                     Grid.Row="0"
@@ -304,13 +320,18 @@
                                     <RowDefinition />
                                     <RowDefinition Height="Auto" />
                                 </Grid.RowDefinitions>
-                                <StackPanel
-                                    x:Name="PART_HD"
-                                    Grid.Row="1"
-                                    Background="{TemplateBinding Background}"
-                                    IsItemsHost="True"
-                                    KeyboardNavigation.TabIndex="1"
-                                    Orientation="Horizontal" />
+                                <ScrollViewer
+                                    eda:ScrollViewAttach.Orientation="Horizontal"
+                                    HorizontalScrollBarVisibility="Hidden"
+                                    VerticalScrollBarVisibility="Hidden">
+                                    <StackPanel
+                                        x:Name="PART_HD"
+                                        Grid.Row="1"
+                                        Background="{TemplateBinding Background}"
+                                        IsItemsHost="True"
+                                        KeyboardNavigation.TabIndex="1"
+                                        Orientation="Horizontal" />
+                                </ScrollViewer>
                                 <eda:CandyBeveledBorder
                                     x:Name="PART_BG"
                                     Grid.Row="0"
@@ -364,12 +385,17 @@
                                     <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition />
                                 </Grid.ColumnDefinitions>
-                                <StackPanel
-                                    x:Name="PART_HD"
-                                    Background="{TemplateBinding Background}"
-                                    IsItemsHost="True"
-                                    KeyboardNavigation.TabIndex="1"
-                                    Orientation="Vertical" />
+                                <ScrollViewer
+                                    eda:ScrollViewAttach.Orientation="Horizontal"
+                                    HorizontalScrollBarVisibility="Hidden"
+                                    VerticalScrollBarVisibility="Hidden">
+                                    <StackPanel
+                                        x:Name="PART_HD"
+                                        Background="{TemplateBinding Background}"
+                                        IsItemsHost="True"
+                                        KeyboardNavigation.TabIndex="1"
+                                        Orientation="Vertical" />
+                                </ScrollViewer>
                                 <eda:CandyBeveledBorder
                                     x:Name="PART_BG"
                                     Grid.Column="1"
@@ -428,12 +454,17 @@
                                     <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition />
                                 </Grid.ColumnDefinitions>
-                                <StackPanel
-                                    x:Name="PART_HD"
-                                    Background="{TemplateBinding Background}"
-                                    IsItemsHost="True"
-                                    KeyboardNavigation.TabIndex="1"
-                                    Orientation="Vertical" />
+                                <ScrollViewer
+                                    eda:ScrollViewAttach.Orientation="Horizontal"
+                                    HorizontalScrollBarVisibility="Hidden"
+                                    VerticalScrollBarVisibility="Hidden">
+                                    <StackPanel
+                                        x:Name="PART_HD"
+                                        Background="{TemplateBinding Background}"
+                                        IsItemsHost="True"
+                                        KeyboardNavigation.TabIndex="1"
+                                        Orientation="Vertical" />
+                                </ScrollViewer>
                                 <eda:CandyBeveledBorder
                                     x:Name="PART_BG"
                                     Grid.Column="1"
@@ -487,13 +518,18 @@
                                     <ColumnDefinition />
                                     <ColumnDefinition Width="Auto" />
                                 </Grid.ColumnDefinitions>
-                                <StackPanel
-                                    x:Name="PART_HD"
-                                    Grid.Column="1"
-                                    Background="{TemplateBinding Background}"
-                                    IsItemsHost="True"
-                                    KeyboardNavigation.TabIndex="1"
-                                    Orientation="Vertical" />
+                                <ScrollViewer
+                                    eda:ScrollViewAttach.Orientation="Horizontal"
+                                    HorizontalScrollBarVisibility="Hidden"
+                                    VerticalScrollBarVisibility="Hidden">
+                                    <StackPanel
+                                        x:Name="PART_HD"
+                                        Grid.Column="1"
+                                        Background="{TemplateBinding Background}"
+                                        IsItemsHost="True"
+                                        KeyboardNavigation.TabIndex="1"
+                                        Orientation="Vertical" />
+                                </ScrollViewer>
                                 <eda:CandyBeveledBorder
                                     x:Name="PART_BG"
                                     Width="Auto"
@@ -551,13 +587,18 @@
                                     <ColumnDefinition />
                                     <ColumnDefinition Width="Auto" />
                                 </Grid.ColumnDefinitions>
-                                <StackPanel
-                                    x:Name="PART_HD"
-                                    Grid.Column="1"
-                                    Background="{TemplateBinding Background}"
-                                    IsItemsHost="True"
-                                    KeyboardNavigation.TabIndex="1"
-                                    Orientation="Vertical" />
+                                <ScrollViewer
+                                    eda:ScrollViewAttach.Orientation="Horizontal"
+                                    HorizontalScrollBarVisibility="Hidden"
+                                    VerticalScrollBarVisibility="Hidden">
+                                    <StackPanel
+                                        x:Name="PART_HD"
+                                        Grid.Column="1"
+                                        Background="{TemplateBinding Background}"
+                                        IsItemsHost="True"
+                                        KeyboardNavigation.TabIndex="1"
+                                        Orientation="Vertical" />
+                                </ScrollViewer>
                                 <eda:CandyBeveledBorder
                                     x:Name="PART_BG"
                                     Width="Auto"
