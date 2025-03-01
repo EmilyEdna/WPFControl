@@ -14,7 +14,7 @@
         <local:CandyTextBoxDemoViewModel />
     </UserControl.DataContext>
     <Grid>
-        <TextBox eda:ValidataAttach.ErrorInfo="{Binding (Validation.Errors)[0].ErrorContent, RelativeSource={RelativeSource Mode=Self}}">
+        <TextBox eda:ValidataAttach.ErrorInfo="{Binding (Validation.Errors)[0].ErrorContent, RelativeSource={RelativeSource Mode=Self}}" eda:WaterMarkAttach.Placeholder="do somethings">
             <!--  设置验证规则  -->
             <TextBox.Text>
                 <Binding
