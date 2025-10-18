@@ -36,6 +36,8 @@ The current package contains a subset of the WPF Beautification UI, and the foll
 
 18.CandyTextBox
 
+19.CandyDropCard
+
 Notes:
 
 In the latest 1.0.7 release, the additional properties and styles for dynamic validation of TextBox data have been updated

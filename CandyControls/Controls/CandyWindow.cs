@@ -18,8 +18,8 @@ namespace CandyControls
             this.SetResourceReference(StyleProperty, "BlurWindow");
             this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             this.IconVisibility = this.Icon == null ? Visibility.Collapsed : Visibility.Visible;
-            this.Width = this.MinWidth = 1200;
-            this.Height = this.MinHeight = 700;
+            this.Width = this.MinWidth =1100;
+            this.Height = this.MinHeight = 600;
             this.SourceInitialized += (s, e) => Win32Helper.TaskBarShow(this);
 
         }
