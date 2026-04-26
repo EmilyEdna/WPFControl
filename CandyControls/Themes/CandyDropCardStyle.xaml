@@ -25,20 +25,24 @@
                                 x:Name="PART_TOP"
                                 Grid.Column="1"
                                 Height="30"
-                                Margin="10,0"
                                 Visibility="Collapsed">
                                 <Button.Style>
                                     <Style TargetType="Button">
                                         <Setter Property="Template">
                                             <Setter.Value>
                                                 <ControlTemplate TargetType="Button">
-                                                    <Path
-                                                        x:Name="TOP"
-                                                        Width="12"
-                                                        Height="12"
-                                                        Data="M640 608c-6.4 0-19.2 0-25.6-6.4L512 492.8 409.6 601.6c-12.8 12.8-32 12.8-44.8 0s-12.8-32 0-44.8l128-128c12.8-12.8 32-12.8 44.8 0l128 128c12.8 12.8 12.8 32 0 44.8C659.2 608 646.4 608 640 608z"
-                                                        Fill="White"
-                                                        Stretch="Uniform" />
+                                                    <Border
+                                                        Width="30"
+                                                        Height="30"
+                                                        Background="#0CFFFFFF">
+                                                        <Path
+                                                            x:Name="TOP"
+                                                            Width="12"
+                                                            Height="12"
+                                                            Data="M640 608c-6.4 0-19.2 0-25.6-6.4L512 492.8 409.6 601.6c-12.8 12.8-32 12.8-44.8 0s-12.8-32 0-44.8l128-128c12.8-12.8 32-12.8 44.8 0l128 128c12.8 12.8 12.8 32 0 44.8C659.2 608 646.4 608 640 608z"
+                                                            Fill="White"
+                                                            Stretch="Uniform" />
+                                                    </Border>
                                                     <ControlTemplate.Triggers>
                                                         <Trigger Property="IsMouseOver" Value="True">
                                                             <Setter TargetName="TOP" Property="Fill" Value="LightPink" />
@@ -53,20 +57,24 @@
                             <Button
                                 x:Name="PART_DOWN"
                                 Grid.Column="1"
-                                Height="30"
-                                Margin="10,0">
+                                Height="30">
                                 <Button.Style>
                                     <Style TargetType="Button">
                                         <Setter Property="Template">
                                             <Setter.Value>
                                                 <ControlTemplate TargetType="Button">
-                                                    <Path
-                                                        x:Name="Down"
-                                                        Width="12"
-                                                        Height="12"
-                                                        Data="M512 608c-6.4 0-19.2 0-25.6-6.4l-128-128c-12.8-12.8-12.8-32 0-44.8s32-12.8 44.8 0L512 531.2l102.4-102.4c12.8-12.8 32-12.8 44.8 0s12.8 32 0 44.8l-128 128C531.2 608 518.4 608 512 608z"
-                                                        Fill="White"
-                                                        Stretch="Uniform" />
+                                                    <Border
+                                                        Width="30"
+                                                        Height="30"
+                                                        Background="#0CFFFFFF">
+                                                        <Path
+                                                            x:Name="Down"
+                                                            Width="12"
+                                                            Height="12"
+                                                            Data="M512 608c-6.4 0-19.2 0-25.6-6.4l-128-128c-12.8-12.8-12.8-32 0-44.8s32-12.8 44.8 0L512 531.2l102.4-102.4c12.8-12.8 32-12.8 44.8 0s12.8 32 0 44.8l-128 128C531.2 608 518.4 608 512 608z"
+                                                            Fill="White"
+                                                            Stretch="Uniform" />
+                                                    </Border>
                                                     <ControlTemplate.Triggers>
                                                         <Trigger Property="IsMouseOver" Value="True">
                                                             <Setter TargetName="Down" Property="Fill" Value="LightPink" />

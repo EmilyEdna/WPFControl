@@ -26,6 +26,25 @@ namespace CandyControls
         public static readonly DependencyProperty BorderBackgroudProperty =
             DependencyProperty.Register("BorderBackgroud", typeof(Brush), typeof(CandyTabControl), new PropertyMetadata(new SolidColorBrush((Color)ColorConverter.ConvertFromString("#20B3B3B3"))));
 
+        public Brush ContentBackgroud
+        {
+            get { return (Brush)GetValue(ContentBackgroudProperty); }
+            set { SetValue(ContentBackgroudProperty, value); }
+        }
+
+        public static readonly DependencyProperty ContentBackgroudProperty =
+            DependencyProperty.Register("ContentBackgroud", typeof(Brush), typeof(CandyTabControl), new PropertyMetadata(new SolidColorBrush((Color)ColorConverter.ConvertFromString("#0CFFFFFF"))));
+
+
+        public Thickness HeadMargin
+        {
+            get { return (Thickness)GetValue(HeadMarginProperty); }
+            set { SetValue(HeadMarginProperty, value); }
+        }
+
+        public static readonly DependencyProperty HeadMarginProperty =
+            DependencyProperty.Register("HeadMargin", typeof(Thickness), typeof(CandyTabControl), new PropertyMetadata(new Thickness(1)));
+
         public Brush HeadBackgroud
         {
             get { return (Brush)GetValue(HeadBackgroudProperty); }
@@ -71,7 +90,7 @@ namespace CandyControls
             set { SetValue(CornerRadiusProperty, value); }
         }
         public static readonly DependencyProperty CornerRadiusProperty =
-            Border.CornerRadiusProperty.AddOwner(typeof(CandyTabControl), new PropertyMetadata(new CornerRadius(3)));
+            Border.CornerRadiusProperty.AddOwner(typeof(CandyTabControl), new PropertyMetadata(new CornerRadius(0)));
 
         public EPlacement Placement
         {
