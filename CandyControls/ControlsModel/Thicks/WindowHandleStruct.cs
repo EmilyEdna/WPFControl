@@ -4,12 +4,27 @@ using System.ComponentModel;
 
 namespace CandyControls.ControlsModel.Thicks
 {
+    /// <summary>
+    /// 窗口按钮控制结构
+    /// </summary>
     [TypeConverter(typeof(WindowHandleConverter))]
     public struct WindowHandleStruct
     {
+        /// <summary>
+        /// 是否隐藏设置按钮
+        /// </summary>
         public bool IsSettingHidden { get; set; }
+        /// <summary>
+        /// 是否隐藏最小化按钮
+        /// </summary>
         public bool IsMinimizeHidden { get; set; }
+        /// <summary>
+        /// 是否隐藏最大化按钮
+        /// </summary>
         public bool IsMaximizeHidden { get; set; }
+        /// <summary>
+        /// 是否隐藏关闭按钮
+        /// </summary>
         public bool IsCloseHidden { get; set; }
 
         public WindowHandleStruct(EWindowHandle Handle, bool Input)
