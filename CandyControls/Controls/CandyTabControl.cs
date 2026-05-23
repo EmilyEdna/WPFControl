@@ -97,6 +97,15 @@ namespace CandyControls
         public static readonly DependencyProperty OpenCommandProperty =
             DependencyProperty.Register("OpenCommand", typeof(ICommand), typeof(CandyTabControl), new PropertyMetadata(default));
 
+        public Visibility IsEnableCloseButton
+        {
+            get { return (Visibility)GetValue(IsEnableCloseButtonProperty); }
+            set { SetValue(IsEnableCloseButtonProperty, value); }
+        }
+
+        public static readonly DependencyProperty IsEnableCloseButtonProperty =
+            DependencyProperty.Register(nameof(IsEnableCloseButton), typeof(Visibility), typeof(CandyTabControl), new PropertyMetadata(Visibility.Visible));
+
         private int _MenuItemSelectIndex = -1;
 
         protected override void OnRender(DrawingContext drawingContext)
